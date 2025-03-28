@@ -16,3 +16,10 @@ Este proyecto consiste en la creación de una aplicación que muestre toda la in
 - Node.js y npm
 - MySQL 5.7 o superior
 - Máquina virtual
+
+## Instalación
+- Clonar el repositorio
+- Encender la máquina virtual
+- Abrir MySQL y ejecutar el script de la base de datos
+- Arrancar el proyecto de Java
+- Ejecutar la página de Angular
