@@ -1,8 +1,8 @@
 # TFC
 Trabajo de fin de ciclo de DAM
 
-## aWRC
-Este proyecto consiste en la creación de una aplicación que muestre toda la información sobre el mundo de los rallys
+## Rallys de montaña
+Este proyecto consiste en la creación de una aplicación que muestre toda la información sobre el campeonato gallego de montaña y sus ediciones
 
 ## Tecnologías usadas
 - Java 17 con Spring Boot
