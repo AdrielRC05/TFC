@@ -12,7 +12,10 @@ public class PuntoRutaService {
     private PuntoRutaRepository repository;
 
     public List<PuntoRuta> findAll() { return repository.findAll(); }
+
     public PuntoRuta findById(Long id) { return repository.findById(id).orElse(null); }
+
     public PuntoRuta save(PuntoRuta punto) { return repository.save(punto); }
+
     public void delete(Long id) { repository.deleteById(id); }
 }
