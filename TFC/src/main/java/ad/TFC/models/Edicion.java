@@ -3,6 +3,8 @@ package ad.TFC.models;
 import jakarta.persistence.*;
 import java.util.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Edicion {
     @Id
@@ -12,10 +14,9 @@ public class Edicion {
     @Column(unique = true, nullable = false)
     private int año;
 
-    private Date fechaInicio;
-    private Date fechaFin;
     private String lugar;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "edicion", cascade = CascadeType.ALL)
     private List<Subida> subidas;
 
@@ -34,18 +35,6 @@ public class Edicion {
     }
     public void setAño(int año) {
         this.año = año;
-    }
-    public Date getFechaInicio() {
-        return fechaInicio;
-    }
-    public void setFechaInicio(Date fechaInicio) {
-        this.fechaInicio = fechaInicio;
-    }
-    public Date getFechaFin() {
-        return fechaFin;
-    }
-    public void setFechaFin(Date fechaFin) {
-        this.fechaFin = fechaFin;
     }
     public String getLugar() {
         return lugar;

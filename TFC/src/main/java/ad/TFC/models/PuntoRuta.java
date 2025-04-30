@@ -1,5 +1,7 @@
 package ad.TFC.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -12,6 +14,7 @@ public class PuntoRuta {
     private double longitud;
     private String descripcion;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "ruta_id")
     private Ruta ruta;

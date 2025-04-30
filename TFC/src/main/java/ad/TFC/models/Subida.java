@@ -3,6 +3,8 @@ package ad.TFC.models;
 import jakarta.persistence.*;
 import java.util.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Subida {
     @Id
@@ -13,10 +15,12 @@ public class Subida {
     private Date fechaInicio;
     private Date fechaFin;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "edicion_id")
     private Edicion edicion;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "ganador_id")
     private Participante ganador;

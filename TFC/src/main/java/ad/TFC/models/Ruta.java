@@ -3,6 +3,8 @@ package ad.TFC.models;
 import jakarta.persistence.*;
 import java.util.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Ruta {
     @Id
@@ -13,10 +15,12 @@ public class Ruta {
     private String descripcion;
     private double distancia;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "subida_id")
     private Subida subida;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "ruta", cascade = CascadeType.ALL)
     private List<PuntoRuta> puntos;
 
