@@ -10,17 +10,22 @@ import java.util.*;
 @RequestMapping("/api/subidas")
 public class SubidaController {
     @Autowired
-    private SubidaService service;
+    private SubidaService subidaService;
 
     @GetMapping
-    public List<Subida> findAll() { return service.findAll(); }
+    public List<Subida> obtenerSubidas() { return subidaService.obtenerSubidas(); }
 
     @GetMapping("/{id}")
-    public Subida findById(@PathVariable Long id) { return service.findById(id); }
+    public Subida obtenerSubidasPorId(@PathVariable Long id) { return subidaService.obtenerSubidaPorId(id); }
 
     @PostMapping
-    public Subida save(@RequestBody Subida subida) { return service.save(subida); }
+    public Subida guardarSubida(@RequestBody Subida subida) { return subidaService.guardarSubida(subida); }
+
+    @PutMapping("/{id}")
+    public Subida actualizarSubida(@PathVariable Long id, @RequestBody Subida subida) {
+        return subidaService.actualizarSubida(id, subida);
+    }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) { service.delete(id); }
+    public void borrarSubida(@PathVariable Long id) { subidaService.borrarSubida(id); }
 }

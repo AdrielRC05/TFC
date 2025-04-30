@@ -11,27 +11,36 @@ import java.util.*;
 @Service
 public class RutaService {
     @Autowired
-    private RutaRepository repository;
+    private RutaRepository rutaRepository;
 
     @Autowired
-    private PuntoRutaRepository puntoRepo;
+    private PuntoRutaRepository puntoRutaRepository;
 
-    @Autowired
-    private RutaRepository rutaRepo;
+    public List<Ruta> obtenerRutas() { return rutaRepository.findAll(); }
 
-    public List<Ruta> findAll() { return repository.findAll(); }
+    public Ruta obtenerRutasPorId(Long id) { return rutaRepository.findById(id).orElse(null); }
 
-    public Ruta findById(Long id) { return repository.findById(id).orElse(null); }
+    public Ruta guardarRuta(Ruta ruta) { return rutaRepository.save(ruta); }
 
-    public Ruta save(Ruta ruta) { return repository.save(ruta); }
+    public void borrarRuta(Long id) { rutaRepository.deleteById(id); }
 
-    public void delete(Long id) { repository.deleteById(id); }
+    public Ruta actualizarRuta(Long id, Ruta ruta) {
+        Ruta rutaExistente = rutaRepository.findById(id).orElse(null);
+        if (rutaExistente != null) {
+            rutaExistente.setNombre(ruta.getNombre());
+            rutaExistente.setDescripcion(ruta.getDescripcion());
+            rutaExistente.setDistancia(ruta.getDistancia());
+            rutaExistente.setPuntos(ruta.getPuntos());
+            rutaExistente.setSubida(ruta.getSubida());
+        }
+        return ruta;
+    }
     
     public List<PuntoRuta> getPuntosPorSubida(Long subidaId) {
-        List<Ruta> rutas = rutaRepo.findBySubidaId(subidaId);
+        List<Ruta> rutas = rutaRepository.findBySubidaId(subidaId);
         List<PuntoRuta> puntos = new ArrayList<>();
         for (Ruta ruta : rutas) {
-            puntos.addAll(puntoRepo.findByRutaIdOrderByIdAsc(ruta.getId()));
+            puntos.addAll(puntoRutaRepository.findByRutaIdOrderByIdAsc(ruta.getId()));
         }
         return puntos;
     }

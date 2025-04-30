@@ -21,7 +21,6 @@ public class Edicion {
     private List<Subida> subidas;
 
     Edicion() {
-        // Constructor por defecto
     }
 
     public Long getId() {

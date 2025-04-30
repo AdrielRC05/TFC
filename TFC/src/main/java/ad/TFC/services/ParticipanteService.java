@@ -9,10 +9,22 @@ import java.util.*;
 @Service
 public class ParticipanteService {
     @Autowired
-    private ParticipanteRepository repository;
+    private ParticipanteRepository participanteRepository;
 
-    public List<Participante> findAll() { return repository.findAll(); }
-    public Participante findById(Long id) { return repository.findById(id).orElse(null); }
-    public Participante save(Participante participante) { return repository.save(participante); }
-    public void delete(Long id) { repository.deleteById(id); }
+    public List<Participante> obtenerParticipantes() { return participanteRepository.findAll(); }
+
+    public Participante obtenerParticipantesPorId(Long id) { return participanteRepository.findById(id).orElse(null); }
+
+    public Participante guardarParticipante(Participante participante) { return participanteRepository.save(participante); }
+
+    public void borrarParticipante(Long id) { participanteRepository.deleteById(id); }
+    
+    public Participante actualizarParticipante(Long id, Participante participante) {
+        if (participanteRepository.existsById(id)) {
+            participante.setId(id);
+            return participanteRepository.save(participante);
+        } else {
+            return null;
+        }
+    }
 }

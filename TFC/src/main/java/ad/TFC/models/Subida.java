@@ -29,10 +29,7 @@ public class Subida {
     private List<Ruta> rutas;
 
     Subida() {
-        // Constructor por defecto
     }
-
-    // Getters y setters
 
     public Long getId() {
         return id;

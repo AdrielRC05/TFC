@@ -14,10 +14,7 @@ public class Participante {
     private String coche;
 
     Participante() {
-        // Constructor por defecto
     }
-
-    // Getters y setters
 
     public Long getId() {
         return id;

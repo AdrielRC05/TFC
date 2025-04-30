@@ -13,22 +13,19 @@ import java.util.*;
 public class RutaController {
 
     @Autowired
-    private RutaService service;
-
-    @Autowired
     private RutaService rutaService;
 
     @GetMapping
-    public List<Ruta> findAll() { return service.findAll(); }
+    public List<Ruta> obtenerRutas() { return rutaService.obtenerRutas(); }
 
     @GetMapping("/{id}")
-    public Ruta findById(@PathVariable Long id) { return service.findById(id); }
+    public Ruta obtenerRutasPorId(@PathVariable Long id) { return rutaService.obtenerRutasPorId(id); }
 
     @PostMapping
-    public Ruta save(@RequestBody Ruta ruta) { return service.save(ruta); }
+    public Ruta guardarRuta(@RequestBody Ruta ruta) { return rutaService.guardarRuta(ruta); }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) { service.delete(id); }
+    public void borrarRuta(@PathVariable Long id) { rutaService.borrarRuta(id); }
 
     @GetMapping("/{id}/ruta")
     public ResponseEntity<List<PuntoRuta>> getPuntosDeRutaPorSubida(@PathVariable Long id) {

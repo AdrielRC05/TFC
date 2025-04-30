@@ -10,17 +10,22 @@ import java.util.*;
 @RequestMapping("/api/participantes")
 public class ParticipanteController {
     @Autowired
-    private ParticipanteService service;
+    private ParticipanteService participanteService;
 
     @GetMapping
-    public List<Participante> findAll() { return service.findAll(); }
+    public List<Participante> obtenerParticipantes() { return participanteService.obtenerParticipantes(); }
 
     @GetMapping("/{id}")
-    public Participante findById(@PathVariable Long id) { return service.findById(id); }
+    public Participante obteneParticipantePorId(@PathVariable Long id) { return participanteService.obtenerParticipantesPorId(id); }
 
     @PostMapping
-    public Participante save(@RequestBody Participante participante) { return service.save(participante); }
+    public Participante guardParticipante(@RequestBody Participante participante) { return participanteService.guardarParticipante(participante); }
+
+    @PutMapping("/{id}")
+    public Participante actualizarParticipante(@PathVariable Long id, @RequestBody Participante participante) {
+        return participanteService.actualizarParticipante(id, participante);
+    }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) { service.delete(id); }
+    public void borrarParticipante(@PathVariable Long id) { participanteService.borrarParticipante(id); }
 }

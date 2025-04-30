@@ -9,10 +9,26 @@ import java.util.*;
 @Service
 public class SubidaService {
     @Autowired
-    private SubidaRepository repository;
+    private SubidaRepository subidaRepository;
 
-    public List<Subida> findAll() { return repository.findAll(); }
-    public Subida findById(Long id) { return repository.findById(id).orElse(null); }
-    public Subida save(Subida subida) { return repository.save(subida); }
-    public void delete(Long id) { repository.deleteById(id); }
+    public List<Subida> obtenerSubidas() { return subidaRepository.findAll(); }
+
+    public Subida obtenerSubidaPorId(Long id) { return subidaRepository.findById(id).orElse(null); }
+
+    public Subida guardarSubida(Subida subida) { return subidaRepository.save(subida); }
+
+    public void borrarSubida(Long id) { subidaRepository.deleteById(id); }
+    
+    public Subida actualizarSubida(Long id, Subida subida) {
+        Subida subidaExistente = subidaRepository.findById(id).orElse(null);
+        if (subidaExistente != null) {
+            subidaExistente.setNombre(subida.getNombre());
+            subidaExistente.setEdicion(subida.getEdicion());
+            subidaExistente.setFechaInicio(subida.getFechaInicio());
+            subidaExistente.setFechaFin(subida.getFechaFin());
+            subidaExistente.setGanador(subida.getGanador());
+            subidaExistente.setRutas(subida.getRutas());
+        }
+        return subida;
+    }
 }

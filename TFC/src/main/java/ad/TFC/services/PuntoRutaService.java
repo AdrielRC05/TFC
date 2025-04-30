@@ -9,13 +9,26 @@ import java.util.*;
 @Service
 public class PuntoRutaService {
     @Autowired
-    private PuntoRutaRepository repository;
+    private PuntoRutaRepository puntoRutaRepository;
 
-    public List<PuntoRuta> findAll() { return repository.findAll(); }
+    public List<PuntoRuta> obtenerPuntosDeRuta() { return puntoRutaRepository.findAll(); }
 
-    public PuntoRuta findById(Long id) { return repository.findById(id).orElse(null); }
+    public PuntoRuta obtenerPuntoDeRutaPorId(Long id) { return puntoRutaRepository.findById(id).orElse(null); }
 
-    public PuntoRuta save(PuntoRuta punto) { return repository.save(punto); }
+    public PuntoRuta guardarPuntoDeRuta(PuntoRuta punto) { return puntoRutaRepository.save(punto); }
 
-    public void delete(Long id) { repository.deleteById(id); }
+    public void borrarPuntoDeRuta(Long id) { puntoRutaRepository.deleteById(id); }
+
+    public PuntoRuta actualizarPuntoDeRuta(Long id, PuntoRuta puntoRuta) {
+        PuntoRuta puntoRutaExistente = puntoRutaRepository.findById(id).orElse(null);
+        if (puntoRutaExistente!=null) {
+            puntoRutaExistente.setDescripcion(puntoRuta.getDescripcion());
+            puntoRutaExistente.setLatitud(puntoRuta.getLatitud());
+            puntoRutaExistente.setLongitud(puntoRuta.getLongitud());
+            puntoRutaExistente.setRuta(puntoRuta.getRuta());
+        }
+        return puntoRuta;
+        
+    }
+    
 }

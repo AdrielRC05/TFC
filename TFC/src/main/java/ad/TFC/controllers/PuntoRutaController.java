@@ -13,14 +13,19 @@ public class PuntoRutaController {
     private PuntoRutaService service;
 
     @GetMapping
-    public List<PuntoRuta> findAll() { return service.findAll(); }
+    public List<PuntoRuta> findAll() { return service.obtenerPuntosDeRuta(); }
 
     @GetMapping("/{id}")
-    public PuntoRuta findById(@PathVariable Long id) { return service.findById(id); }
+    public PuntoRuta findById(@PathVariable Long id) { return service.obtenerPuntoDeRutaPorId(id); }
 
     @PostMapping
-    public PuntoRuta save(@RequestBody PuntoRuta punto) { return service.save(punto); }
+    public PuntoRuta save(@RequestBody PuntoRuta punto) { return service.guardarPuntoDeRuta(punto); }
+
+    @PutMapping("/{id}")
+    public PuntoRuta actualizarPuntoDeRuta(@PathVariable Long id, @RequestBody PuntoRuta punto) {
+        return service.actualizarPuntoDeRuta(id, punto);
+    }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) { service.delete(id); }
+    public void delete(@PathVariable Long id) { service.borrarPuntoDeRuta(id); }
 }

@@ -20,10 +20,7 @@ public class PuntoRuta {
     private Ruta ruta;
 
     PuntoRuta() {
-        // Constructor por defecto
     }
-
-    // Getters y setters
 
     public Long getId() {
         return id;

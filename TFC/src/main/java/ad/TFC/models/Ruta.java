@@ -25,10 +25,7 @@ public class Ruta {
     private List<PuntoRuta> puntos;
 
     Ruta() {
-        // Constructor por defecto
     }
-
-    // Getters y setters
 
     public Long getId() {
         return id;
