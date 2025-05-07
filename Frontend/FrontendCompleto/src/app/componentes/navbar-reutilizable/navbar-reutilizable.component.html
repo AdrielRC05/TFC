@@ -1,0 +1,12 @@
+<div [ngStyle]="getStyles()">
+  <div id="msform">   
+    <ul id="progressbar">
+      <li 
+        *ngFor="let nombre of nombres; let i = index" 
+        [ngClass]="{'active': i === activeStep}" 
+        (click)="setActiveStep(i)">
+        {{nombre}}
+      </li>
+    </ul>
+  </div>
+</div>

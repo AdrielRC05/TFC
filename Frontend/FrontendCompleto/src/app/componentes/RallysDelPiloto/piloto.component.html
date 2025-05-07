@@ -1,0 +1,16 @@
+<div class="rally-list">
+  <h2>Rallys en los que ha participado el Piloto</h2>
+  <ul>
+    <li *ngFor="let rally of rallys" class="rally-card">
+      <h4>{{ rally.nombre }}</h4>
+      <p><strong>Lugar:</strong> {{ rally.lugar }}</p>
+      <p><strong>Fecha:</strong> {{ rally.fecha }}</p>
+      <button
+      class="btn btn-primary"
+      [routerLink]="['/rallys', rally.id, 'pilotos']">
+      Ver Pilotos
+    </button>
+    </li>
+  </ul>
+</div>
+  

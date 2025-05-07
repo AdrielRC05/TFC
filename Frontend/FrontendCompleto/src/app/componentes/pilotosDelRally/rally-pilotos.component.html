@@ -1,0 +1,18 @@
+<div class="container">
+    <h2>Pilotos que han participado en el Rally</h2>
+  
+    <div *ngIf="pilotos.length > 0">
+      <ul>
+        <li *ngFor="let piloto of pilotos">
+          <h4>{{ piloto.nombre }}</h4>
+          <p><strong>Edad:</strong> {{ piloto.edad }}</p>
+          <p><strong>Nacionalidad:</strong> {{ piloto.nacionalidad }}</p>
+          <p><strong>Coche:</strong> {{ piloto.coche }}</p>
+          <p><strong>Títulos:</strong> {{ piloto.titulos }}</p>
+        </li>
+      </ul>
+    </div>
+  
+    
+  </div>
+  

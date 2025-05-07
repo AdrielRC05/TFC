@@ -1,0 +1,20 @@
+.rally-list {
+    margin: 2rem;
+  }
+  
+  .rally-card {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  h2 {
+    margin-bottom: 1.5rem;
+  }
+
+  body {
+    background: linear-gradient(135deg, #1e3c72 30%, #ff5733 80%);
+    color: #fff;
+}
+  

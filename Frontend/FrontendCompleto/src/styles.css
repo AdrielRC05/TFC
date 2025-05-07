@@ -1,0 +1,22 @@
+/* En styles.css (global) */
+body {
+    background: linear-gradient(135deg, #1e3c72 30%, #ff5733 80%);
+    color: white !important;  /* Esto hace que todo el texto de la página sea blanco */
+  }
+  
+  a {
+    color: white;  /* También los enlaces */
+  }
+  
+  h1, h2, h3, h4, h5, h6, p, li, span {
+    color: white ;  /* Aplica el color blanco a los encabezados, párrafos, listas, etc. */
+  }
+
+  /* En styles.css */
+::ng-deep h2 {
+  color: white !important;
+}
+
+  
+
+
