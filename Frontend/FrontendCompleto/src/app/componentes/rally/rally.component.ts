@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ServicioAppService } from '../../servicios/servicio-app.service';
+import * as L from 'leaflet';
 
 @Component({
   selector: 'app-rally',
@@ -9,8 +10,8 @@ import { ServicioAppService } from '../../servicios/servicio-app.service';
   styleUrl: './rally.component.css'
 })
 export class RallyComponent {
-  rallys: any[] = [];  // Lista original de rallys
-  rallysFiltrados: any[] = [];  // Lista de rallys filtrados
+  subidas: any[] = [];  // Lista original de subidas
+  subidasFiltradas: any[] = [];  // Lista de subidas filtradas
   campeonato: any = {};  // Datos del campeonato
   busqueda: string = '';  // Texto de búsqueda
 
@@ -18,29 +19,50 @@ export class RallyComponent {
 
   ngOnInit(): void {
     const campeonatoId = this.ruta.snapshot.paramMap.get('id');
-    this.servicio.obtenerRallysPorCampeonato(String(campeonatoId)).subscribe(
+    this.servicio.obtenerSubidasPorCampeonato(String(campeonatoId)).subscribe(
       (data: any) => {
         if (data && Array.isArray(data)) {
-          this.rallys = data;
-          this.rallysFiltrados = data;  // Inicializamos los rallys filtrados con todos los rallys
+          this.subidas = data;
+          this.subidasFiltradas = data;
         } else {
           console.error('Datos no encontrados', data);
         }
-      },
-      (error) => {
-        console.error('Error al obtener los rallys:', error);
       }
     );
   }
 
-  // Función para filtrar los rallys
   filtrarRallys(): void {
     if (this.busqueda.trim() === '') {
-      this.rallysFiltrados = this.rallys;  // Si no hay texto de búsqueda, mostramos todos los rallys
+      this.subidasFiltradas = this.subidas;
     } else {
-      this.rallysFiltrados = this.rallys.filter(rally =>
-        rally.nombre.toLowerCase().includes(this.busqueda.toLowerCase())  // Filtra por nombre
+      this.subidasFiltradas = this.subidas.filter(subida =>
+        subida.nombre.toLowerCase().includes(this.busqueda.toLowerCase())
       );
     }
+  }
+
+  // Función para generar las opciones del mapa con puntos
+  getMapaOptions(puntos: any[] = []): L.MapOptions {
+    const center = puntos.length ? [puntos[0].latitud, puntos[0].longitud] : [42.5, -7.5];
+
+    const markers = puntos.map(p =>
+      L.marker([p.latitud, p.longitud]).bindPopup(p.descripcion)
+    );
+
+    const polyline = puntos.length >= 2
+      ? L.polyline(puntos.map(p => [p.latitud, p.longitud]), { color: 'blue' })
+      : null;
+
+    return {
+      layers: [
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '© OpenStreetMap contributors'
+        }),
+        ...markers,
+        ...(polyline ? [polyline] : [])
+      ],
+      zoom: 13,
+      center: L.latLng(center[0], center[1])
+    };
   }
 }

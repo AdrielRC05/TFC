@@ -26,6 +26,11 @@
       [routerLink]="['/pilotos', rally.id, 'rallys']">
       Ver Pilotos
     </button>
+    <div
+      class="map"
+      leaflet
+      [leafletOptions]="getMapaOptions(subida.rutas[0]?.puntos)"
+      style="height: 300px; margin: 20px 0;">
+    </div>
   </div>
-
 </div>

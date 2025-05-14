@@ -9,8 +9,11 @@ export class ServicioAppService {
 
   urlCampeonatos = 'http://localhost:8080/api/ediciones'
   urlRallys = 'http://localhost:8080/api/subidas'
-  urlPilotos = 'http://localhost:8080/api/participantes'
+  #urlPilotos = 'http://localhost:8080/api/participantes'
   urlCopilotos = 'http://localhost:8080/copilotos'
+
+  urlSubidas = 'http://localhost:8080/api/subidas'
+  urlPiloltosMontaña = 'http://localhost:8080/api/pilotos'
 
   constructor(private http:HttpClient) { }
 
@@ -30,17 +33,25 @@ export class ServicioAppService {
     return this.http.get<any[]>(this.urlRallys);
   }
 
-  obtenerPilotos(): Observable<any[]> {
+  /*obtenerPilotos(): Observable<any[]> {
     return this.http.get<any[]>(this.urlPilotos);
+  }*/
+
+  obtenerPilotos(): Observable<any[]> {
+    return this.http.get<any[]>(this.urlPiloltosMontaña);
+  }
+
+  obtenerRallysPiloto(pilotoId:number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.urlPiloltosMontaña}/${pilotoId}/rallys`);
   }
 
   obtenerCopilotos(): Observable<any[]> {
     return this.http.get<any[]>(this.urlCopilotos);
   }
 
-  obtenerRallysPiloto(pilotoId:number): Observable<any[]> {
+  /*obtenerRallysPiloto(pilotoId:number): Observable<any[]> {
     return this.http.get<any[]>(`${this.urlPilotos}/${pilotoId}/rallys`);
-  }
+  }*/
 
   obtenerPilotosRally(rallyId:number): Observable<any[]> {
     return this.http.get<any[]>(`${this.urlRallys}/${rallyId}/pilotos`);

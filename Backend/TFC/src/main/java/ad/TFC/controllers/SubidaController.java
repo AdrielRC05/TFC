@@ -16,7 +16,18 @@ public class SubidaController {
     public List<Subida> obtenerSubidas() { return subidaService.obtenerSubidas(); }
 
     @GetMapping("/{id}")
-    public Subida obtenerSubidasPorId(@PathVariable Long id) { return subidaService.obtenerSubidaPorId(id); }
+    public Subida obtenerSubidaPorId(Long id) {
+        Subida subida = subidaService.obtenerSubidaPorId(id);
+        if (subida != null && subida.getRutas() != null) {
+            subida.getRutas().forEach(r -> {
+                if (r.getPuntos() != null) {
+                    r.getPuntos().size();
+                }
+            });
+        }
+        return subida;
+    }
+    
 
     @PostMapping
     public Subida guardarSubida(@RequestBody Subida subida) { return subidaService.guardarSubida(subida); }

@@ -20,7 +20,6 @@ public class Ruta {
     @JoinColumn(name = "subida_id")
     private Subida subida;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "ruta", cascade = CascadeType.ALL)
     private List<PuntoRuta> puntos;
 
