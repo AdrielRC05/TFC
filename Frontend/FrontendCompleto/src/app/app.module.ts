@@ -16,6 +16,7 @@ import { RallyPilotosComponent } from './componentes/pilotosDelRally/rally-pilot
 import { NavbarReutilizableComponent } from './componentes/navbar-reutilizable/navbar-reutilizable.component';
 import { SubidasComponent } from './componentes/subidas/subidas.component';
 import { SubidaComponent } from './componentes/subida/subida.component';
+import { BreadcrumbsComponent } from './componentes/breadcrumbs/breadcrumbs.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { SubidaComponent } from './componentes/subida/subida.component';
     RallyPilotosComponent,
     NavbarReutilizableComponent,
     SubidasComponent,
-    SubidaComponent
+    SubidaComponent,
+    BreadcrumbsComponent
   ],
   imports: [
     BrowserModule,

@@ -3,11 +3,10 @@
     <div *ngFor="let edicion of ediciones" class="rally-card">
       <div class="championship-details">
         <h2>{{ edicion.lugar }}</h2>
-        <p><strong>Número de pruebas:</strong> {{ edicion.length }}</p>
       </div>
       <div class="rally-list">
         <a [routerLink]="['/ediciones', edicion.id, 'subidas']">Ver Subidas</a>
       </div>
     </div>
   </div>
-  
+  <router-outlet></router-outlet>

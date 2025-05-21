@@ -23,6 +23,10 @@ export class SubidaComponent implements OnInit {
   subidasFiltradas: any[] = [];  // Lista de subidas filtradas
   edicion: any = {};  // Datos del campeonato
   busqueda: string = '';  // Texto de búsqueda
+  fechaFiltro: string = '';  // Filtro de fecha
+  filtroAnio: string = '';
+  filtroMes: string = '';
+  filtroDia: string = '';
 
   constructor(private ruta: ActivatedRoute, private servicio: ServicioAppService) { }
 
@@ -40,15 +44,26 @@ export class SubidaComponent implements OnInit {
     );
   }
 
-  filtrarRallys(): void {
-    if (this.busqueda.trim() === '') {
-      this.subidasFiltradas = this.subidas;
-    } else {
-      this.subidasFiltradas = this.subidas.filter(subida =>
-        subida.nombre.toLowerCase().includes(this.busqueda.toLowerCase())
+  filtrarSubidas() {
+    this.subidasFiltradas = this.subidas.filter(subida => {
+      const coincideNombre = this.busqueda === '' || subida.nombre.toLowerCase().includes(this.busqueda.toLowerCase());
+  
+      const coincideFecha = this.fechaFiltro === '' || (
+        (subida.fechaInicio && this.formatearFecha(subida.fechaInicio) === this.fechaFiltro) ||
+        (subida.fechaFin && this.formatearFecha(subida.fechaFin) === this.fechaFiltro)
       );
-    }
-  }
+  
+      return coincideNombre && coincideFecha;
+    });
+  }  
+  
+  formatearFecha(fechaString: string): string {
+    const fecha = new Date(fechaString);
+    const year = fecha.getFullYear();
+    const month = (fecha.getMonth() + 1).toString().padStart(2, '0');
+    const day = fecha.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;  // mismo formato que devuelve <input type="date">
+  }  
 
   // Función para generar las opciones del mapa con puntos
   getMapaOptions(rutas: any[] = []): L.MapOptions | null {

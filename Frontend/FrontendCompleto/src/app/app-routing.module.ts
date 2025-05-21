@@ -9,19 +9,52 @@ import { RallyPilotosComponent } from './componentes/pilotosDelRally/rally-pilot
 import { SubidaComponent } from './componentes/subida/subida.component';
 import { SubidasComponent } from './componentes/subidas/subidas.component';
 
-const rutas:Routes = [
-  {path:'pilotos',component:PilotosComponent},
-  {path:'copilotos',component:CopilotoComponent},
-  {path:'ediciones',component:EdicionComponent},
-  {path:'api/ediciones',component:EdicionComponent},
-  {path:'api/subidas',component:SubidasComponent},
-  {path:'api/participantes',component:PilotoComponent},
-  {path:'ediciones/:id',component: EdicionComponent},
-  {path:'pilotos/:pilotoId/rallys',component: PilotoComponent},
-  {path:'ediciones/:edicionId/subidas',component: SubidaComponent},
-  {path:'rallys/:id/pilotos',component: RallyPilotosComponent},
-  {path:'',component:InicioComponent}
-]
+const rutas: Routes = [
+  {
+    path: '', component: InicioComponent, data: { breadcrumb: 'Inicio' }
+  },
+  {
+    path: 'ediciones', component: EdicionComponent, data: { breadcrumb: 'Ediciones' },
+    children: [
+      {
+        path: ':id', component: EdicionComponent, data: { breadcrumb: 'Edición Detalle' }
+      },
+      {
+        path: ':edicionId/subidas', component: SubidaComponent, data: { breadcrumb: 'Subidas' },
+        children: [
+          {
+            path: 'rallys/:rallyId/pilotos', component: RallyPilotosComponent, data: { breadcrumb: 'Pilotos Rally' }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    path: 'pilotos', component: PilotosComponent, data: { breadcrumb: 'Pilotos' },
+    children: [
+      {
+        path: ':pilotoId/rallys', component: PilotoComponent, data: { breadcrumb: 'Rallys Piloto' },
+        children: [
+          {
+            path: 'subidas', component: SubidasComponent, data: { breadcrumb: 'Subidas' }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    path: 'copilotos', component: CopilotoComponent, data: { breadcrumb: 'Copilotos' }
+  },
+  {
+    path: 'api/ediciones', component: EdicionComponent, data: { breadcrumb: 'Ediciones API' }
+  },
+  {
+    path: 'api/subidas', component: SubidasComponent, data: { breadcrumb: 'Subidas API' }
+  },
+  {
+    path: 'api/participantes', component: PilotoComponent, data: { breadcrumb: 'Participantes API' }
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(rutas, {useHash:true})],
