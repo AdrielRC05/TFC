@@ -27,7 +27,36 @@ public class SubidaController {
         }
         return subida;
     }
-    
+
+    @GetMapping("/edicion/{id}/subidas")
+    public List<Subida> obtenerSubidasPorEdicion(@PathVariable Long id) {
+        List<Subida> subidas = subidaService.obtenerSubidasPorEdicion(id);
+        subidas.forEach(subida -> {
+            if (subida.getRutas() != null) {
+                subida.getRutas().forEach(r -> {
+                    if (r.getPuntos() != null) {
+                        r.getPuntos().size();
+                    }
+                });
+            }
+        });
+        return subidas;
+    }
+
+    @GetMapping("/nombre/{nombre}")
+    public List<Subida> obtenerSubidasPorNombre(@RequestParam String nombre) {
+        List<Subida> subidas = subidaService.obtenerSubidasPorNombre(nombre);
+        subidas.forEach(subida -> {
+            if (subida.getRutas() != null) {
+                subida.getRutas().forEach(r -> {
+                    if (r.getPuntos() != null) {
+                        r.getPuntos().size();
+                    }
+                });
+            }
+        });
+        return subidas;
+    }
 
     @PostMapping
     public Subida guardarSubida(@RequestBody Subida subida) { return subidaService.guardarSubida(subida); }

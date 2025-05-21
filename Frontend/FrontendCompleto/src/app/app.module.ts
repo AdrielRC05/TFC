@@ -2,19 +2,20 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InicioComponent } from './componentes/inicio/inicio.component';
 import { PilotoComponent } from './componentes/RallysDelPiloto/piloto.component';
 import { CopilotoComponent } from './componentes/copiloto/copiloto.component';
-import { RallyComponent } from './componentes/rally/rally.component';
-import { CampeonatoComponent } from './componentes/campeonato/campeonato.component';
-import { RallysComponent } from './componentes/rallys/rallys.component';
+import { EdicionComponent } from './componentes/edicion/edicion.component';
 import { PilotosComponent } from './componentes/pilotos/pilotos.component';
 import { CopilotosComponent } from './componentes/copilotos/copilotos.component';
 import { RallyPilotosComponent } from './componentes/pilotosDelRally/rally-pilotos.component';
 import { NavbarReutilizableComponent } from './componentes/navbar-reutilizable/navbar-reutilizable.component';
+import { SubidasComponent } from './componentes/subidas/subidas.component';
+import { SubidaComponent } from './componentes/subida/subida.component';
 
 @NgModule({
   declarations: [
@@ -22,19 +23,20 @@ import { NavbarReutilizableComponent } from './componentes/navbar-reutilizable/n
     InicioComponent,
     PilotoComponent,
     CopilotoComponent,
-    RallyComponent,
-    CampeonatoComponent,
-    RallysComponent,
+    EdicionComponent,
     PilotosComponent,
     CopilotosComponent,
     RallyPilotosComponent,
-    NavbarReutilizableComponent
+    NavbarReutilizableComponent,
+    SubidasComponent,
+    SubidaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    LeafletModule
   ],
   providers: [],
   bootstrap: [AppComponent]

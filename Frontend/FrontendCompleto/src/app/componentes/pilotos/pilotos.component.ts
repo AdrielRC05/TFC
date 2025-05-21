@@ -19,7 +19,7 @@ export class PilotosComponent {
   }
 
   obtenerPilotos(): void {
-    this.servicio.obtenerPilotos().subscribe((data: any) => {
+    this.servicio.obtenerParticipantes().subscribe((data: any) => {
       this.pilotos = data;  // Asumimos que la respuesta es directamente la lista de pilotos
       this.pilotosFiltrados = data;  // Inicializamos los pilotos filtrados con todos los pilotos
     });

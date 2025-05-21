@@ -10,13 +10,6 @@ CREATE TABLE info_campeonato (
     reglamento TEXT
 );
 
--- Ediciones del campeonato
-CREATE TABLE edicion (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    año INT NOT NULL UNIQUE,
-    lugar VARCHAR(255)
-);
-
 -- Participantes
 CREATE TABLE participante (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -24,6 +17,17 @@ CREATE TABLE participante (
     edad INT CHECK (edad >= 0),
     titulos INT DEFAULT 0,
     coche VARCHAR(255)
+);
+
+-- Ediciones del campeonato
+CREATE TABLE edicion (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    año INT NOT NULL UNIQUE,
+    lugar VARCHAR(255),
+    ganador_turismos INT,
+    ganador_barquetas INT,
+    CONSTRAINT fk_edicion_ganadorT FOREIGN KEY (ganador_turismos) REFERENCES participante(id) ON DELETE SET NULL,
+    CONSTRAINT fk_edicion_ganadorB FOREIGN KEY (ganador_barquetas) REFERENCES participante(id) ON DELETE SET NULL
 );
 
 -- Subidas (pruebas) de cada edición

@@ -19,8 +19,8 @@ export class RallyPilotosComponent implements OnInit{
   }
 
   obtenerPilotosRally(): void {
-    this.servicioService.obtenerPilotosRally(this.rallyId).subscribe((data) => {
+    /* this.servicioService.obtenerPa(this.rallyId).subscribe((data) => {
       this.pilotos = data;
-    });
+    }); */
   }
 }

@@ -33,11 +33,11 @@ export class PilotoComponent implements OnInit{
 
   obtenerRallysPiloto(): void {
     console.log('Haciendo la solicitud para el piloto ID:', this.pilotoId);
-    this.servicioService.obtenerRallysPiloto(this.pilotoId).subscribe((data) => {
+    /* this.servicioService.obtenerRallysPiloto(this.pilotoId).subscribe((data) => {
       console.log('Datos de rallys recibidos:', data);
       this.rallys = data;
     }, (error) => {
       console.error('Error al obtener rallys:', error);
-    });
+    }); */
   }
 }

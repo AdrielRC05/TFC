@@ -19,7 +19,7 @@ export class CopilotoComponent {
   }
 
   obtenerCopilotos(): void {
-    this.servicio.obtenerCopilotos().subscribe((data: any) => {
+    this.servicio.obtenerParticipantes().subscribe((data: any) => { //Copilotos
       this.copilotos = data;  // Asumimos que la respuesta es directamente la lista de copilotos
       this.copilotosFiltrados = data;  // Inicializamos los copilotos filtrados con todos los copilotos
     });
