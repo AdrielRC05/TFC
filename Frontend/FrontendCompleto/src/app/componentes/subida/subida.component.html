@@ -1,0 +1,39 @@
+<div class="rally-list">
+    <h2>Subidas de la Edición: {{ edicion?.nombre }}</h2>
+  
+    <!-- Caja de búsqueda -->
+    <div class="input-group mb-3" style="max-width: 300px; margin: 20px auto;">
+      <input 
+        type="text" 
+        class="form-control" 
+        placeholder="Buscar por nombre" 
+        [(ngModel)]="busqueda"
+        (input)="filtrarRallys()"/>
+    </div>
+  
+    <!-- Mostrar el mensaje cuando no hay resultados -->
+    <div *ngIf="subidasFiltradas.length === 0" class="alert alert-info">
+      No se han encontrado resultados
+    </div>
+  
+    <!-- Mostrar los rallys filtrados -->
+    <div *ngFor="let subida of subidasFiltradas" class="rally-card">
+      <h3>{{ subida.nombre }}</h3>
+      <p><strong>Inicio:</strong> {{ subida.fecha_inicio }}</p>
+      <p><strong>Fin:</strong> {{ subida.fecha_fin }}</p>
+      <ng-container *ngIf="getMapaOptions(subida.rutas) as mapaOptions">
+        <div
+          class="map"
+          leaflet
+          [leafletOptions]="mapaOptions"
+          style="height: 300px; margin: 20px 0;">
+        </div>
+      </ng-container>
+      
+      <button
+        class="btn btn-primary"
+        [routerLink]="['/pilotos', subida.id, 'rallys']">
+        Ver Pilotos
+      </button>
+    </div>
+  </div>

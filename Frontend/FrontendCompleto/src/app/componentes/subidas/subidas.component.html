@@ -1,0 +1,24 @@
+<div class="rally-list">
+    <h2>Listado de subidas</h2>
+  
+    <!-- Caja de búsqueda -->
+    <div class="input-group mb-3" style="max-width: 300px; margin: 20px auto;">
+      <input 
+        type="text" 
+        class="form-control" 
+        placeholder="Buscar por nombre" 
+        [(ngModel)]="busqueda"
+        (input)="filtrarSubidas()" />
+    </div>
+  
+    <!-- Mostrar las subidas filtrados -->
+    <div *ngIf="subidasFiltradas.length === 0" class="alert alert-info">
+      No se han encontrado resultados
+    </div>
+  
+    <div *ngFor="let subida of subidasFiltradas" class="rally-card">
+      <h3>{{ subida.nombre }}</h3>
+      <p><strong>Inicio:</strong> {{ subida.fecha_inicio }}</p>
+      <p><strong>Fin:</strong> {{ subida.fecha_fin }}</p>
+    </div>
+  </div>

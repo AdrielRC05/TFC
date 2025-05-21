@@ -1,0 +1,23 @@
+.rally-list {
+  margin: 2rem;
+}
+
+.rally-card {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+  
+  .championship-details {
+    flex: 1;
+  }
+  
+  .championship-action {
+    margin-left: 1rem;
+  }
+  
+  .btn {
+    text-align: center;
+  }
+  
