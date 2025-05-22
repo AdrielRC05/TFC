@@ -13,7 +13,20 @@ public class SubidaController {
     private SubidaService subidaService;
 
     @GetMapping
-    public List<Subida> obtenerSubidas() { return subidaService.obtenerSubidas(); }
+    public List<Subida> obtenerSubidas() {
+        List<Subida> subidas = subidaService.obtenerSubidas();
+        subidas.forEach(subida -> {
+            if (subida.getRutas() != null) {
+                subida.getRutas().forEach(ruta -> {
+                    if (ruta.getPuntos() != null) {
+                        ruta.getPuntos().size(); // Fuerza la carga de los puntos
+                    }
+                });
+            }
+        });
+        return subidas;
+    }
+
 
     @GetMapping("/{id}")
     public Subida obtenerSubidaPorId(Long id) {

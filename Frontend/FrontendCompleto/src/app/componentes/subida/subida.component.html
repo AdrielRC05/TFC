@@ -1,5 +1,5 @@
 <div class="rally-list">
-    <h2>Subidas de la Edición: {{ edicion?.nombre }}</h2>
+    <h2>Subidas del {{ edicion.lugar }}</h2>
   
     <!-- Caja de búsqueda -->
     <div class="input-group mb-3" style="max-width: 300px; margin: 20px auto;">
@@ -32,7 +32,6 @@
         <div
           class="map"
           leaflet
-          [leafletOptions]="mapaOptions"
           style="height: 300px; margin: 20px 0;">
         </div>
       </ng-container>

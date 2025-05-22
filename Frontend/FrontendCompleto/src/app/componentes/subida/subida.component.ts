@@ -24,14 +24,25 @@ export class SubidaComponent implements OnInit {
   edicion: any = {};  // Datos del campeonato
   busqueda: string = '';  // Texto de búsqueda
   fechaFiltro: string = '';  // Filtro de fecha
-  filtroAnio: string = '';
-  filtroMes: string = '';
-  filtroDia: string = '';
 
   constructor(private ruta: ActivatedRoute, private servicio: ServicioAppService) { }
 
   ngOnInit(): void {
     const edicionId = this.ruta.snapshot.paramMap.get('edicionId');
+
+    if (edicionId) {
+      this.servicio.obtenerEdicionPorId(edicionId).subscribe(
+      (edicionData: any) => {
+        this.edicion = edicionData;
+      },
+      (error: any) => {
+        console.error('Error al cargar la edición', error);
+      }
+      );
+    } else {
+      console.error('edicionId is null');
+    }
+
     this.servicio.obtenerSubidasPorEdicion(String(edicionId)).subscribe(
       (data: any) => {
         if (data && Array.isArray(data)) {

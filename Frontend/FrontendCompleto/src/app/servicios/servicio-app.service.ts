@@ -35,6 +35,10 @@ export class ServicioAppService {
     return this.http.get<any[]>(this.urlEdiciones);
   }
 
+  obtenerEdicionPorId(id: string): Observable<any> {
+    return this.http.get<any>(`${this.urlEdiciones}/${id}`);
+  }
+
   obtenerParticipantes(): Observable<any[]> {
     return this.http.get<any[]>(this.urlParticipante);
   }

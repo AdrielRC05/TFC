@@ -10,50 +10,17 @@ import { SubidaComponent } from './componentes/subida/subida.component';
 import { SubidasComponent } from './componentes/subidas/subidas.component';
 
 const rutas: Routes = [
-  {
-    path: '', component: InicioComponent, data: { breadcrumb: 'Inicio' }
-  },
-  {
-    path: 'ediciones', component: EdicionComponent, data: { breadcrumb: 'Ediciones' },
-    children: [
-      {
-        path: ':id', component: EdicionComponent, data: { breadcrumb: 'Edición Detalle' }
-      },
-      {
-        path: ':edicionId/subidas', component: SubidaComponent, data: { breadcrumb: 'Subidas' },
-        children: [
-          {
-            path: 'rallys/:rallyId/pilotos', component: RallyPilotosComponent, data: { breadcrumb: 'Pilotos Rally' }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    path: 'pilotos', component: PilotosComponent, data: { breadcrumb: 'Pilotos' },
-    children: [
-      {
-        path: ':pilotoId/rallys', component: PilotoComponent, data: { breadcrumb: 'Rallys Piloto' },
-        children: [
-          {
-            path: 'subidas', component: SubidasComponent, data: { breadcrumb: 'Subidas' }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    path: 'copilotos', component: CopilotoComponent, data: { breadcrumb: 'Copilotos' }
-  },
-  {
-    path: 'api/ediciones', component: EdicionComponent, data: { breadcrumb: 'Ediciones API' }
-  },
-  {
-    path: 'api/subidas', component: SubidasComponent, data: { breadcrumb: 'Subidas API' }
-  },
-  {
-    path: 'api/participantes', component: PilotoComponent, data: { breadcrumb: 'Participantes API' }
-  }
+  { path: 'pilotos', component: PilotosComponent, data: { breadcrumb: 'Pilotos' } },
+  { path: 'copilotos', component: CopilotoComponent, data: { breadcrumb: 'Copilotos' } },
+  { path: 'ediciones', component: EdicionComponent, data: { breadcrumb: 'Ediciones' } },
+  { path: 'api/ediciones', component: EdicionComponent, data: { breadcrumb: 'Ediciones API' } },
+  { path: 'api/subidas', component: SubidasComponent, data: { breadcrumb: 'Subidas API' } },
+  { path: 'api/participantes', component: PilotoComponent, data: { breadcrumb: 'Participantes API' } },
+  { path: 'ediciones/:id', component: EdicionComponent, data: { breadcrumb: 'Edición Detalle' } },
+  { path: 'pilotos/:pilotoId/rallys', component: PilotoComponent, data: { breadcrumb: 'Rallys Piloto' } },
+  { path: 'ediciones/:edicionId/subidas', component: SubidaComponent, data: { breadcrumb: 'Subidas de Edición' } },
+  { path: 'rallys/:id/pilotos', component: RallyPilotosComponent, data: { breadcrumb: 'Pilotos Rally' } },
+  { path: '', component: InicioComponent, data: { breadcrumb: 'Inicio' } }
 ];
 
 @NgModule({

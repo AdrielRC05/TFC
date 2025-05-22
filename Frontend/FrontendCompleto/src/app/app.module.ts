@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -38,7 +37,6 @@ import { BreadcrumbsComponent } from './componentes/breadcrumbs/breadcrumbs.comp
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    LeafletModule
   ],
   providers: [],
   bootstrap: [AppComponent]
