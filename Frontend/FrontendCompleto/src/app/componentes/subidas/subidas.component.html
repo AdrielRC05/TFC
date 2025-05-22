@@ -1,33 +1,38 @@
 <div class="rally-list">
-    <h2>Listado de subidas</h2>
-  
-    <!-- Caja de búsqueda -->
-    <div class="input-group mb-3" style="max-width: 300px; margin: 20px auto;">
-      <input 
-        type="text" 
-        class="form-control" 
-        placeholder="Buscar por nombre" 
-        [(ngModel)]="busqueda"
-        (input)="filtrarSubidas()" />
+  <h2>Listado de subidas</h2>
 
-      <input 
-        type="date" 
-        class="form-control mt-2" 
-        [(ngModel)]="fechaFiltro"
-        (change)="filtrarSubidas()" />
-    </div>
-  
-    <!-- Mostrar las subidas filtrados -->
-    <div *ngIf="subidasFiltradas.length === 0" class="alert alert-info">
-      No se han encontrado resultados
-    </div>
-  
-    <div *ngFor="let subida of subidasFiltradas; let i = index">
-      <h3>{{ subida.nombre }}</h3>
-      <p>Inicio: {{ subida.fechaInicio | date:'dd/MM/yyyy' }}</p>
-      <p>Fin: {{ subida.fechaFin | date:'dd/MM/yyyy' }}</p>
-    
-      <div #mapa class="mapa" style="height: 300px; width: 100%;"></div>
-    </div>
-    
+  <!-- Caja de búsqueda -->
+  <div class="input-group mb-3" style="max-width: 300px; margin: 20px auto;">
+    <input 
+      type="text" 
+      class="form-control" 
+      placeholder="Buscar por nombre" 
+      [(ngModel)]="busqueda"
+      (input)="filtrarSubidas()" />
+
+    <input 
+      type="date" 
+      class="form-control mt-2" 
+      [(ngModel)]="fechaFiltro"
+      (change)="filtrarSubidas()" />
   </div>
+
+  <!-- Mostrar las subidas filtradas -->
+  <div *ngIf="subidasFiltradas.length === 0" class="alert alert-info">
+    No se han encontrado resultados
+  </div>
+
+  <div *ngFor="let subida of subidasFiltradas; let i = index" class="mb-3">
+    <!-- Botón para mostrar información -->
+    <button (click)="toggleInfo(i)" class="btn btn-link">{{ subida.nombre }}</button>
+
+    <!-- Información de la subida -->
+    <div [hidden]="!mostrarInfo[i]" class="mt-2">
+      <h5>Detalles del Rally</h5>
+      <p><strong>Fecha de Inicio:</strong> {{ subida.fechaInicio | date:'dd/MM/yyyy' }}</p>
+      <p><strong>Fecha de Fin:</strong> {{ subida.fechaFin | date:'dd/MM/yyyy' }}</p>
+      <p><strong>Ganador:</strong> {{ subida.ganador }}</p>
+      <div #mapa class="mapa" style="height: 500px; width: 100%;"></div>
+    </div>
+  </div>
+</div>
