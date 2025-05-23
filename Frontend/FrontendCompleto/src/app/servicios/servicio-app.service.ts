@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -58,46 +58,4 @@ export class ServicioAppService {
   obtenerNoticiaPorAño(año: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.urlNoticias}?año=${año}`);
   }
-
-  /*obtenerCampeonatos():Observable<any[]>{
-    return this.http.get<any[]>(this.urlCampeonatos)
-  }
-
-  obtenerCampeonatosPorNombre(nombre:string):Observable<any[]>{
-    return this.http.get<any[]>(`${this.urlCampeonatos}+?nombre=${nombre}`)
-  }
-
-  obtenerRallysPorCampeonato(campeonatoId: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.urlRallys}/campeonato/${campeonatoId}`);
-  }
-
-  obtenerRallys(): Observable<any[]> {
-    return this.http.get<any[]>(this.urlRallys);
-  }
-
-  obtenerPilotos(): Observable<any[]> {
-    return this.http.get<any[]>(this.urlPilotos);
-  }
-
-  obtenerPilotos(): Observable<any[]> {
-    return this.http.get<any[]>(this.urlPiloltosMontaña);
-  }
-
-  obtenerRallysPiloto(pilotoId:number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.urlPiloltosMontaña}/${pilotoId}/rallys`);
-  }
-
-  obtenerCopilotos(): Observable<any[]> {
-    return this.http.get<any[]>(this.urlCopilotos);
-  }
-
-  obtenerRallysPiloto(pilotoId:number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.urlPilotos}/${pilotoId}/rallys`);
-  }
-
-  obtenerPilotosRally(rallyId:number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.urlRallys}/${rallyId}/pilotos`);
-  }*/
-
-  
 }
