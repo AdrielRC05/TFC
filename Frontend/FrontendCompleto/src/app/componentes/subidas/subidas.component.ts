@@ -10,8 +10,8 @@ import { ServicioAppService } from '../../servicios/servicio-app.service';
 import * as L from 'leaflet';
 
 const DefaultIcon = L.icon({
-  iconUrl: 'assets/marker-icon.png',
-  shadowUrl: 'assets/marker-shadow.png',
+  iconUrl: '/marker-icon.png',
+  shadowUrl: '/marker-shadow.png',
   iconSize: [25, 41],
   iconAnchor: [12, 41],
   popupAnchor: [1, -34],
