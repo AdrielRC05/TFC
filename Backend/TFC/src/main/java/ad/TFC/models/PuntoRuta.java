@@ -19,7 +19,7 @@ public class PuntoRuta {
     @JoinColumn(name = "ruta_id")
     private Ruta ruta;
 
-    PuntoRuta() {
+    public PuntoRuta() {
     }
 
     public Long getId() {

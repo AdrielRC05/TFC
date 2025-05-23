@@ -8,4 +8,6 @@ import java.util.List;
 @Repository
 public interface PuntoRutaRepository extends JpaRepository<PuntoRuta, Long> {
     List<PuntoRuta> findByRutaIdOrderByIdAsc(Long rutaId);
+    void deleteByRutaId(Long rutaId);
+    List<PuntoRuta> findByRutaId(Long rutaId);
 }

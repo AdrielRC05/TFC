@@ -113,17 +113,16 @@ export class SubidasComponent implements OnInit, AfterViewInit {
       if (!elementoMapa || elementoMapa._leaflet_map) return;
   
       // Crear el mapa
-      const mapa = L.map(elementoMapa).setView([42.6, -7.78], 13); // Centro inicial
-  
+      const mapa = L.map(elementoMapa).setView([42.6, -7.78], 13);
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors'
       }).addTo(mapa);
   
       const todasLasCoordenadas: [number, number][] = [];
   
-      rutas.forEach((ruta: { puntos?: { latitud: number; longitud: number; descripcion?: string }[] }) => {
+      rutas.forEach((ruta: any) => {
         const puntos = ruta.puntos || [];
-        const coordenadas: [number, number][] = puntos.map(p => [p.latitud, p.longitud]);
+        const coordenadas: [number, number][] = puntos.map((p: any) => [p.latitud, p.longitud]);
   
         if (coordenadas.length === 2) {
           const origen: [number, number] = coordenadas[0];
@@ -132,39 +131,62 @@ export class SubidasComponent implements OnInit, AfterViewInit {
           L.marker(origen).addTo(mapa).bindPopup(puntos[0].descripcion || 'Inicio');
           L.marker(destino).addTo(mapa).bindPopup(puntos[1].descripcion || 'Fin');
   
-          this.rutaService.getRuta(origen, destino).subscribe(data => {
-            const coords = data.features[0].geometry.coordinates.map(
-              (c: [number, number]) => [c[1], c[0]] as [number, number]
-            );
+          // 👇 Intentamos obtener la ruta desde nuestro backend
+          this.servicio.obtenerPuntosGuardados(ruta.id).subscribe(puntosGuardados => {
+            if (puntosGuardados && puntosGuardados.length > 2) {
+              // Usamos los puntos guardados
+              const coords = puntosGuardados.map((p: any) => [p.latitud, p.longitud]);
+              L.polyline(coords, { color: '#0054a6', weight: 4 }).addTo(mapa);
+              mapa.fitBounds(L.latLngBounds(coords as [number, number][]));
+            } else {
+              // No hay ruta guardada → llamamos a OpenRouteService
+              const rutaActual = subida.rutas.find((r: any) => r.id === ruta.id);
+              if (!rutaActual) return;
   
-            L.polyline(coords, { color: '#0054a6', weight: 4 }).addTo(mapa);
-            mapa.fitBounds(coords, { padding: [50, 50], maxZoom: 15 });
+              this.rutaService.getRuta(origen, destino).subscribe(data => {
+                // Recibimos TODAS las coordenadas de la API
+                const coords: [number, number][] = data.features[0].geometry.coordinates.map(
+                  (c: [number, number]) => [c[1], c[0]]
+                );
+  
+                // Convertimos a formato para guardar
+                const puntosParaGuardar = coords.map(([lat, lng], i) => ({
+                  latitud: lat,
+                  longitud: lng,
+                  descripcion: i === 0 ? 'Salida' : i === coords.length - 1 ? 'Llegada' : ''
+                }));
+  
+                // Guardamos en nuestro backend
+                this.servicio.guardarPuntosDeRuta(ruta.id, puntosParaGuardar).subscribe(() => {
+                  // Dibujamos la línea azul gallego
+                  L.polyline(coords, { color: '#0054a6', weight: 4 }).addTo(mapa);
+                  mapa.fitBounds(L.latLngBounds(coords));
+                });
+              });
+            }
           });
   
+          todasLasCoordenadas.push(origen, destino);
+  
         } else if (coordenadas.length > 2) {
+          // Ruta con muchos puntos → dibuja directamente
           coordenadas.forEach((coord, i) => {
             L.marker(coord).addTo(mapa)
               .bindPopup(puntos[i]?.descripcion || '');
           });
   
           const polyline = L.polyline(coordenadas, { color: 'red' }).addTo(mapa);
-          mapa.fitBounds(polyline.getBounds(), { padding: [50, 50], maxZoom: 15 });
-        }
+          mapa.fitBounds(polyline.getBounds());
   
-        todasLasCoordenadas.push(...coordenadas);
+          todasLasCoordenadas.push(...coordenadas);
+        }
       });
   
-      // Si no hay rutas, usa un fallback (ej. Santiago de Compostela)
-      if (todasLasCoordenadas.length === 0) {
-        mapa.setView([42.6, -7.78], 13);
-      }
-  
-      elementoMapa._leaflet_map = mapa;
-  
       setTimeout(() => {
-        mapa.invalidateSize();
+        if (mapa) mapa.invalidateSize();
       }, 200);
   
+      elementoMapa._leaflet_map = mapa;
       this.mapasInicializados[index] = true;
     });
   }
@@ -181,4 +203,5 @@ export class SubidasComponent implements OnInit, AfterViewInit {
       }, 100); // Pequeño delay para asegurar que el mapa es visible
     }
   }
+
 }

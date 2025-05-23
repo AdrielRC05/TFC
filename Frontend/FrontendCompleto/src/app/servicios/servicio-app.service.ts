@@ -58,4 +58,12 @@ export class ServicioAppService {
   obtenerNoticiaPorAño(año: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.urlNoticias}?año=${año}`);
   }
+
+  obtenerPuntosGuardados(rutaId: number): Observable<any[]> {
+    return this.http.get<any[]>(`http://localhost:8080/api/puntos/ruta/${rutaId}`);
+  }
+  
+  guardarPuntosDeRuta(rutaId: number, puntos: any[]): Observable<any> {
+    return this.http.post(`http://localhost:8080/api/puntos/guardar/${rutaId}`, puntos);
+  }
 }

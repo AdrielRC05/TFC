@@ -23,7 +23,7 @@ public class Ruta {
     @OneToMany(mappedBy = "ruta", cascade = CascadeType.ALL)
     private List<PuntoRuta> puntos;
 
-    Ruta() {
+    public Ruta() {
     }
 
     public Long getId() {

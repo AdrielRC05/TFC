@@ -1,7 +1,11 @@
 package ad.TFC.services;
 
 import ad.TFC.models.PuntoRuta;
+import ad.TFC.models.Ruta;
+import ad.TFC.models.DTOs.PuntoRutaDTO;
 import ad.TFC.repositories.PuntoRutaRepository;
+import jakarta.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.*;
@@ -29,6 +33,33 @@ public class PuntoRutaService {
         }
         return puntoRuta;
         
+    }
+
+    public List<PuntoRuta> obtenerPuntosDeRutaPorRutaId(Long rutaId) {
+        return puntoRutaRepository.findByRutaId(rutaId);
+    }
+
+    @Transactional
+    public void guardarPuntos(Long rutaId, List<PuntoRutaDTO> puntosDTO) {
+        // Elimina puntos anteriores si quieres actualizar
+        puntoRutaRepository.deleteByRutaId(rutaId);
+
+        List<PuntoRuta> puntos = puntosDTO.stream()
+            .map(dto -> {
+                PuntoRuta pr = new PuntoRuta();
+                pr.setLatitud(dto.getLatitud());
+                pr.setLongitud(dto.getLongitud());
+                pr.setDescripcion(dto.getDescripcion());
+                
+                Ruta ruta = new Ruta();
+                ruta.setId(rutaId);
+                pr.setRuta(ruta);
+                
+                return pr;
+            })
+            .toList();
+
+        puntoRutaRepository.saveAll(puntos);
     }
     
 }
