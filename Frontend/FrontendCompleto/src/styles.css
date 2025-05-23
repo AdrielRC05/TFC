@@ -1,22 +1,51 @@
-/* En styles.css (global) */
+/* FONDO PRINCIPAL */
 body {
-    background: linear-gradient(135deg, #1e3c72 30%, #ff5733 80%);
-    color: white !important;  /* Esto hace que todo el texto de la página sea blanco */
-  }
-  
-  a {
-    color: white;  /* También los enlaces */
-  }
-  
-  h1, h2, h3, h4, h5, h6, p, li, span {
-    color: white ;  /* Aplica el color blanco a los encabezados, párrafos, listas, etc. */
-  }
+  background: linear-gradient(135deg, #1e3c72 30%, #ff5733 80%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
-  /* En styles.css */
-::ng-deep h2 {
+/* COLOR DE TEXTO GENERAL EN AZUL GALLEGO */
+body,
+h1, h2, h3, h4, h5, h6,
+p, li, span, label, small, strong,
+a {
+  color: #0054a6 !important; /* Azul gallego */
+}
+
+/* ESTILO BÁSICO PARA BOTONES */
+.btn {
+  background-color: #0054a6 !important; /* Azul gallego */
+  color: white !important;
+  border: none !important;
+  font-weight: 500;
+}
+
+/* HOVER EN BOTONES (opcional, suaviza el efecto) */
+.btn:hover {
+  background-color: #0078d7 !important; /* Azul más claro al pasar el ratón */
   color: white !important;
 }
 
-  
+/* INPUTS Y FORMULARIOS */
+.form-control {
+  background-color: rgba(255, 255, 255, 1);
+  color: #0054a6 !important;
+  border: 1px solid #ced4da;
+}
 
+.form-control::placeholder {
+  color: #9ca3af !important; /* Gris claro para placeholders */
+}
 
+.form-control:focus {
+  background-color: #fff;
+  color: #0054a6 !important;
+  border-color: #0054a6;
+  box-shadow: 0 0 0 0.2rem rgba(0, 84, 166, 0.2);
+}
+
+/* ENLACES CON ESTILO DE BOTÓN O ACCIÓN */
+a.btn,
+button.btn {
+  color: white !important;
+}
