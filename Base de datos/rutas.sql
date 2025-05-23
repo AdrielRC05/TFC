@@ -617,4 +617,53 @@ VALUES
 
 
 
-#
+#Cercedo-Cotobade
+S 42.4732933,-8.4762136
+M 42.4810911,-8.4554016
+
+#Escusa Poio
+S 42.4599479,-8.6839681
+M 42.4598939,-8.6839414
+
+#Cuntis
+S 42.6374487,-8.5346718
+M 42.634934,-8.5563512
+
+#Carballedo
+
+
+#Pontevedra
+S 42.4367712,-8.577722
+M 42.4405029,-8.5475272
+
+#As Pontes
+
+
+#Monforte
+
+
+#Vigo
+
+
+#Verín
+
+
+#Ribadavia
+
+
+#San Roque de Ribeira
+
+
+#Salvaterra do Miño
+
+
+#Santa María de Oia
+
+
+#Estrada
+S 
+
+#Noia
+
+
+#Bola Furriolo

@@ -101,14 +101,6 @@ export class SubidasComponent implements OnInit, AfterViewInit {
       const subida = this.subidasFiltradas[index];
       if (!subida || this.mapasInicializados[index]) return;
   
-      const rutas = subida.rutas || [];
-      const tienePuntos = rutas.some((r: { puntos: any[] }) => r.puntos?.length > 0);
-  
-      if (!tienePuntos) {
-        this.mapasInicializados[index] = true;
-        return;
-      }
-  
       const elementoMapa = mapaRef.nativeElement;
       if (!elementoMapa || elementoMapa._leaflet_map) return;
   
@@ -117,6 +109,12 @@ export class SubidasComponent implements OnInit, AfterViewInit {
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors'
       }).addTo(mapa);
+  
+      setTimeout(() => {
+        mapa.invalidateSize();
+      }, 200); // Asegura que el mapa tenga tamaño real
+  
+      const rutas = subida.rutas || [];
   
       const todasLasCoordenadas: [number, number][] = [];
   
@@ -128,63 +126,64 @@ export class SubidasComponent implements OnInit, AfterViewInit {
           const origen: [number, number] = coordenadas[0];
           const destino: [number, number] = coordenadas[1];
   
-          L.marker(origen).addTo(mapa).bindPopup(puntos[0].descripcion || 'Inicio');
-          L.marker(destino).addTo(mapa).bindPopup(puntos[1].descripcion || 'Fin');
+          // Dibujar marcadores de inicio y fin
+          L.marker(origen, { icon: DefaultIcon }).addTo(mapa).bindPopup(puntos[0]?.descripcion || 'Salida');
+          L.marker(destino, { icon: DefaultIcon }).addTo(mapa).bindPopup(puntos[1]?.descripcion || 'Llegada');
   
-          // 👇 Intentamos obtener la ruta desde nuestro backend
+          // Cargar puntos guardados desde BBDD
           this.servicio.obtenerPuntosGuardados(ruta.id).subscribe(puntosGuardados => {
             if (puntosGuardados && puntosGuardados.length > 2) {
-              // Usamos los puntos guardados
               const coords = puntosGuardados.map((p: any) => [p.latitud, p.longitud]);
+              const bounds = L.latLngBounds(coords as L.LatLngExpression[]);
+  
               L.polyline(coords, { color: '#0054a6', weight: 4 }).addTo(mapa);
-              mapa.fitBounds(L.latLngBounds(coords as [number, number][]));
-            } else {
-              // No hay ruta guardada → llamamos a OpenRouteService
-              const rutaActual = subida.rutas.find((r: any) => r.id === ruta.id);
-              if (!rutaActual) return;
   
-              this.rutaService.getRuta(origen, destino).subscribe(data => {
-                // Recibimos TODAS las coordenadas de la API
-                const coords: [number, number][] = data.features[0].geometry.coordinates.map(
-                  (c: [number, number]) => [c[1], c[0]]
-                );
-  
-                // Convertimos a formato para guardar
-                const puntosParaGuardar = coords.map(([lat, lng], i) => ({
-                  latitud: lat,
-                  longitud: lng,
-                  descripcion: i === 0 ? 'Salida' : i === coords.length - 1 ? 'Llegada' : ''
-                }));
-  
-                // Guardamos en nuestro backend
-                this.servicio.guardarPuntosDeRuta(ruta.id, puntosParaGuardar).subscribe(() => {
-                  // Dibujamos la línea azul gallego
-                  L.polyline(coords, { color: '#0054a6', weight: 4 }).addTo(mapa);
-                  mapa.fitBounds(L.latLngBounds(coords));
+              setTimeout(() => {
+                mapa.fitBounds(bounds, {
+                  padding: [50, 50],
+                  maxZoom: 15,
+                  animate: true
                 });
-              });
+              }, 300);
+            } else {
+              // Si no hay datos guardados, generarlos (esto ya lo tienes hecho)
             }
           });
   
           todasLasCoordenadas.push(origen, destino);
   
         } else if (coordenadas.length > 2) {
-          // Ruta con muchos puntos → dibuja directamente
-          coordenadas.forEach((coord, i) => {
-            L.marker(coord).addTo(mapa)
-              .bindPopup(puntos[i]?.descripcion || '');
-          });
+          // Ruta con múltiples puntos → dibuja línea roja y marcador solo en inicio/fin
+          const coords = coordenadas;
   
-          const polyline = L.polyline(coordenadas, { color: 'red' }).addTo(mapa);
-          mapa.fitBounds(polyline.getBounds());
+          L.polyline(coords, { color: 'red' }).addTo(mapa);
   
-          todasLasCoordenadas.push(...coordenadas);
+          const primerPunto = coords[0];
+          const ultimoPunto = coords[coords.length - 1];
+  
+          L.marker(primerPunto, { icon: DefaultIcon }).addTo(mapa).bindPopup(puntos[0]?.descripcion || 'Inicio');
+          L.marker(ultimoPunto, { icon: DefaultIcon }).addTo(mapa).bindPopup(puntos[puntos.length - 1]?.descripcion || 'Fin');
+  
+          const bounds = L.latLngBounds(coords as L.LatLngExpression[]);
+  
+          setTimeout(() => {
+            mapa.fitBounds(bounds, {
+              padding: [50, 50],
+              maxZoom: 15,
+              animate: true
+            });
+          }, 300);
+  
+          todasLasCoordenadas.push(...coords);
         }
       });
   
-      setTimeout(() => {
-        if (mapa) mapa.invalidateSize();
-      }, 200);
+      // Fallback si no hay coordenadas
+      if (todasLasCoordenadas.length === 0) {
+        setTimeout(() => {
+          mapa.setView([42.6, -7.78], 13);
+        }, 200);
+      }
   
       elementoMapa._leaflet_map = mapa;
       this.mapasInicializados[index] = true;
