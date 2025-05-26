@@ -1,45 +1,45 @@
 <div class="rally-list">
-    <h2>Subidas del {{ edicion.lugar }}</h2>
-  
-    <!-- Caja de búsqueda -->
-    <div class="input-group mb-3" style="max-width: 300px; margin: 20px auto;">
-      <input 
-        type="text" 
-        class="form-control" 
-        placeholder="Buscar por nombre" 
-        [(ngModel)]="busqueda"
-        (input)="filtrarSubidas()"/>
-    </div>
-    <div class="input-group mb-3" style="max-width: 300px; margin: 20px auto;">
-      <input 
-        type="date" 
-        class="form-control mt-2"
-        [(ngModel)]="fechaFiltro"
-        (change)="filtrarSubidas()"/>
-    </div>
-  
-    <!-- Mostrar el mensaje cuando no hay resultados -->
-    <div *ngIf="subidasFiltradas.length === 0" class="alert alert-info">
-      No se han encontrado resultados
-    </div>
-  
-    <!-- Mostrar los rallys filtrados -->
-    <div *ngFor="let subida of subidasFiltradas" class="rally-card">
-      <h3>{{ subida.nombre }}</h3>
-      <p><strong>Inicio:</strong> {{ subida.fechaInicio | date: 'dd/MM/yyyy' }}</p>
-      <p><strong>Fin:</strong> {{ subida.fechaFin | date: 'dd/MM/yyyy' }}</p>
-      <ng-container *ngIf="getMapaOptions(subida.rutas) as mapaOptions">
-        <div
-          class="map"
-          leaflet
-          style="height: 300px; margin: 20px 0;">
-        </div>
-      </ng-container>
+  <h2>{{ edicion.nombre }}</h2>
+
+  <!-- Caja de búsqueda -->
+  <div class="input-group mb-3" style="max-width: 300px; margin: 20px auto;">
+    <input 
+      type="text" 
+      class="form-control" 
+      placeholder="Buscar por nombre" 
+      [(ngModel)]="busqueda"
+      (input)="filtrarSubidas()" />
+
+    <input 
+      type="date" 
+      class="form-control mt-2" 
+      [(ngModel)]="fechaFiltro"
+      (change)="filtrarSubidas()" />
+  </div>
+
+  <!-- Lista de subidas filtradas -->
+  <div *ngIf="subidasFiltradas.length === 0" class="alert alert-info">
+    No se han encontrado resultados
+  </div>
+
+  <div *ngFor="let subida of subidasFiltradas; let i = index" class="mb-3">
+    <!-- Nombre de la subida como botón para expandir -->
+    <button 
+      (click)="toggleInfo(i)" 
+      class="btn btn-link w-100 text-left" 
+      [attr.aria-expanded]="mostrarInfo[i] ? 'true' : 'false'" 
+      type="button">
+      {{ subida.nombre }}
+    </button>
+
+    <!-- Información detallada -->
+    <div [hidden]="!mostrarInfo[i]" class="mt-2">
+      <h5>Detalles</h5>
+      <p><strong>Fecha de Inicio:</strong> {{ subida.fecha_inicio | date:'dd/MM/yyyy' }}</p>
+      <p><strong>Fecha de Fin:</strong> {{ subida.fecha_fin | date:'dd/MM/yyyy' }}</p>
       
-      <button
-        class="btn btn-primary"
-        [routerLink]="['/pilotos', subida.id, 'rallys']">
-        Ver Pilotos
-      </button>
+      <!-- Mapa -->
+      <div #mapa class="mapa" style="height: 500px;"></div>
     </div>
   </div>
+</div>

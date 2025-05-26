@@ -7,7 +7,7 @@ import {
   ElementRef
 } from '@angular/core';
 import { ServicioAppService } from '../../servicios/servicio-app.service';
-import { RutaService } from '../../servicios/ruta.service'; // ✅ Importa el nuevo servicio
+import { RutaService } from '../../servicios/ruta.service';
 import * as L from 'leaflet';
 
 // Icono por defecto
@@ -34,9 +34,9 @@ export class SubidasComponent implements OnInit, AfterViewInit {
   subidasFiltradas: any[] = [];
   busqueda: string = '';
   fechaFiltro: string = '';
-  mapas = new Map<number, L.Map>(); // Almacena mapas por ID de subida
+  mapas = new Map<number, L.Map>();
   mapasInicializados: boolean[] = [];
-  mostrarInfo: boolean[] = []; // Controla qué información se muestra
+  mostrarInfo: boolean[] = [];
 
   @ViewChildren('mapa') mapasRefs!: QueryList<ElementRef>;
 

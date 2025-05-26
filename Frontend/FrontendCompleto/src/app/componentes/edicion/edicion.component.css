@@ -1,23 +1,40 @@
 .rally-list {
-  margin: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+  background-color: #f8f9fa;
+  color: #0054a6;
 }
 
-.rally-card {
-  margin-bottom: 1rem;
+/* Tarjeta por edición */
+.championship-details {
+  background-color: #ffffff;
+  border-left: 5px solid #0054a6;
   padding: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  margin-top: 0.5rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
 }
-  
-  .championship-details {
-    flex: 1;
-  }
-  
-  .championship-action {
-    margin-left: 1rem;
-  }
-  
-  .btn {
-    text-align: center;
-  }
-  
+
+/* Títulos */
+.championship-details h3 {
+  color: #0054a6;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+/* Fechas */
+.championship-details p.text-muted {
+  font-size: 0.9rem;
+  color: #6c757d !important;
+}
+
+/* Botón "Ver Subidas" */
+.btn.btn-outline-primary {
+  color: #0054a6;
+  border-color: #0054a6;
+}
+
+.btn.btn-outline-primary:hover {
+  background-color: #0054a6;
+  color: white;
+}

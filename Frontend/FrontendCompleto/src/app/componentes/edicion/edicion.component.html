@@ -1,11 +1,34 @@
 <div class="rally-list">
-  <h2>Ediciones</h2>
-    <div *ngFor="let edicion of ediciones" class="rally-card">
-      <div class="championship-details">
-        <h2>{{ edicion.lugar }}</h2>
-      </div>
-      <div class="rally-list">
-        <a [routerLink]="['/ediciones', edicion.id, 'subidas']">Ver Subidas</a>
-      </div>
+  <h2>Ediciones del Campeonato Gallego de Montaña</h2>
+
+  <!-- Filtro por año -->
+  <div class="input-group mb-3" style="max-width: 300px; margin: 20px auto;">
+    <input 
+      type="number"
+      class="form-control" 
+      placeholder="Buscar por año" 
+      [(ngModel)]="filtroAno"
+      (input)="filtrarEdiciones()"
+      min="1980"
+      max="2030"
+    />
+  </div>
+
+  <!-- Mensaje si no hay resultados -->
+  <div *ngIf="edicionesFiltradas.length === 0 && filtroAno" class="alert alert-info text-center">
+    No se encontraron ediciones para el año {{ filtroAno }}
+  </div>
+
+  <!-- Lista de ediciones -->
+  <div *ngFor="let edicion of edicionesFiltradas; let i = index" class="mb-4">
+    <div class="championship-details p-3">
+      <h4>{{ edicion.lugar }}</h4>
+
+      <a 
+        [routerLink]="['/ediciones', edicion.id, 'subidas']" 
+        class="btn btn-outline-primary btn-sm mt-2">
+        Ver Subidas
+      </a>
     </div>
   </div>
+</div>
