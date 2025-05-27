@@ -16,6 +16,10 @@ import { NavbarReutilizableComponent } from './componentes/navbar-reutilizable/n
 import { SubidasComponent } from './componentes/subidas/subidas.component';
 import { SubidaComponent } from './componentes/subida/subida.component';
 import { BreadcrumbsComponent } from './componentes/breadcrumbs/breadcrumbs.component';
+import { HeaderComponent } from './componentes/header/header.component';
+import { HeroComponent } from './componentes/hero/hero.component';
+import { NoticiasComponent } from './componentes/noticias/noticias.component';
+import { FooterComponent } from './componentes/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,11 @@ import { BreadcrumbsComponent } from './componentes/breadcrumbs/breadcrumbs.comp
     NavbarReutilizableComponent,
     SubidasComponent,
     SubidaComponent,
-    BreadcrumbsComponent
+    BreadcrumbsComponent,
+    HeaderComponent,
+    HeroComponent,
+    NoticiasComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

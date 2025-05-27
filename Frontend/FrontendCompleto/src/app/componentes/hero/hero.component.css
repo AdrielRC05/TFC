@@ -1,0 +1,23 @@
+.hero-section {
+    background: linear-gradient(135deg, #0054a6, #0078d7);
+    position: relative;
+    z-index: 1;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  
+  .hero-section h1,
+  .hero-section p,
+  .hero-section .lead {
+    color: white !important;
+    opacity: 1 !important;
+  }
+  
+  .hero-section .hero-info-card {
+    border-left: 5px solid #0054a6;
+    transition: transform 0.3s ease;
+  }
+  
+  .hero-section .hero-info-card:hover {
+    transform: translateY(-5px);
+  }

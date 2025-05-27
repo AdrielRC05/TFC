@@ -13,6 +13,7 @@ const rutas: Routes = [
   { path: 'pilotos', component: PilotosComponent, data: { breadcrumb: 'Pilotos' } },
   { path: 'copilotos', component: CopilotoComponent, data: { breadcrumb: 'Copilotos' } },
   { path: 'ediciones', component: EdicionComponent, data: { breadcrumb: 'Ediciones' } },
+  { path: 'subidas', component: SubidasComponent, data: { breadcrumb: 'Subidas' } },
   { path: 'api/ediciones', component: EdicionComponent, data: { breadcrumb: 'Ediciones API' } },
   { path: 'api/subidas', component: SubidasComponent, data: { breadcrumb: 'Subidas API' } },
   { path: 'api/participantes', component: PilotoComponent, data: { breadcrumb: 'Participantes API' } },

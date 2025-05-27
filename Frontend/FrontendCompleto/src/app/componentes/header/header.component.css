@@ -1,0 +1,63 @@
+/* HEADER */
+header.bg-white {
+    background-color: #0054a6 !important;
+    color: white;
+    padding: 0.5rem 0;
+  }
+  
+  header .logo h1,
+  header .logo p {
+    color: white !important;
+    margin-bottom: 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  }
+  
+  header nav a {
+    color: #ffffff !important;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  header nav a:hover,
+  header nav a:focus {
+    color: #cce7ff !important; /* Azul claro al pasar el ratón */
+    text-decoration: underline !important;
+  }
+
+  header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0.8rem !important;
+    padding-bottom: 0.8rem !important;
+  }
+  
+  /* Si usas Bootstrap */
+  header nav.d-none.d-md-block {
+    position: relative;
+  }
+  
+  header nav a {
+    position: relative;
+    padding: 0.3rem 0.5rem;
+    transition: color 0.3s ease;
+  }
+  
+  header nav a:hover::after,
+  header nav a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #0054a6;
+  }
+
+  header .d-flex.align-items-center {
+    margin-left: -10px;
+  }
+  
+  header .d-flex.align-items-center > div:first-child {
+    padding-left: 10px;
+  }

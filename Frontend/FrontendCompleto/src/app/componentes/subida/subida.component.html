@@ -35,8 +35,8 @@
     <!-- Información detallada -->
     <div [hidden]="!mostrarInfo[i]" class="mt-2">
       <h5>Detalles</h5>
-      <p><strong>Fecha de Inicio:</strong> {{ subida.fecha_inicio | date:'dd/MM/yyyy' }}</p>
-      <p><strong>Fecha de Fin:</strong> {{ subida.fecha_fin | date:'dd/MM/yyyy' }}</p>
+      <p><strong>Fecha de Inicio:</strong> {{ subida.fechaInicio | date:'dd/MM/yyyy' }}</p>
+      <p><strong>Fecha de Fin:</strong> {{ subida.fechaFin | date:'dd/MM/yyyy' }}</p>
       
       <!-- Mapa -->
       <div #mapa class="mapa" style="height: 500px;"></div>
