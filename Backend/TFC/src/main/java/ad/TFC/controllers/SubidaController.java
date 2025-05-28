@@ -71,6 +71,11 @@ public class SubidaController {
         return subidas;
     }
 
+    @GetMapping("/top3")
+    public List<Map<String, Object>> getTop3Subidas() {
+        return subidaService.getTop3Subidas();
+    }
+
     @PostMapping
     public Subida guardarSubida(@RequestBody Subida subida) { return subidaService.guardarSubida(subida); }
 

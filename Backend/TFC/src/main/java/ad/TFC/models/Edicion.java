@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 public class Edicion {
@@ -11,8 +12,17 @@ public class Edicion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
-    private int año;
+    @JsonProperty("ano")
+    @Column(unique = true, nullable = false, name = "año")
+    private int ano;
+
+    @ManyToOne
+    @JoinColumn(name = "ganador_barquetas", referencedColumnName = "id", nullable = true)
+    private Participante ganador_barquetas;
+
+    @ManyToOne
+    @JoinColumn(name = "ganador_turismos", referencedColumnName = "id", nullable = true)
+    private Participante ganador_turismos;
 
     private String lugar;
 
@@ -30,10 +40,10 @@ public class Edicion {
         this.id = id;
     }
     public int getAño() {
-        return año;
+        return ano;
     }
     public void setAño(int año) {
-        this.año = año;
+        this.ano = año;
     }
     public String getLugar() {
         return lugar;

@@ -27,4 +27,8 @@ public class EdicionService {
             return null;
         }
     }
+
+    public List<Edicion> getTop3Recientes() {
+        return edicionRepository.findTop3ByOrderByIdDesc();
+    }
 }

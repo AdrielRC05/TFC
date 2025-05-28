@@ -22,9 +22,9 @@
                         <h3><i class="fas fa-trophy text-danger me-2"></i>Datos históricos</h3>
                         <ul class="list-unstyled">
                             <li class="mb-2"><strong>Primera edición:</strong> 1984</li>
-                            <li class="mb-2"><strong>Récord de participantes:</strong> 112 pilotos (2019)</li>
-                            <li class="mb-2"><strong>Subida más antigua:</strong> Chantada (desde 1985)</li>
-                            <li><strong>Piloto con más títulos:</strong> José María Magalhães (5)</li>
+                            <li class="mb-2"><strong>Récord de participantes:</strong> 100 pilotos (San Amaro, 2002)</li>
+                            <li class="mb-2"><strong>Subida más antigua:</strong> Chantada (desde 1969)</li>
+                            <li><strong>Piloto con más títulos:</strong> Manuel Senra Caamaño (6)</li>
                         </ul>
                     </div>
                 </div>
@@ -33,52 +33,27 @@
     </section>
 
     <!-- Subidas emblemáticas -->
-    <section class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-5 gradient-text fw-bold">Subidas emblemáticas</h2>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="track-card h-100">
-                        <img src="https://via.placeholder.com/400x250" class="img-fluid w-100" alt="Subida a Chantada">
-                        <div class="p-3">
-                            <h3>Chantada</h3>
-                            <p>Una de las más rápidas y técnicas, con curvas cerradas y gran desnivel. Disputada desde 1985.</p>
-                            <div class="d-flex justify-content-between">
-                                <span class="badge bg-danger">4.8 km</span>
-                                <span class="badge bg-primary">Desnivel: 320m</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="track-card h-100">
-                        <img src="https://via.placeholder.com/400x250" class="img-fluid w-100" alt="Subida a Fisterra">
-                        <div class="p-3">
-                            <h3>Fisterra</h3>
-                            <p>Panorámica junto al mar, con curvas rápidas y espectaculares vistas al Atlántico.</p>
-                            <div class="d-flex justify-content-between">
-                                <span class="badge bg-danger">5.2 km</span>
-                                <span class="badge bg-primary">Desnivel: 280m</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="track-card h-100">
-                        <img src="https://via.placeholder.com/400x250" class="img-fluid w-100" alt="Subida a Lobios">
-                        <div class="p-3">
-                            <h3>Lobios</h3>
-                            <p>Curvas cerradas en zona montañosa, exigente para pilotos y coches.</p>
-                            <div class="d-flex justify-content-between">
-                                <span class="badge bg-danger">6.1 km</span>
-                                <span class="badge bg-primary">Desnivel: 350m</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<section class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-5 gradient-text fw-bold">Subidas emblemáticas</h2>
+  
+      <div class="row g-4">
+        <div class="col-md-4" *ngFor="let subida of top3Subidas">
+          <div class="track-card h-100 shadow-sm rounded overflow-hidden text-center">
+            <div class="p-3">
+              <h3>{{ subida.nombre }}</h3>
+              <p>Veces celebrada: {{ subida.repeticiones }}</p>
             </div>
+          </div>
         </div>
-    </section>
+      </div>
+  
+      <!-- Botón centrado -->
+      <div class="text-center mt-4">
+        <a routerLink="/subidas" class="btn btn-primary btn-lg px-4">Ver todas las subidas</a>
+      </div>
+    </div>
+  </section>
 
     <!-- Pilotos destacados -->
     <section class="py-5 bg-light" id="pilotos">
@@ -125,48 +100,78 @@
         </div>
     </section>
 
+    <!-- Ediciones recientes -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5 gradient-text fw-bold">Ediciones recientes</h2>
+        
+            <div class="row g-4">
+                <!-- Card por edición -->
+                <div class="col-md-4" *ngFor="let edicion of top3Ediciones">
+                <div class="track-card h-100 shadow-sm rounded overflow-hidden text-center">
+                    <div class="p-3">
+                    <h3>{{ edicion.lugar }}</h3>
+                    <p>Año: {{ edicion.ano }}</p>
+                    <a [routerLink]="['/ediciones', edicion.id, 'subidas']" class="btn btn-primary btn-sm mt-2">
+                        Ver edición completa
+                    </a>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <a routerLink="/ediciones" class="btn btn-primary btn-lg px-4">Ver todas las ediciones</a>
+            </div>
+        </div>
+    </section>
+
     <!-- Calendario -->
     <section class="py-5" id="calendario">
         <div class="container">
-            <h2 class="text-center mb-5 gradient-text fw-bold">Calendario 2024</h2>
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>Fecha</th>
-                            <th>Prueba</th>
-                            <th>Localización</th>
-                            <th>Longitud</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>14 Abril</td>
-                            <td>Subida a Chantada</td>
-                            <td>Chantada, Lugo</td>
-                            <td>4.8 km</td>
-                        </tr>
-                        <tr>
-                            <td>12 Mayo</td>
-                            <td>Subida a Fisterra</td>
-                            <td>Fisterra, A Coruña</td>
-                            <td>5.2 km</td>
-                        </tr>
-                        <tr>
-                            <td>9 Junio</td>
-                            <td>Subida a Lobios</td>
-                            <td>Lobios, Ourense</td>
-                            <td>6.1 km</td>
-                        </tr>
-                        <tr>
-                            <td>14 Julio</td>
-                            <td>Subida a Porriño</td>
-                            <td>O Porriño, Pontevedra</td>
-                            <td>3.9 km</td>
-                        </tr>
-                    </tbody>
-                </table>
+        <h2 class="text-center mb-5 gradient-text fw-bold">Calendario 2025</h2>
+    
+        <!-- Tabla con ancho controlado -->
+        <div class="table-responsive d-flex justify-content-center">
+            <div class="table-wrapper" style="max-width: 800px; width: 100%;">
+            <table class="table table-hover">
+                <thead class="table-dark">
+                <tr>
+                    <th>Fecha</th>
+                    <th>Prueba</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Mostrar solo 3 primeras subidas -->
+                <tr *ngFor="let evento of eventosCalendario | slice:0:3">
+                    <td>{{ evento.fecha_inicio | date:'dd/MM' }}</td>
+                    <td>{{ evento.nombre }}</td>
+                </tr>
+    
+                <!-- Resto oculto hasta hacer click -->
+                <tr *ngFor="let evento of eventosCalendario; let i = index" [hidden]="i < 3 || !mostrarTodas">
+                    <td>{{ evento.fecha_inicio | date:'dd/MM' }}</td>
+                    <td>{{ evento.nombre }}</td>
+                </tr>
+                </tbody>
+            </table>
             </div>
+        </div>
+    
+        <!-- Botón dinámico - Expandir o contraer -->
+        <div class="text-center mt-4">
+            <button *ngIf="eventosCalendario.length > 3 && !mostrarTodas"
+                    (click)="mostrarTodas = true"
+                    class="btn btn-outline-primary">
+            Ver calendario completo
+            </button>
+    
+            <button *ngIf="mostrarTodas"
+                    (click)="mostrarTodas = false"
+                    class="btn btn-outline-secondary">
+            Mostrar menos
+            </button>
+        </div>
         </div>
     </section>
 

@@ -21,3 +21,152 @@
   .hero-section .hero-info-card:hover {
     transform: translateY(-5px);
   }
+
+  /* Sección de subidas emblemáticas */
+.track-card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e9ecef;
+}
+
+.track-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 84, 166, 0.15);
+}
+
+.track-card img {
+    object-fit: cover;
+    border-bottom: 4px solid #0054a6; /* Azul gallego */
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.track-card:hover img {
+    transform: scale(1.03);
+    filter: brightness(1.1);
+}
+
+.track-card h3 {
+    color: #0054a6;
+    font-weight: bold;
+    margin-top: 1rem;
+    font-size: 1.5rem;
+}
+
+.track-card p {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+/* Badge estilo glass para el número de repeticiones */
+.track-card .repeticiones-badge {
+    background-color: rgba(153, 31, 51, 0.2); /* Rojo borgoña transparente */
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.track-card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .track-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 84, 166, 0.15);
+  }
+  
+  .track-card h3 {
+    color: #0054a6;
+    font-weight: bold;
+  }
+  
+  .track-card p {
+    color: #6c757d;
+  }
+
+  .track-card {
+    background-color: #ffffff;
+    border: 2px solid #0054a6; /* Borde azul gallego */
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .track-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 84, 166, 0.15);
+  }
+  
+  .track-card h3 {
+    color: #0054a6;
+    font-weight: bold;
+  }
+  
+  .track-card p {
+    color: #6c757d;
+  }
+  
+  /* Estilo opcional para el botón */
+  .btn-primary {
+    background-color: #0054a6;
+    border-color: #0054a6;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background-color: #003b7d;
+    border-color: #003b7d;
+  }
+
+  .track-card {
+    background-color: #ffffff;
+    border: 2px solid #0054a6; /* Borde azul gallego */
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .track-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 84, 166, 0.15);
+  }
+  
+  .track-card h3 {
+    color: #0054a6;
+    font-weight: bold;
+    margin-top: 1rem;
+    font-size: 1.5rem;
+  }
+  
+  .track-card p {
+    color: #6c757d;
+    font-size: 1rem;
+  }
+
+  .table-wrapper {
+    max-width: 800px;
+    margin: auto;
+    border: 1px solid #dee2e6;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+  
+  .table-wrapper table {
+    margin-bottom: 0;
+    min-width: 100%;
+  }
+  
+  .table-wrapper th,
+  .table-wrapper td {
+    text-align: center;
+    padding: 0.75rem;
+  }

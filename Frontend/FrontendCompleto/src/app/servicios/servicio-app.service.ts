@@ -2,6 +2,23 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+interface TopSubida {
+  nombre: string;
+  repeticiones: number;
+}
+
+interface Edicion {
+  id: number;
+  lugar: string;
+  ano: number;
+}
+
+interface EventoCalendario {
+  nombre: string;
+  localizacion: string;
+  fecha_inicio: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,6 +33,7 @@ export class ServicioAppService {
   urlEdiciones = 'http://localhost:8080/api/ediciones'
   urlParticipante = 'http://localhost:8080/api/pilotos'
   urlNoticias = 'http://localhost:8080/api/noticias'
+  
 
   constructor(private http:HttpClient) { }
 
@@ -66,4 +84,17 @@ export class ServicioAppService {
   guardarPuntosDeRuta(rutaId: number, puntos: any[]): Observable<any> {
     return this.http.post(`http://localhost:8080/api/puntos/guardar/${rutaId}`, puntos);
   }
+
+  getTop3Subidas(): Observable<TopSubida[]> {
+    return this.http.get<TopSubida[]>(`${this.urlSubidas}/top3`);
+  }
+
+  getTop3Ediciones(): Observable<Edicion[]> {
+    return this.http.get<Edicion[]>(`${this.urlEdiciones}/top3`);
+  }
+
+  getSubidasByEdicion(edicionId: number): Observable<EventoCalendario[]> {
+    return this.http.get<EventoCalendario[]>(`${this.urlEdiciones}/${edicionId}/pruebas`);
+  }
+
 }

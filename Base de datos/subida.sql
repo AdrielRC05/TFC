@@ -38,7 +38,7 @@ INSERT INTO subida (edicion_id, nombre, fecha_inicio, fecha_fin, ganador_id) VAL
 (4, 'Subida a Monforte de Lemos', '1987-05-17', '1987-05-17', NULL),
 (4, 'Subida a San Roque de Ribeira', '1987-06-13', '1987-06-13', NULL),
 (4, 'Subida a Cerdedo', '1987-07-11', '1987-07-11', NULL),
-(4, 'Subida a Escusa (Poio)', '1987-08-09', '1987-08-09', NULL),
+(4, 'Subida a Escusa Poio', '1987-08-09', '1987-08-09', NULL),
 (4, 'Subida a Ribadavia', '1987-09-06', '1987-09-06', NULL),
 (4, 'Subida a Salvaterra do Miño', '1987-10-10', '1987-10-10', NULL);
 
@@ -48,7 +48,7 @@ INSERT INTO subida (edicion_id, nombre, fecha_inicio, fecha_fin, ganador_id) VAL
 (5, 'Subida a Cerdedo', '1993-04-18', '1993-04-18', NULL),
 (5, 'Subida a Monforte de Lemos', '1993-05-23', '1993-05-23', NULL),
 (5, 'Subida a Ribadavia', '1993-06-13', '1993-06-13', NULL),
-(5, 'Subida a Escusa (Poio)', '1993-07-11', '1993-07-11', NULL),
+(5, 'Subida a Escusa Poio', '1993-07-11', '1993-07-11', NULL),
 (5, 'Subida a Cuntis', '1993-08-08', '1993-08-08', NULL),
 (5, 'Subida a San Roque de Ribeira', '1993-09-19', '1993-09-19', NULL),
 (5, 'Subida a Carballedo', '1993-10-10', '1993-10-10', NULL);
@@ -59,7 +59,7 @@ INSERT INTO subida (edicion_id, nombre, fecha_inicio, fecha_fin, ganador_id) VAL
 (6, 'Subida a San Xulián de Arcos', '1994-05-15', '1994-05-15', NULL),
 (6, 'Subida a Monforte de Lemos', '1994-06-12', '1994-06-12', NULL),
 (6, 'Subida a Cerdedo', '1994-07-10', '1994-07-10', NULL),
-(6, 'Subida a Escusa (Poio)', '1994-08-07', '1994-08-07', NULL),
+(6, 'Subida a Escusa Poio', '1994-08-07', '1994-08-07', NULL),
 (6, 'Subida a Cuntis', '1994-09-11', '1994-09-11', NULL),
 (6, 'Subida a San Roque de Ribeira', '1994-10-16', '1994-10-16', NULL);
 
@@ -69,7 +69,7 @@ INSERT INTO subida (edicion_id, nombre, fecha_inicio, fecha_fin, ganador_id) VAL
 (7, 'Subida a Verín', '1995-05-07', '1995-05-07', NULL),
 (7, 'Subida a Ribadavia', '1995-06-04', '1995-06-04', NULL),
 (7, 'Subida a Cuntis', '1995-07-09', '1995-07-09', NULL),
-(7, 'Subida a Escusa (Poio)', '1995-08-06', '1995-08-06', NULL),
+(7, 'Subida a Escusa Poio', '1995-08-06', '1995-08-06', NULL),
 (7, 'Subida a Noia', '1995-09-10', '1995-09-10', NULL),
 (7, 'Subida a San Roque de Ribeira', '1995-10-15', '1995-10-15', NULL),
 (7, 'Subida a Monforte de Lemos', '1995-10-22', '1995-10-22', NULL);
@@ -80,7 +80,7 @@ INSERT INTO subida (edicion_id, nombre, fecha_inicio, fecha_fin, ganador_id) VAL
 (8, 'Subida a Verín', '1996-05-12', '1996-05-12', NULL),
 (8, 'Subida a Ribadavia', '1996-06-09', '1996-06-09', NULL),
 (8, 'Subida a Cuntis', '1996-07-14', '1996-07-14', NULL),
-(8, 'Subida a Escusa (Poio)', '1996-08-11', '1996-08-11', NULL),
+(8, 'Subida a Escusa Poio', '1996-08-11', '1996-08-11', NULL),
 (8, 'Subida a San Roque de Ribeira', '1996-09-08', '1996-09-08', NULL),
 (8, 'Subida a Monforte de Lemos', '1996-10-20', '1996-10-20', NULL),
 (8, 'Subida a Carballedo', '1996-11-03', '1996-11-03', NULL);
@@ -91,7 +91,7 @@ INSERT INTO subida (edicion_id, nombre, fecha_inicio, fecha_fin, ganador_id) VAL
 (9, 'Subida a Verín', '1997-05-11', '1997-05-11', NULL),
 (9, 'Subida a Ribadavia', '1997-06-08', '1997-06-08', NULL),
 (9, 'Subida a Cuntis', '1997-07-13', '1997-07-13', NULL),
-(9, 'Subida a Escusa (Poio)', '1997-08-10', '1997-08-10', NULL),
+(9, 'Subida a Escusa Poio', '1997-08-10', '1997-08-10', NULL),
 (9, 'Subida a San Roque de Ribeira', '1997-09-07', '1997-09-07', NULL),
 (9, 'Subida a Monforte de Lemos', '1997-10-19', '1997-10-19', NULL),
 (9, 'Subida a Carballedo', '1997-11-02', '1997-11-02', NULL);
@@ -102,7 +102,7 @@ INSERT INTO subida (edicion_id, nombre, fecha_inicio, fecha_fin, ganador_id) VAL
 (10, 'Subida a Verín', '1998-05-10', '1998-05-10', NULL),
 (10, 'Subida a Ribadavia', '1998-06-07', '1998-06-07', NULL),
 (10, 'Subida a Cuntis', '1998-07-12', '1998-07-12', NULL),
-(10, 'Subida a Escusa (Poio)', '1998-08-09', '1998-08-09', NULL),
+(10, 'Subida a Escusa Poio', '1998-08-09', '1998-08-09', NULL),
 (10, 'Subida a Monforte de Lemos', '1998-10-18', '1998-10-18', NULL),
 (10, 'Subida a Carballedo', '1998-11-01', '1998-11-01', NULL);
 
@@ -111,7 +111,7 @@ INSERT INTO subida (edicion_id, nombre, fecha_inicio, fecha_fin, ganador_id) VAL
 (11, '35ª Subida a Chantada', '1999-03-21', '1999-03-21', NULL),
 (11, 'Subida a Verín', '1999-05-09', '1999-05-09', NULL),
 (11, 'Subida a Ribadavia', '1999-06-06', '1999-06-06', NULL),
-(11, 'Subida a Escusa (Poio)', '1999-08-08', '1999-08-08', NULL),
+(11, 'Subida a Escusa Poio', '1999-08-08', '1999-08-08', NULL),
 (11, 'Subida a Cuntis', '1999-07-11', '1999-07-11', NULL),
 (11, 'Subida a Carballedo', '1999-10-17', '1999-10-17', NULL),
 (11, 'Subida a Monforte de Lemos', '1999-10-31', '1999-10-31', NULL);
@@ -179,7 +179,7 @@ INSERT INTO subida (edicion_id, nombre, fecha_inicio, fecha_fin, ganador_id) VAL
 (17, 'Subida a Pontevedra', '2005-06-19', '2005-06-19', NULL),
 (17, 'Subida a Verín', '2005-07-10', '2005-07-10', NULL),
 (17, 'Subida a Cuntis', '2005-09-11', '2005-09-11', NULL),
-(17, 'Subida a Escusa (Poio)', '2005-09-25', '2005-09-25', NULL),
+(17, 'Subida a Escusa Poio', '2005-09-25', '2005-09-25', NULL),
 (17, 'Subida a Bola Furriolo', '2005-10-09', '2005-10-09', NULL);
 
 #2006
@@ -187,7 +187,7 @@ INSERT INTO subida (edicion_id, nombre, fecha_inicio, fecha_fin, ganador_id) VAL
 (18, '38ª Subida a Chantada', '2006-03-12', '2006-03-12', NULL),
 (18, 'Subida a Cortegada', '2006-04-16', '2006-04-16', NULL),
 (18, 'Subida a Pereiro de Aguiar', '2006-05-14', '2006-05-14', NULL),
-(18, 'Subida a Escusa (Poio)', '2006-06-11', '2006-06-11', NULL),
+(18, 'Subida a Escusa Poio', '2006-06-11', '2006-06-11', NULL),
 (18, 'Subida a Pontevedra', '2006-07-09', '2006-07-09', NULL),
 (18, 'Subida a Verín', '2006-09-10', '2006-09-10', NULL),
 (18, 'Subida a Cuntis', '2006-09-24', '2006-09-24', NULL),
@@ -197,7 +197,7 @@ INSERT INTO subida (edicion_id, nombre, fecha_inicio, fecha_fin, ganador_id) VAL
 INSERT INTO subida (edicion_id, nombre, fecha_inicio, fecha_fin, ganador_id) VALUES
 (19, '39ª Subida a Chantada', '2007-03-11', '2007-03-11', NULL),
 (19, 'Subida a Cortegada', '2007-04-15', '2007-04-15', NULL),
-(19, 'Subida a Escusa (Poio)', '2007-05-20', '2007-05-20', NULL),
+(19, 'Subida a Escusa Poio', '2007-05-20', '2007-05-20', NULL),
 (19, 'Subida a Taboadela', '2007-06-10', '2007-06-10', NULL),
 (19, 'Subida a Verín', '2007-07-08', '2007-07-08', NULL),
 (19, 'Subida a Pontevedra', '2007-09-09', '2007-09-09', NULL),
@@ -209,7 +209,7 @@ INSERT INTO subida (edicion_id, nombre, fecha_inicio, fecha_fin, ganador_id) VAL
 (20, '40ª Subida a Chantada', '2008-03-09', '2008-03-09', NULL),
 (20, 'Subida a Oia', '2008-04-13', '2008-04-13', NULL),
 (20, 'Subida a Cercedo', '2008-05-11', '2008-05-11', NULL),
-(20, 'Subida a Escusa (Poio)', '2008-06-15', '2008-06-15', NULL),
+(20, 'Subida a Escusa Poio', '2008-06-15', '2008-06-15', NULL),
 (20, 'Subida a Estrada', '2008-07-13', '2008-07-13', NULL),
 (20, 'Subida a Pereiro de Aguiar', '2008-08-17', '2008-08-17', NULL),
 (20, 'Subida a Pontevedra', '2008-09-07', '2008-09-07', NULL),
@@ -243,7 +243,7 @@ INSERT INTO subida (edicion_id, nombre, fecha_inicio, fecha_fin, ganador_id) VAL
 (23, 'Subida a Chantada', '2011-03-13', '2011-03-13', NULL),
 (23, 'Subida a Xunqueira de Ambia', '2011-04-10', '2011-04-10', NULL),
 (23, 'Subida a Estrada', '2011-05-08', '2011-05-08', NULL),
-(23, 'Subida a Escusa (Poio)', '2011-06-12', '2011-06-12', NULL),
+(23, 'Subida a Escusa Poio', '2011-06-12', '2011-06-12', NULL),
 (23, 'Subida a Cuntis', '2011-05-22', '2011-05-22', NULL),
 (23, 'Subida a Pontevedra', '2011-06-19', '2011-06-19', NULL),
 (23, 'Subida a Monforte de Lemos', '2011-07-17', '2011-07-17', NULL),
@@ -254,7 +254,7 @@ INSERT INTO subida (edicion_id, nombre, fecha_inicio, fecha_fin, ganador_id) VAL
 (24, 'Subida a Santa María de Oia', '2012-05-13', '2012-05-13', NULL),
 (24, 'Subida a Chantada', '2012-04-15', '2012-04-15', NULL),
 (24, 'Subida a Serra da Groba', '2012-05-20', '2012-05-20', NULL),
-(24, 'Subida a Escusa', '2012-07-15', '2012-07-15', NULL),
+(24, 'Subida a Escusa Poio', '2012-07-15', '2012-07-15', NULL),
 (24, 'Subida a Pontevedra', '2012-08-19', '2012-08-19', NULL),
 (24, 'Subida a Bola Furriolo', '2012-09-09', '2012-09-09', NULL),
 (24, 'Subida a Estrada', '2012-06-23', '2012-06-23', NULL);
@@ -264,7 +264,7 @@ INSERT INTO subida (edicion_id, nombre, fecha_inicio, fecha_fin, ganador_id) VAL
 (25, 'Subida a Pontevedra', '2013-03-17', '2013-03-17', NULL),
 (25, 'Subida a Chantada', '2013-04-15', '2013-04-15', NULL),
 (25, 'Subida a Estrada', '2013-05-12', '2013-05-12', NULL),
-(25, 'Subida a Escusa', '2013-06-09', '2013-06-09', NULL),
+(25, 'Subida a Escusa Poio', '2013-06-09', '2013-06-09', NULL),
 (25, 'Subida a Saleta', '2013-07-14', '2013-07-14', NULL),
 (25, 'Subida a Monforte de Lemos', '2013-08-11', '2013-08-11', NULL),
 (25, 'Subida a Pontenova', '2013-09-08', '2013-09-08', NULL),
@@ -274,7 +274,7 @@ INSERT INTO subida (edicion_id, nombre, fecha_inicio, fecha_fin, ganador_id) VAL
 INSERT INTO subida (edicion_id, nombre, fecha_inicio, fecha_fin, ganador_id) VALUES
 (26, 'Subida a Pontevedra', '2014-03-16', '2014-03-16', NULL),
 (26, 'Subida a A Estrada', '2014-04-21', '2014-04-21', NULL),
-(26, 'Subida a Escusa', '2014-05-11', '2014-05-11', NULL),
+(26, 'Subida a Escusa Poio', '2014-05-11', '2014-05-11', NULL),
 (26, 'Subida a Terra de Lemos', '2014-06-08', '2014-06-08', NULL),
 (26, 'Subida a Chantada', '2014-07-13', '2014-07-13', NULL),
 (26, 'Subida a Pontenova', '2014-08-10', '2014-08-10', NULL),
@@ -286,7 +286,7 @@ INSERT INTO subida (edicion_id, nombre, fecha_inicio, fecha_fin, ganador_id) VAL
 (27, 'Subida a A Bola', '2015-04-19', '2015-04-19', NULL),
 (27, 'Subida a Fraga', '2015-05-10', '2015-05-10', NULL),
 (27, 'Subida a Pontevedra', '2015-06-14', '2015-06-14', NULL),
-(27, 'Subida a Escusa', '2015-07-12', '2015-07-12', NULL),
+(27, 'Subida a Escusa Poio', '2015-07-12', '2015-07-12', NULL),
 (27, 'Subida a Santa María de Oia', '2015-08-09', '2015-08-09', NULL),
 (27, 'Subida a A Estrada', '2015-09-13', '2015-09-13', NULL);
 
@@ -298,13 +298,13 @@ INSERT INTO subida (edicion_id, nombre, fecha_inicio, fecha_fin) VALUES
 (28, '30ª Subida a Chantada', '2023-07-16', '2023-07-16'),
 (28, '1ª Subida Cortegada de Baños', '2023-08-06', '2023-08-06'),
 (28, '1ª Subida a Pontecaldelas', '2023-08-20', '2023-08-20'),
-(28, '17ª Subida a Escusa-Poio', '2023-09-17', '2023-09-17'),
+(28, '17ª Subida a Escusa Poio', '2023-09-17', '2023-09-17'),
 (28, '6ª Subida a Fraga', '2023-10-01', '2023-10-01');
 
 #2017
 INSERT INTO subida (edicion_id, nombre, fecha_inicio, fecha_fin, ganador_id) VALUES
 (29, 'Subida a Ponte Caldelas', '2017-03-12', '2017-03-12', NULL),
-(29, 'Subida a Escusa', '2017-04-23', '2017-04-23', NULL),
+(29, 'Subida a Escusa Poio', '2017-04-23', '2017-04-23', NULL),
 (29, 'Subida a Pontenova', '2017-05-14', '2017-05-14', NULL),
 (29, '49ª Subida a Chantada', '2017-06-11', '2017-06-11', NULL),
 (29, 'Subida a Santa María de Oia', '2017-07-09', '2017-07-09', NULL),
@@ -320,7 +320,7 @@ INSERT INTO subida (edicion_id, nombre, fecha_inicio, fecha_fin, ganador_id) VAL
 (30, 'Subida a Pontevedra-Almofrei', '2018-07-14', '2018-07-15', NULL),
 (30, 'Subida a Ponte Caldelas', '2018-08-04', '2018-08-06', NULL),
 (30, '45ª Subida a Chantada', '2018-08-18', '2018-08-20', NULL),
-(30, 'Subida a Escusa', '2018-09-15', '2018-09-17', NULL),
+(30, 'Subida a Escusa Poio', '2018-09-15', '2018-09-17', NULL),
 (30, 'Subida a A Estrada', '2018-10-06', '2018-10-08', NULL);
 
 #2019
@@ -385,3 +385,13 @@ INSERT INTO subida (edicion_id, nombre, fecha_inicio, fecha_fin) VALUES
 (36, '28º Subida a Estrada', '2024-08-03', '2024-08-04'),
 (36, '7º Subida Ponte Caldelas', '2024-10-05', '2024-10-06'),
 (36, '33º Subida a Fisterra', '2024-11-02', '2024-11-03');
+
+#2025
+INSERT INTO subida (edicion_id, nombre, fecha_inicio, fecha_fin) VALUES
+(37, '12º Subida a Taboada', '2025-04-25', '2025-04-28'),
+(37, '5º Subida a Vilar de Barrio', '2025-05-23', '2025-05-25'),
+(37, '25º Subida a Escusa Poio', '2025-06-13', '2025-06-15'),
+(37, '12º Subida a Pontevedra', '2025-06-27', '2025-06-29'),
+(37, '29º Subida a Estrada', '2025-08-01', '2025-08-03'),
+(37, '6º Subida a Taboadela', '2025-08-22', '2025-08-24'),
+(37, '8º Subida a Ponte Caldelas', '2025-09-03', '2025-09-05');

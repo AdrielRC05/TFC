@@ -112,10 +112,9 @@ export class SubidasComponent implements OnInit, AfterViewInit {
   
       setTimeout(() => {
         mapa.invalidateSize();
-      }, 200); // Asegura que el mapa tenga tamaño real
+      }, 200); // Asegura tamaño real del mapa
   
       const rutas = subida.rutas || [];
-  
       const todasLasCoordenadas: [number, number][] = [];
   
       rutas.forEach((ruta: any) => {
@@ -126,36 +125,43 @@ export class SubidasComponent implements OnInit, AfterViewInit {
           const origen: [number, number] = coordenadas[0];
           const destino: [number, number] = coordenadas[1];
   
-          // Dibujar marcadores de inicio y fin
+          // Mostrar marcadores iniciales
           L.marker(origen, { icon: DefaultIcon }).addTo(mapa).bindPopup(puntos[0]?.descripcion || 'Salida');
           L.marker(destino, { icon: DefaultIcon }).addTo(mapa).bindPopup(puntos[1]?.descripcion || 'Llegada');
   
-          // Cargar puntos guardados desde BBDD
-          this.servicio.obtenerPuntosGuardados(ruta.id).subscribe(puntosGuardados => {
-            if (puntosGuardados && puntosGuardados.length > 2) {
-              const coords = puntosGuardados.map((p: any) => [p.latitud, p.longitud]);
-              const bounds = L.latLngBounds(coords as L.LatLngExpression[]);
+          // ✅ Llamada a OpenRouteService para generar ruta
+          this.rutaService.getRuta(origen, destino).subscribe(geojson => {
+            // Extraer coordenadas de la respuesta de ORS
+            const coordsFromOR = geojson.features[0].geometry.coordinates.map(
+              (c: [number, number]) => [c[1], c[0]] as [number, number]
+            );
   
-              L.polyline(coords, { color: '#0054a6', weight: 4 }).addTo(mapa);
+            // Dibujar línea azul gallega
+            L.polyline(coordsFromOR, { color: '#0054a6', weight: 4 }).addTo(mapa);
   
-              setTimeout(() => {
-                mapa.fitBounds(bounds, {
-                  padding: [50, 50],
-                  maxZoom: 15,
-                  animate: true
-                });
-              }, 300);
-            } else {
-              // Si no hay datos guardados, generarlos (esto ya lo tienes hecho)
-            }
+            // Guardar puntos generados en BBDD
+            const puntosParaGuardar = coordsFromOR.map((c: any[], i: number) => ({
+              latitud: c[0],
+              longitud: c[1],
+              orden: i + 1,
+              descripcion: i === 0 ? 'Inicio' : i === coordsFromOR.length - 1 ? 'Fin' : ''
+            }));
+  
+            // ✅ Guardamos la ruta generada en el backend
+            this.servicio.guardarPuntosDeRuta(ruta.id, puntosParaGuardar).subscribe(() => {
+              console.log('Ruta guardada:', ruta.id);
+            });
+  
+            // Ajustar vista al recorrido
+            const bounds = L.latLngBounds(coordsFromOR as L.LatLngExpression[]);
+            mapa.fitBounds(bounds, { padding: [50, 50], maxZoom: 15, animate: true });
+            todasLasCoordenadas.push(...coordsFromOR);
           });
+        }
   
-          todasLasCoordenadas.push(origen, destino);
-  
-        } else if (coordenadas.length > 2) {
-          // Ruta con múltiples puntos → dibuja línea roja y marcador solo en inicio/fin
+        // Si ya hay más de 2 puntos → usamos los de la BBDD
+        else if (coordenadas.length > 10) {
           const coords = coordenadas;
-  
           L.polyline(coords, { color: 'red' }).addTo(mapa);
   
           const primerPunto = coords[0];
@@ -165,13 +171,8 @@ export class SubidasComponent implements OnInit, AfterViewInit {
           L.marker(ultimoPunto, { icon: DefaultIcon }).addTo(mapa).bindPopup(puntos[puntos.length - 1]?.descripcion || 'Fin');
   
           const bounds = L.latLngBounds(coords as L.LatLngExpression[]);
-  
           setTimeout(() => {
-            mapa.fitBounds(bounds, {
-              padding: [50, 50],
-              maxZoom: 15,
-              animate: true
-            });
+            mapa.fitBounds(bounds, { padding: [50, 50], maxZoom: 15, animate: true });
           }, 300);
   
           todasLasCoordenadas.push(...coords);

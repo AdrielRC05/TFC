@@ -5,6 +5,7 @@ import ad.TFC.repositories.SubidaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class SubidaService {
@@ -51,4 +52,30 @@ public class SubidaService {
         }
         return subida;
     }
+
+    public List<Map<String, Object>> getTop3Subidas() {
+        return subidaRepository.findAll().stream()
+            .map(subida -> cleanName(subida.getNombre()))
+            .collect(Collectors.groupingBy(name -> name, Collectors.counting())) // Agrupa por nombre y cuenta
+            .entrySet().stream()
+            .sorted(Map.Entry.<String, Long>comparingByValue(Comparator.reverseOrder()))
+            .limit(3)
+            .map(entry -> {
+                Map<String, Object> map = new HashMap<>();
+                map.put("nombre", entry.getKey());
+                map.put("repeticiones", entry.getValue());
+                return map;
+            })
+            .toList();
+    }
+
+    private String cleanName(String nombre) {
+        if (nombre == null) return "Sin Nombre";
+        return nombre
+            .replaceAll("º|ª|\\d+ª|\\d+º", "") // Quita ordinales
+            .split(",")[0]                      // Solo el nombre principal
+            .split("\\(")[0]                    // Ignora contenido entre paréntesis
+            .trim();                            // Limpia espacios extra
+    }
+
 }
