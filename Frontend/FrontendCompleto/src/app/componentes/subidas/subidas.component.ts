@@ -129,7 +129,7 @@ export class SubidasComponent implements OnInit, AfterViewInit {
           L.marker(origen, { icon: DefaultIcon }).addTo(mapa).bindPopup(puntos[0]?.descripcion || 'Salida');
           L.marker(destino, { icon: DefaultIcon }).addTo(mapa).bindPopup(puntos[1]?.descripcion || 'Llegada');
   
-          // ✅ Llamada a OpenRouteService para generar ruta
+          // Llamada a OpenRouteService para generar ruta
           this.rutaService.getRuta(origen, destino).subscribe(geojson => {
             // Extraer coordenadas de la respuesta de ORS
             const coordsFromOR = geojson.features[0].geometry.coordinates.map(
@@ -147,7 +147,7 @@ export class SubidasComponent implements OnInit, AfterViewInit {
               descripcion: i === 0 ? 'Inicio' : i === coordsFromOR.length - 1 ? 'Fin' : ''
             }));
   
-            // ✅ Guardamos la ruta generada en el backend
+            // Guardamos la ruta generada en el backend
             this.servicio.guardarPuntosDeRuta(ruta.id, puntosParaGuardar).subscribe(() => {
               console.log('Ruta guardada:', ruta.id);
             });
@@ -160,7 +160,7 @@ export class SubidasComponent implements OnInit, AfterViewInit {
         }
   
         // Si ya hay más de 2 puntos → usamos los de la BBDD
-        else if (coordenadas.length > 10) {
+        else if (coordenadas.length > 2) {
           const coords = coordenadas;
           L.polyline(coords, { color: 'red' }).addTo(mapa);
   

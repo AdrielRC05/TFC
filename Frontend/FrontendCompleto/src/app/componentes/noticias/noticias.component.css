@@ -1,0 +1,29 @@
+.card-title.text-primary {
+    color: #0054a6;
+  }
+  
+  .card-text a {
+    color: #0054a6;
+    text-decoration: none;
+  }
+  
+  .card-text a:hover {
+    text-decoration: underline;
+  }
+  
+  .input-group input[type="number"] {
+    font-size: 1rem;
+    padding: 0.5rem;
+    color: #0054a6;
+  }
+  
+  .input-group .form-control {
+    border: 1px solid #0054a6;
+    border-radius: 5px;
+    color: #0054a6;
+  }
+  
+  .input-group .form-control:focus {
+    border-color: #0078d7;
+    box-shadow: 0 0 0 0.2rem rgba(0, 120, 215, 0.2);
+  }

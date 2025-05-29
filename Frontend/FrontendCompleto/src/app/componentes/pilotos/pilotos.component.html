@@ -1,29 +1,123 @@
-<div class="rally-list">
-  <h2>Listado de Pilotos</h2>
+<!-- Piloto List -->
+<div class="rally-list py-5">
+  <h2 class="text-center mb-4">Listado de Pilotos</h2>
 
-  <!-- Caja de búsqueda -->
-  <div class="input-group mb-3" style="max-width: 300px; margin: 20px auto;">
-    <input 
-      type="text" 
-      class="form-control" 
-      placeholder="Buscar por nombre"
-      [(ngModel)]="busqueda"
-      (input)="filtrarPilotos()" />
+  <!-- Búsqueda por nombre + coche + botón de filtro -->
+  <div class="d-flex flex-wrap justify-content-center gap-3 mb-4" style="max-width: 900px; margin: 0 auto;">
+    
+    <!-- Búsqueda por nombre -->
+    <div class="input-group" style="flex: 1; min-width: 250px; max-width: 300px;">
+      <span class="input-group-text bg-white text-primary border-primary">
+        <i class="bi bi-person"></i>
+      </span>
+      <input 
+        type="text" 
+        class="form-control border-start-0" 
+        placeholder="Buscar por nombre"
+        [(ngModel)]="busqueda"
+        (input)="filtrarPilotos()" />
+    </div>
+
+    <!-- Búsqueda por coche -->
+    <div class="input-group" style="flex: 1; min-width: 250px; max-width: 300px;">
+      <span class="input-group-text bg-white text-primary border-primary">
+        <i class="bi bi-car-front-fill"></i>
+      </span>
+      <input 
+        type="text" 
+        class="form-control border-start-0" 
+        placeholder="Buscar por coche"
+        [(ngModel)]="filtroCoche"
+        (input)="filtrarPilotos()" />
+    </div>
+
+    <!-- Botón de filtro -->
+    <div class="position-relative">
+      <button 
+        class="btn btn-outline-secondary d-flex align-items-center gap-2" 
+        type="button" 
+        (click)="toggleFiltro()">
+        <i class="bi bi-funnel-fill" style="color: #6c757d;"></i> Filtro
+      </button>
+
+      <!-- Panel emergente de opciones -->
+      <div *ngIf="mostrarPanelFiltro" class="position-absolute start-0 mt-2 bg-white border rounded shadow-sm p-3" style="z-index: 1000; width: 200px;">
+        <h6 class="mb-3">Filtrar por:</h6>
+
+        <!-- Opciones de filtro -->
+        <div class="mb-3 form-check" *ngFor="let filtro of filtrosDisponibles">
+          <input 
+            class="form-check-input" 
+            type="radio" 
+            [id]="'filtro-' + filtro" 
+            [value]="filtro" 
+            [(ngModel)]="filtroActivo" 
+            (change)="filtrarPilotos()" />
+          <label class="form-check-label" [for]="'filtro-' + filtro">
+            {{ filtro }}
+          </label>
+        </div>
+
+        <hr class="my-2">
+
+        <!-- Orden ascendente/descendente -->
+        <div class="d-flex justify-content-between">
+          <div class="form-check">
+            <input 
+              class="form-check-input" 
+              type="radio" 
+              id="ascendente" 
+              value="asc" 
+              [(ngModel)]="orden" 
+              (change)="filtrarPilotos()" />
+            <label class="form-check-label" for="ascendente">
+              Ascendiente
+            </label>
+          </div>
+          <div class="form-check">
+            <input 
+              class="form-check-input" 
+              type="radio" 
+              id="descendente" 
+              value="desc" 
+              [(ngModel)]="orden" 
+              (change)="filtrarPilotos()" />
+            <label class="form-check-label" for="descendente">
+              Descendiente
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div *ngFor="let piloto of pilotosFiltrados" class="rally-card">
-    <h3>{{ piloto.nombre }}</h3>
-    <p><strong>Edad:</strong> {{ piloto.edad }}</p>
-    <p><strong>Nacionalidad:</strong> {{ piloto.nacionalidad }}</p>
-    <p><strong>Coche:</strong> {{ piloto.coche }}</p>
-    <p><strong>Títulos:</strong> {{ piloto.titulos }}</p>
+  <!-- Mensaje si no hay resultados -->
+  <div *ngIf="pilotosFiltrados.length === 0 && !cargando" class="alert alert-info text-center">
+    No se han encontrado pilotos.
+  </div>
+
+  <!-- Lista de pilotos -->
+  <div *ngFor="let piloto of pilotosFiltrados; let i = index" class="mb-3">
     
-    <button
-      class="btn btn-primary"
-      [routerLink]="['/pilotos', piloto.id, 'rallys']">
-      Ver Rallys
+    <!-- Botón para expandir información -->
+    <button 
+      (click)="toggleInfo(i)" 
+      class="btn btn-link w-100 text-left d-flex justify-content-between align-items-center" 
+      [attr.aria-expanded]="mostrarInfo[i] ? 'true' : 'false'" 
+      type="button">
+      {{ piloto.nombre }}
+      <i class="bi bi-chevron-down" [class.rotated]="mostrarInfo[i]"></i>
     </button>
+
+    <!-- Información detallada -->
+    <div [hidden]="!mostrarInfo[i]" class="mt-2 p-3 border rounded bg-white shadow-sm">
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>Edad:</strong> {{ piloto.edad }}</p>
+          <p><strong>Títulos:</strong> {{ piloto.titulos }}</p>
+          <p><strong>Coche:</strong> {{ piloto.coche }}</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
-  

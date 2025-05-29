@@ -31,7 +31,7 @@ export class ServicioAppService {
 
   urlSubidas = 'http://localhost:8080/api/subidas'
   urlEdiciones = 'http://localhost:8080/api/ediciones'
-  urlParticipante = 'http://localhost:8080/api/pilotos'
+  urlParticipante = 'http://localhost:8080/api/participantes'
   urlNoticias = 'http://localhost:8080/api/noticias'
   
 

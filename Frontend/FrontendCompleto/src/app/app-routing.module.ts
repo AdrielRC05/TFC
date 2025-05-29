@@ -8,10 +8,12 @@ import { PilotosComponent } from './componentes/pilotos/pilotos.component';
 import { RallyPilotosComponent } from './componentes/pilotosDelRally/rally-pilotos.component';
 import { SubidaComponent } from './componentes/subida/subida.component';
 import { SubidasComponent } from './componentes/subidas/subidas.component';
+import { NoticiasComponent } from './componentes/noticias/noticias.component';
 
 const rutas: Routes = [
   { path: 'pilotos', component: PilotosComponent, data: { breadcrumb: 'Pilotos' } },
   { path: 'copilotos', component: CopilotoComponent, data: { breadcrumb: 'Copilotos' } },
+  { path: 'noticias', component: NoticiasComponent, data: { breadcrumb: 'Noticias' } },
   { path: 'ediciones', component: EdicionComponent, data: { breadcrumb: 'Ediciones' } },
   { path: 'subidas', component: SubidasComponent, data: { breadcrumb: 'Subidas' } },
   { path: 'api/ediciones', component: EdicionComponent, data: { breadcrumb: 'Ediciones API' } },

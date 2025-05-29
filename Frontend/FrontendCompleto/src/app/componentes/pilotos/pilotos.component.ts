@@ -1,38 +1,80 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ServicioAppService } from '../../servicios/servicio-app.service';
 
 @Component({
   selector: 'app-pilotos',
   standalone: false,
   templateUrl: './pilotos.component.html',
-  styleUrl: './pilotos.component.css'
+  styleUrls: ['./pilotos.component.css']
 })
-export class PilotosComponent {
-  pilotos: any[] = [];  // Lista original de pilotos
-  pilotosFiltrados: any[] = [];  // Lista de pilotos filtrados
-  busqueda: string = '';  // Texto de búsqueda
+export class PilotosComponent implements OnInit {
 
-  constructor(private servicio: ServicioAppService) { }
+  pilotos: any[] = [];
+  pilotosFiltrados: any[] = [];
+  busqueda: string = '';
+  filtroCoche: string = '';
+  mostrarInfo: boolean[] = [];
+  cargando = false;
+  filtroActivo: string = 'nombre';
+  orden: string = 'asc';
+  mostrarPanelFiltro: boolean = false;
+  filtrosDisponibles = ['nombre', 'titulos'];
+
+  constructor(private servicio: ServicioAppService) {}
 
   ngOnInit(): void {
-    this.obtenerPilotos();  // Llamamos a la función para cargar los pilotos
-  }
+    this.cargando = true;
 
-  obtenerPilotos(): void {
-    this.servicio.obtenerParticipantes().subscribe((data: any) => {
-      this.pilotos = data;  // Asumimos que la respuesta es directamente la lista de pilotos
-      this.pilotosFiltrados = data;  // Inicializamos los pilotos filtrados con todos los pilotos
+    this.servicio.obtenerParticipantes().subscribe(data => {
+      this.pilotos = data;
+      this.pilotosFiltrados = [...this.pilotos];
+      this.cargando = false;
     });
   }
 
-  // Función para filtrar los pilotos
-  filtrarPilotos(): void {
-    if (this.busqueda.trim() === '') {
-      this.pilotosFiltrados = this.pilotos;  // Si no hay texto de búsqueda, mostramos todos los pilotos
-    } else {
-      this.pilotosFiltrados = this.pilotos.filter(piloto =>
-        piloto.nombre.toLowerCase().includes(this.busqueda.toLowerCase())  // Filtra por nombre
+  filtrarPilotos() {
+    let resultados = [...this.pilotos];
+  
+    // Filtrar por nombre si hay texto
+    if (this.busqueda.trim()) {
+      const filtroNombre = this.busqueda.toLowerCase();
+      resultados = resultados.filter(p => 
+        p.nombre?.toLowerCase().includes(filtroNombre)
       );
     }
+  
+    // Filtrar por coche si hay texto
+    if (this.filtroCoche.trim()) {
+      const filtroVehiculo = this.filtroCoche.toLowerCase();
+      resultados = resultados.filter(p => 
+        p.coche?.toLowerCase().includes(filtroVehiculo)
+      );
+    }
+  
+    // Aplicar ordenamiento
+    if (this.filtroActivo === 'nombre') {
+      resultados.sort((a, b) => {
+        return this.orden === 'asc' 
+          ? a.nombre.localeCompare(b.nombre)
+          : b.nombre.localeCompare(a.nombre);
+      });
+    } else if (this.filtroActivo === 'titulos') {
+      resultados.sort((a, b) => {
+        const titulosA = a.titulos || 0;
+        const titulosB = b.titulos || 0;
+  
+        return this.orden === 'asc' ? titulosA - titulosB : titulosB - titulosA;
+      });
+    }
+  
+    this.pilotosFiltrados = resultados;
+  }
+
+  toggleInfo(index: number) {
+    this.mostrarInfo[index] = !this.mostrarInfo[index];
+  }
+
+  toggleFiltro() {
+    this.mostrarPanelFiltro = !this.mostrarPanelFiltro;
   }
 }

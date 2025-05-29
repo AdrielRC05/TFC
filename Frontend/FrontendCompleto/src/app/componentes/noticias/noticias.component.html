@@ -1,1 +1,46 @@
-<p>noticias works!</p>
+<!-- Lista de noticias -->
+<div class="noticias-list py-5">
+    <div class="container">
+  
+      <h2 class="text-center mb-4">Noticias del Campeonato Gallego de Montaña</h2>
+  
+      <!-- Caja de búsqueda por año -->
+      <div class="input-group mb-4" style="max-width: 300px; margin: 0 auto;">
+        <input 
+          type="number"
+          class="form-control border-primary text-primary" 
+          placeholder="Filtrar por año"
+          [(ngModel)]="filtroAno"
+          (input)="filtrarNoticias()" />
+      </div>
+  
+      <!-- Mensaje si no hay resultados -->
+      <div *ngIf="noticiasFiltradas.length === 0 && !cargando" class="alert alert-info text-center">
+        No se encontraron noticias.
+      </div>
+  
+      <!-- Spinner de carga -->
+      <div class="text-center" *ngIf="cargando">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Cargando...</span>
+        </div>
+      </div>
+  
+      <!-- Lista de noticias -->
+      <div *ngFor="let noticia of noticiasFiltradas" class="mb-3">
+        <div class="card shadow-sm border-0 h-100">
+          <div class="card-body">
+            <p class="card-text text-muted">
+              <small>Enlace: </small>
+              <a [href]="noticia.enlace" target="_blank" rel="noopener noreferrer">
+                {{ noticia.enlace }}
+              </a>
+            </p>
+            <p class="card-text">
+              <strong>Año:</strong> {{ noticia.ano || 'Desconocido' }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

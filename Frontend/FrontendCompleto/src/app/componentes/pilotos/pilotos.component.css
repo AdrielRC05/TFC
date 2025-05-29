@@ -1,19 +1,111 @@
+/* Fondo general y tipografía */
 .rally-list {
-    margin: 2rem;
-  }
-  
-  .rally-card {
-    margin-bottom: 1rem;
-    padding: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-  }
-  
-  h2 {
-    margin-bottom: 1.5rem;
-  }
-  
-  body {
-    background: linear-gradient(135deg, #1e3c72 30%, #ff5733 80%);
-    color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+  background-color: #f8f9fa;
+  color: #0054a6;
+}
+
+/* Título principal */
+.rally-list h2 {
+  text-align: center;
+  color: #0054a6;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+/* Inputs de filtro */
+.input-group input[type="text"] {
+  font-size: 1rem;
+  padding: 0.5rem;
+  color: #0054a6;
+}
+
+.input-group .form-control {
+  border: 1px solid #0054a6;
+  border-radius: 5px;
+  color: #0054a6;
+}
+
+.input-group .form-control:focus {
+  border-color: #0078d7;
+  box-shadow: 0 0 0 0.2rem rgba(0, 120, 215, 0.2);
+}
+
+/* Botones expansibles */
+.rally-list button.btn-link {
+  font-size: 1.1rem;
+  color: #0054a6;
+  text-decoration: none;
+  padding: 0.5rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.rally-list button.btn-link:hover,
+.rally-list button.btn-link[aria-expanded="true"] {
+  color: #003b7d;
+  text-decoration: none;
+}
+
+.rally-list button.btn-link i.bi-chevron-down {
+  transition: transform 0.3s ease;
+}
+
+.rally-list button.btn-link i.rotated {
+  transform: rotate(180deg);
+}
+
+/* Contenedor de detalles del piloto */
+.rally-list .mt-2.p-3.border.rounded.bg-white.shadow-sm {
+  background-color: white;
+  border-left: 5px solid #0054a6;
+  transition: all 0.3s ease;
+}
+
+.rally-list .mt-2 p {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: #0054a6;
+}
+
+.rally-list strong {
+  color: #0054a6;
+}
+
+/* Estilo del botón de filtro */
+.btn-outline-secondary {
+  background-color: #f1f1f1 !important; /* Gris clarito */
+  color: #6c757d !important; /* Gris medio */
+  border-color: #dee2e6 !important;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #e9ecef !important;
+  color: #0054a6 !important;
+}
+
+/* Panel de filtro emergente */
+.position-absolute.start-0.mt-2.bg-white.border.rounded.shadow-sm {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  font-size: 0.95rem;
+}
+
+/* Radio buttons estilo limpio */
+.form-check-input:checked {
+  background-color: #0054a6;
+  border-color: #0054a6;
+}
+
+.form-check-label:hover {
+  color: #0054a6;
 }

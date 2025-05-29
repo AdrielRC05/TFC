@@ -87,7 +87,8 @@ CREATE TABLE clasificacion_general (
 -- Noticias por edición
 CREATE TABLE noticia (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    enlace VARCHAR(512) NOT NULL
+    enlace VARCHAR(512) NOT NULL,
+    año integer not null
 );
 
 -- Patrocinadores
