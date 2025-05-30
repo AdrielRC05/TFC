@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ServicioAppService } from '../../servicios/servicio-app.service';
 
 @Component({
@@ -45,4 +45,20 @@ export class EdicionComponent implements OnInit {
       return edicion.año === anoBuscado;
     });
   }
+
+  showBackToTop = false;
+    
+    @HostListener('window:scroll', [])
+    onWindowScroll() {
+      const pos = window.scrollY || document.documentElement.scrollTop;
+      this.showBackToTop = pos > 300;
+    }
+  
+    goToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
 }

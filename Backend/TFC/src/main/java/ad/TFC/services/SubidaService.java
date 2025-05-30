@@ -47,7 +47,6 @@ public class SubidaService {
             subidaExistente.setEdicion(subida.getEdicion());
             subidaExistente.setFechaInicio(subida.getFechaInicio());
             subidaExistente.setFechaFin(subida.getFechaFin());
-            subidaExistente.setGanador(subida.getGanador());
             subidaExistente.setRutas(subida.getRutas());
         }
         return subida;

@@ -4,7 +4,8 @@ import {
   AfterViewInit,
   QueryList,
   ViewChildren,
-  ElementRef
+  ElementRef,
+  HostListener
 } from '@angular/core';
 import { ServicioAppService } from '../../servicios/servicio-app.service';
 import { RutaService } from '../../servicios/ruta.service';
@@ -202,6 +203,21 @@ export class SubidasComponent implements OnInit, AfterViewInit {
         }
       }, 100); // Pequeño delay para asegurar que el mapa es visible
     }
+  }
+
+  showBackToTop = false;
+  
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const pos = window.scrollY || document.documentElement.scrollTop;
+    this.showBackToTop = pos > 300;
+  }
+
+  goToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   }
 
 }

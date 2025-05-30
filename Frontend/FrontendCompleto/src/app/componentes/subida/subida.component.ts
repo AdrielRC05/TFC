@@ -5,7 +5,8 @@ import {
   ViewChild,
   ElementRef,
   ViewChildren,
-  QueryList
+  QueryList,
+  HostListener
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -198,6 +199,21 @@ export class SubidaComponent implements OnInit, AfterViewInit {
         }
       }, 100); // Pequeño delay para asegurar que el mapa es visible
     }
+  }
+
+  showBackToTop = false;
+    
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const pos = window.scrollY || document.documentElement.scrollTop;
+    this.showBackToTop = pos > 300;
+  }
+
+  goToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   }
 
 }

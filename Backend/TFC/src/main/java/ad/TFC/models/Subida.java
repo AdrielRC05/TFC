@@ -20,11 +20,6 @@ public class Subida {
     @JoinColumn(name = "edicion_id")
     private Edicion edicion;
 
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "ganador_id")
-    private Participante ganador;
-
     @OneToMany(mappedBy = "subida", cascade = CascadeType.ALL)
     private List<Ruta> rutas;
 
@@ -60,12 +55,6 @@ public class Subida {
     }
     public void setEdicion(Edicion edicion) {
         this.edicion = edicion;
-    }
-    public Participante getGanador() {
-        return ganador;
-    }
-    public void setGanador(Participante ganador) {
-        this.ganador = ganador;
     }
     public List<Ruta> getRutas() {
         return rutas;

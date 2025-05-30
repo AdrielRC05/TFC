@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 
 interface Noticia {
   id: number;
@@ -43,4 +43,19 @@ export class NoticiasComponent implements OnInit {
       return noticia.ano === añoFiltro;
     });
   }
+
+  showBackToTop = false;
+  
+    @HostListener('window:scroll', [])
+    onWindowScroll() {
+      const pos = window.scrollY || document.documentElement.scrollTop;
+      this.showBackToTop = pos > 300;
+    }
+  
+    goToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
 }
