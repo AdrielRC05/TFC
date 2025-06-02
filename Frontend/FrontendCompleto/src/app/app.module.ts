@@ -10,7 +10,6 @@ import { PilotoComponent } from './componentes/RallysDelPiloto/piloto.component'
 import { CopilotoComponent } from './componentes/copiloto/copiloto.component';
 import { EdicionComponent } from './componentes/edicion/edicion.component';
 import { PilotosComponent } from './componentes/pilotos/pilotos.component';
-import { CopilotosComponent } from './componentes/copilotos/copilotos.component';
 import { RallyPilotosComponent } from './componentes/pilotosDelRally/rally-pilotos.component';
 import { NavbarReutilizableComponent } from './componentes/navbar-reutilizable/navbar-reutilizable.component';
 import { SubidasComponent } from './componentes/subidas/subidas.component';
@@ -29,7 +28,6 @@ import { FooterComponent } from './componentes/footer/footer.component';
     CopilotoComponent,
     EdicionComponent,
     PilotosComponent,
-    CopilotosComponent,
     RallyPilotosComponent,
     NavbarReutilizableComponent,
     SubidasComponent,

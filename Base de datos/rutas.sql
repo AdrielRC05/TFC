@@ -3890,11 +3890,11 @@ VALUES
 
 
 
-#Fisterra
+#Celanova
 INSERT INTO ruta (subida_id, nombre, descripcion, distancia)
 VALUES (
   106,
-  'Subida a Fisterra',
+  'Subida a Celanova',
   '',
   1
 );
@@ -3906,11 +3906,11 @@ VALUES
 -- Llegada
 (@ruta_id, 42.1227705, -7.9136312, 'Llegada');
 
-#Fisterra
+#Celanova
 INSERT INTO ruta (subida_id, nombre, descripcion, distancia)
 VALUES (
   115,
-  'Subida a Fisterra',
+  'Subida a Celanova',
   '',
   1
 );
@@ -3922,11 +3922,11 @@ VALUES
 -- Llegada
 (@ruta_id, 42.1227705, -7.9136312, 'Llegada');
 
-#Fisterra
+#Celanova
 INSERT INTO ruta (subida_id, nombre, descripcion, distancia)
 VALUES (
   123,
-  'Subida a Fisterra',
+  'Subida a Celanova',
   '',
   1
 );
@@ -3938,11 +3938,11 @@ VALUES
 -- Llegada
 (@ruta_id, 42.1227705, -7.9136312, 'Llegada');
 
-#Fisterra
+#Celanova
 INSERT INTO ruta (subida_id, nombre, descripcion, distancia)
 VALUES (
   243,
-  'Subida a Fisterra',
+  'Subida a Celanova',
   '',
   1
 );
@@ -3954,11 +3954,11 @@ VALUES
 -- Llegada
 (@ruta_id, 42.1227705, -7.9136312, 'Llegada');
 
-#Fisterra
+#Celanova
 INSERT INTO ruta (subida_id, nombre, descripcion, distancia)
 VALUES (
   249,
-  'Subida a Fisterra',
+  'Subida a Celanova',
   '',
   1
 );
@@ -3970,11 +3970,11 @@ VALUES
 -- Llegada
 (@ruta_id, 42.1227705, -7.9136312, 'Llegada');
 
-#Fisterra
+#Celanova
 INSERT INTO ruta (subida_id, nombre, descripcion, distancia)
 VALUES (
   256,
-  'Subida a Fisterra',
+  'Subida a Celanova',
   '',
   1
 );
@@ -3986,11 +3986,11 @@ VALUES
 -- Llegada
 (@ruta_id, 42.1227705, -7.9136312, 'Llegada');
 
-#Fisterra
+#Celanova
 INSERT INTO ruta (subida_id, nombre, descripcion, distancia)
 VALUES (
   264,
-  'Subida a Fisterra',
+  'Subida a Celanova',
   '',
   1
 );
@@ -4002,11 +4002,11 @@ VALUES
 -- Llegada
 (@ruta_id, 42.1227705, -7.9136312, 'Llegada');
 
-#Fisterra
+#Celanova
 INSERT INTO ruta (subida_id, nombre, descripcion, distancia)
 VALUES (
   272,
-  'Subida a Fisterra',
+  'Subida a Celanova',
   '',
   1
 );
@@ -4018,11 +4018,11 @@ VALUES
 -- Llegada
 (@ruta_id, 42.1227705, -7.9136312, 'Llegada');
 
-#Fisterra
+#Celanova
 INSERT INTO ruta (subida_id, nombre, descripcion, distancia)
 VALUES (
   280,
-  'Subida a Fisterra',
+  'Subida a Celanova',
   '',
   1
 );
@@ -4033,67 +4033,3 @@ VALUES
 (@ruta_id, 42.1365928, -7.9287768, 'Salida'),
 -- Llegada
 (@ruta_id, 42.1227705, -7.9136312, 'Llegada');
-
-#Ponte caldelas
-217
-220
-232
-242
-255
-263
-271
-279
-287
-S 42.3864881,-8.4967079
-M 42.3662991,-8.4925322
-
-#Taboadela
-145
-237
-245
-251
-258
-266
-274
-286
-S 42.2477535,-7.8290626
-M 42.2210152,-7.8282141
-
-#Taboada
-93
-281
-S 42.7163356,-7.7579275
-M 42.7148237,-7.7299749
-
-#Santiago
-94
-95
-96
-42
-176
-109
-S 42.8844901,-8.555509
-M 42.8868762,-8.5694538
-
-#Fraga
-126
-207
-219
-S 42.3099581,-8.7323448
-M 42.3170817,-8.7192506
-
-#Cortegada
-135
-143
-164
-216
-S 42.2068954,-8.1720878
-M 42.2148193,-8.1813282
-
-#Pereiro de Aguiar
-136
-155
-163
-S 42.3497403,-7.8154514
-M 42.3593686,-7.8145629
-
