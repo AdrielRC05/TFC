@@ -22,8 +22,10 @@
     No se han encontrado resultados
   </div>
 
+  <!-- Lista de subidas filtradas -->
   <div *ngFor="let subida of subidasFiltradas; let i = index" class="mb-3">
-    <!-- Nombre de la subida como botón para expandir -->
+    
+    <!-- Botón para expandir información -->
     <button 
       (click)="toggleInfo(i)" 
       class="btn btn-link w-100 text-left" 
@@ -39,12 +41,12 @@
       <p><strong>Fecha de Fin:</strong> {{ subida.fechaFin | date:'dd/MM/yyyy' }}</p>
       
       <!-- Mapa -->
-      <div #mapa class="mapa" style="height: 500px;"></div>
+      <div #mapa class="mapa" style="height: 500px; border: 1px solid red;"></div>    
     </div>
   </div>
-</div>
 
-<!-- Botón para ir arriba -->
-<button *ngIf="showBackToTop" (click)="goToTop()" class="btn btn-primary rounded-circle shadow-lg" style="position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; z-index: 1050;">
-  <i class="fas fa-arrow-up"></i>
-</button>
+  <!-- Botón para ir arriba -->
+  <button *ngIf="showBackToTop" (click)="goToTop()" class="btn btn-primary rounded-circle shadow-lg" style="position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; z-index: 1050;">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+

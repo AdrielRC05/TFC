@@ -611,6 +611,24 @@ VALUES
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #Cercedo-Cotobade
 INSERT INTO ruta (subida_id, nombre, descripcion, distancia)
 VALUES (
@@ -4017,50 +4035,65 @@ VALUES
 (@ruta_id, 42.1227705, -7.9136312, 'Llegada');
 
 #Ponte caldelas
-S
-M
+217
+220
+232
+242
+255
+263
+271
+279
+287
+S 42.3864881,-8.4967079
+M 42.3662991,-8.4925322
 
 #Taboadela
-S
-M
+145
+237
+245
+251
+258
+266
+274
+286
+S 42.2477535,-7.8290626
+M 42.2210152,-7.8282141
 
 #Taboada
-S
-M
-
-#Xunqueira de Ambia
-S
-M
-
-#San Xulián de Arcos
-S
-M
-
-#Carballeda de Avia
-S
-M
-
-#Morgadáns
-S
-M
-
-#O Barco
-S
-M
+93
+281
+S 42.7163356,-7.7579275
+M 42.7148237,-7.7299749
 
 #Santiago
-S
-M
+94
+95
+96
+42
+176
+109
+S 42.8844901,-8.555509
+M 42.8868762,-8.5694538
 
 #Fraga
-S
-M
+126
+207
+219
+S 42.3099581,-8.7323448
+M 42.3170817,-8.7192506
 
 #Cortegada
-S
-M
+135
+143
+164
+216
+S 42.2068954,-8.1720878
+M 42.2148193,-8.1813282
 
 #Pereiro de Aguiar
-S
-M
+136
+155
+163
+S 42.3497403,-7.8154514
+M 42.3593686,-7.8145629
 

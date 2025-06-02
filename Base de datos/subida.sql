@@ -56,7 +56,7 @@ INSERT INTO subida (edicion_id, nombre, fecha_inicio, fecha_fin) VALUES
 #1994
 INSERT INTO subida (edicion_id, nombre, fecha_inicio, fecha_fin) VALUES
 (6, '30ª Subida a Chantada', '1994-03-20', '1994-03-20'),
-(6, 'Subida a San Xulián de Arcos', '1994-05-15', '1994-05-15'),
+(6, 'Subida a Santiago', '1994-05-15', '1994-05-15'),
 (6, 'Subida a Monforte de Lemos', '1994-06-12', '1994-06-12'),
 (6, 'Subida a Cercedo', '1994-07-10', '1994-07-10'),
 (6, 'Subida a Escusa Poio', '1994-08-07', '1994-08-07'),
@@ -129,8 +129,8 @@ INSERT INTO subida (edicion_id, nombre, fecha_inicio, fecha_fin) VALUES
 #2001
 INSERT INTO subida (edicion_id, nombre, fecha_inicio, fecha_fin) VALUES
 (13, 'Subida a Taboada', '2001-03-11', '2001-03-11'),
-(13, 'Subida a Carballeda de Avia', '2001-04-22', '2001-04-22'),
-(13, 'Subida a Morgadáns', '2001-05-20', '2001-05-20'),
+(13, 'Subida a Carballedo', '2001-04-22', '2001-04-22'),
+(13, 'Subida a Santiago', '2001-05-20', '2001-05-20'),
 (13, 'Subida a O Barco', '2001-06-10', '2001-06-10'),
 (13, 'Subida a Pontevedra', '2001-06-24', '2001-06-24'),
 (13, 'Subida a Chantada', '2001-07-15', '2001-07-15'),
@@ -241,7 +241,7 @@ INSERT INTO subida (edicion_id, nombre, fecha_inicio, fecha_fin) VALUES
 #2011
 INSERT INTO subida (edicion_id, nombre, fecha_inicio, fecha_fin) VALUES
 (23, 'Subida a Chantada', '2011-03-13', '2011-03-13'),
-(23, 'Subida a Xunqueira de Ambia', '2011-04-10', '2011-04-10'),
+(23, 'Subida a Santiago', '2011-04-10', '2011-04-10'),
 (23, 'Subida a Estrada', '2011-05-08', '2011-05-08'),
 (23, 'Subida a Escusa Poio', '2011-06-12', '2011-06-12'),
 (23, 'Subida a Cuntis', '2011-05-22', '2011-05-22'),

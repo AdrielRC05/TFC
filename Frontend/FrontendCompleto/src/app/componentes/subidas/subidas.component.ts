@@ -1,7 +1,6 @@
 import {
   Component,
   OnInit,
-  AfterViewInit,
   QueryList,
   ViewChildren,
   ElementRef,
@@ -29,13 +28,12 @@ L.Marker.prototype.options.icon = DefaultIcon;
   templateUrl: './subidas.component.html',
   styleUrls: ['./subidas.component.css']
 })
-export class SubidasComponent implements OnInit, AfterViewInit {
+export class SubidasComponent implements OnInit {
 
   subidas: any[] = [];
   subidasFiltradas: any[] = [];
   busqueda: string = '';
   fechaFiltro: string = '';
-  mapas = new Map<number, L.Map>();
   mapasInicializados: boolean[] = [];
   mostrarInfo: boolean[] = [];
 
@@ -53,7 +51,7 @@ export class SubidasComponent implements OnInit, AfterViewInit {
   obtenerSubidas(): void {
     this.servicio.obtenerSubidas().subscribe((data: any) => {
       this.subidas = data;
-      this.subidasFiltradas = data;
+      this.subidasFiltradas = [...data];
       this.mapasInicializados = new Array(data.length).fill(false);
       this.mostrarInfo = new Array(data.length).fill(false);
     });
@@ -61,20 +59,21 @@ export class SubidasComponent implements OnInit, AfterViewInit {
 
   filtrarSubidas(): void {
     this.subidasFiltradas = this.subidas.filter(subida => {
-      const coincideNombre = this.busqueda === '' || subida.nombre.toLowerCase().includes(this.busqueda.toLowerCase());
+      const coincideNombre = this.busqueda === '' ||
+        subida.nombre.toLowerCase().includes(this.busqueda.toLowerCase());
+
       const coincideFecha = this.fechaFiltro === '' || (
         (subida.fechaInicio && this.formatearFecha(subida.fechaInicio) === this.fechaFiltro) ||
         (subida.fechaFin && this.formatearFecha(subida.fechaFin) === this.fechaFiltro)
       );
+
       return coincideNombre && coincideFecha;
     });
 
     this.mostrarInfo = new Array(this.subidasFiltradas.length).fill(false);
     this.mapasInicializados = new Array(this.subidasFiltradas.length).fill(false);
 
-    setTimeout(() => {
-      this.inicializarTodosLosMapas();
-    }, 0);
+    this.subidasFiltradas.forEach((_, index) => this.limpiarMapa(index));
   }
 
   formatearFecha(fechaString: string): string {
@@ -85,128 +84,163 @@ export class SubidasComponent implements OnInit, AfterViewInit {
     return `${year}-${month}-${day}`;
   }
 
-  ngAfterViewInit(): void {
-    this.mapasRefs.changes.subscribe(() => {
-      this.inicializarTodosLosMapas();
-    });
-  }
-
   tieneRutasConPuntos(subida: any): boolean {
     return subida.rutas?.some((ruta: any) =>
       ruta.puntos?.length > 0
     ) ?? false;
   }
 
-  inicializarTodosLosMapas(): void {
-    this.mapasRefs.forEach((mapaRef, index) => {
-      const subida = this.subidasFiltradas[index];
-      if (!subida || this.mapasInicializados[index]) return;
-  
-      const elementoMapa = mapaRef.nativeElement;
-      if (!elementoMapa || elementoMapa._leaflet_map) return;
-  
-      // Crear el mapa
-      const mapa = L.map(elementoMapa).setView([42.6, -7.78], 13);
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap contributors'
-      }).addTo(mapa);
-  
-      setTimeout(() => {
-        mapa.invalidateSize();
-      }, 200); // Asegura tamaño real del mapa
-  
-      const rutas = subida.rutas || [];
-      const todasLasCoordenadas: [number, number][] = [];
-  
-      rutas.forEach((ruta: any) => {
-        const puntos = ruta.puntos || [];
-        const coordenadas: [number, number][] = puntos.map((p: any) => [p.latitud, p.longitud]);
-  
-        if (coordenadas.length === 2) {
-          const origen: [number, number] = coordenadas[0];
-          const destino: [number, number] = coordenadas[1];
-  
-          // Mostrar marcadores iniciales
-          L.marker(origen, { icon: DefaultIcon }).addTo(mapa).bindPopup(puntos[0]?.descripcion || 'Salida');
-          L.marker(destino, { icon: DefaultIcon }).addTo(mapa).bindPopup(puntos[1]?.descripcion || 'Llegada');
-  
-          // Llamada a OpenRouteService para generar ruta
-          this.rutaService.getRuta(origen, destino).subscribe(geojson => {
-            // Extraer coordenadas de la respuesta de ORS
-            const coordsFromOR = geojson.features[0].geometry.coordinates.map(
-              (c: [number, number]) => [c[1], c[0]] as [number, number]
-            );
-  
-            // Dibujar línea azul gallega
-            L.polyline(coordsFromOR, { color: '#0054a6', weight: 4 }).addTo(mapa);
-  
-            // Guardar puntos generados en BBDD
-            const puntosParaGuardar = coordsFromOR.map((c: any[], i: number) => ({
-              latitud: c[0],
-              longitud: c[1],
-              orden: i + 1,
-              descripcion: i === 0 ? 'Inicio' : i === coordsFromOR.length - 1 ? 'Fin' : ''
-            }));
-  
-            // Guardamos la ruta generada en el backend
-            this.servicio.guardarPuntosDeRuta(ruta.id, puntosParaGuardar).subscribe(() => {
-              console.log('Ruta guardada:', ruta.id);
-            });
-  
-            // Ajustar vista al recorrido
-            const bounds = L.latLngBounds(coordsFromOR as L.LatLngExpression[]);
-            mapa.fitBounds(bounds, { padding: [50, 50], maxZoom: 15, animate: true });
-            todasLasCoordenadas.push(...coordsFromOR);
-          });
-        }
-  
-        // Si ya hay más de 2 puntos → usamos los de la BBDD
-        else if (coordenadas.length > 2) {
-          const coords = coordenadas;
-          L.polyline(coords, { color: 'red' }).addTo(mapa);
-  
-          const primerPunto = coords[0];
-          const ultimoPunto = coords[coords.length - 1];
-  
-          L.marker(primerPunto, { icon: DefaultIcon }).addTo(mapa).bindPopup(puntos[0]?.descripcion || 'Inicio');
-          L.marker(ultimoPunto, { icon: DefaultIcon }).addTo(mapa).bindPopup(puntos[puntos.length - 1]?.descripcion || 'Fin');
-  
-          const bounds = L.latLngBounds(coords as L.LatLngExpression[]);
-          setTimeout(() => {
-            mapa.fitBounds(bounds, { padding: [50, 50], maxZoom: 15, animate: true });
-          }, 300);
-  
-          todasLasCoordenadas.push(...coords);
-        }
-      });
-  
-      // Fallback si no hay coordenadas
-      if (todasLasCoordenadas.length === 0) {
-        setTimeout(() => {
-          mapa.setView([42.6, -7.78], 13);
-        }, 200);
-      }
-  
-      elementoMapa._leaflet_map = mapa;
-      this.mapasInicializados[index] = true;
-    });
+  limpiarMapa(index: number): void {
+  const elementoMapa = this.mapasRefs.toArray()[index]?.nativeElement;
+  if (!elementoMapa) return;
+
+  // Elimina completamente el mapa si existe
+  if ((elementoMapa as any)._leaflet_map) {
+    const mapa = (elementoMapa as any)._leaflet_map;
+    mapa.off();
+    mapa.remove();
+    delete (elementoMapa as any)._leaflet_map;
   }
+
+  // Limpia el contenedor del mapa
+  while (elementoMapa.firstChild) {
+    elementoMapa.removeChild(elementoMapa.firstChild);
+  }
+}
+
+  inicializarMapa(index: number): void {
+  const subida = this.subidasFiltradas[index];
+  if (!subida || this.mapasInicializados[index]) return;
+
+  const elementoMapa = this.mapasRefs.toArray()[index]?.nativeElement;
+  if (!elementoMapa || (elementoMapa as any)._leaflet_map) return;
+
+  // 👇 Creamos el mapa solo si el contenedor tiene tamaño real
+  const crearMapa = () => {
+    if (elementoMapa.offsetHeight === 0 || elementoMapa.offsetWidth === 0) {
+      setTimeout(crearMapa, 100); // Reintentar hasta que haya tamaño
+      return;
+    }
+
+    const mapa = L.map(elementoMapa).setView([42.6, -7.78], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',  {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(mapa);
+
+    const rutas = subida.rutas || [];
+    const todasLasCoordenadas: [number, number][] = [];
+
+    rutas.forEach((ruta: any) => {
+      const puntos = ruta.puntos || [];
+      const coordenadas: [number, number][] = puntos.map((p: any) => [
+        parseFloat(p.latitud),
+        parseFloat(p.longitud)
+      ]);
+
+      if (coordenadas.length === 2) {
+        const origen: [number, number] = coordenadas[0];
+        const destino: [number, number] = coordenadas[1];
+
+        L.marker(origen, { icon: DefaultIcon }).addTo(mapa).bindPopup('Salida');
+        L.marker(destino, { icon: DefaultIcon }).addTo(mapa).bindPopup('Llegada');
+
+        this.servicio.obtenerPuntosGuardados(ruta.id).subscribe(puntosGuardados => {
+          let coords: [number, number][] = [];
+
+          if (puntosGuardados && puntosGuardados.length > 2) {
+            coords = puntosGuardados.map((p: any) => [p.latitud, p.longitud]);
+          } else {
+            this.rutaService.getRuta(origen, destino).subscribe(geojson => {
+              coords = geojson.features[0].geometry.coordinates.map(
+                (c: [number, number]) => [c[1], c[0]] as [number, number]
+              );
+            });
+          }
+
+          if (coords.length > 0) {
+            L.polyline(coords, { color: '#0054a6', weight: 4 }).addTo(mapa);
+            const bounds = L.latLngBounds(coords);
+            mapa.fitBounds(bounds, {
+              padding: [50, 50],
+              maxZoom: 15,
+              animate: true
+            });
+            todasLasCoordenadas.push(...coords);
+          }
+
+          todasLasCoordenadas.push(origen, destino);
+        });
+
+        todasLasCoordenadas.push(origen, destino);
+      } else if (coordenadas.length > 2) {
+        L.polyline(coordenadas, { color: 'red' }).addTo(mapa);
+
+        const primerPunto = coordenadas[0];
+        const ultimoPunto = coordenadas[coordenadas.length - 1];
+
+        L.marker(primerPunto, { icon: DefaultIcon }).addTo(mapa).bindPopup('Inicio');
+        L.marker(ultimoPunto, { icon: DefaultIcon }).addTo(mapa).bindPopup('Fin');
+
+        const bounds = L.latLngBounds(coordenadas);
+        setTimeout(() => {
+          mapa.fitBounds(bounds, {
+            padding: [50, 50],
+            maxZoom: 15,
+            animate: true
+          });
+        }, 300);
+
+        todasLasCoordenadas.push(...coordenadas);
+      }
+    });
+
+    if (todasLasCoordenadas.length === 0) {
+      setTimeout(() => {
+        mapa.setView([42.6, -7.78], 13);
+      }, 200);
+    }
+
+    // Asignamos el mapa al contenedor
+    (elementoMapa as any)._leaflet_map = mapa;
+    this.mapasInicializados[index] = true;
+
+    // Forzamos recalculo del tamaño del mapa
+    setTimeout(() => {
+      mapa.invalidateSize();
+      setTimeout(() => mapa.invalidateSize(), 300);
+    }, 200);
+  };
+
+  // Primera llamada a crearMapa()
+  crearMapa();
+}
 
   toggleInfo(index: number): void {
-    this.mostrarInfo[index] = !this.mostrarInfo[index];
+  this.mostrarInfo[index] = !this.mostrarInfo[index];
 
-    if (this.mostrarInfo[index]) {
-      setTimeout(() => {
-        const mapaElement = this.mapasRefs.toArray()[index]?.nativeElement;
-        if (mapaElement && mapaElement._leaflet_map) {
-          mapaElement._leaflet_map.invalidateSize();
-        }
-      }, 100); // Pequeño delay para asegurar que el mapa es visible
-    }
+  if (this.mostrarInfo[index]) {
+    this.limpiarMapa(index);
+
+    const elementoMapa = this.mapasRefs.toArray()[index]?.nativeElement;
+    if (!elementoMapa) return;
+
+    // Reiniciamos flag de inicializado
+    this.mapasInicializados[index] = false;
+
+    const intentarCrearMapa = () => {
+      if (elementoMapa.offsetHeight > 0 && elementoMapa.offsetWidth > 0) {
+        this.inicializarMapa(index);
+      } else {
+        setTimeout(intentarCrearMapa, 100); // Reintentar hasta tener tamaño
+      }
+    };
+
+    setTimeout(intentarCrearMapa, 100);
   }
+}
 
   showBackToTop = false;
-  
+
   @HostListener('window:scroll', [])
   onWindowScroll() {
     const pos = window.scrollY || document.documentElement.scrollTop;
@@ -219,5 +253,4 @@ export class SubidasComponent implements OnInit, AfterViewInit {
       behavior: 'smooth'
     });
   }
-
 }
