@@ -9,6 +9,7 @@ import {
 import { ServicioAppService } from '../../servicios/servicio-app.service';
 import { RutaService } from '../../servicios/ruta.service';
 import * as L from 'leaflet';
+import { forkJoin, map, of, switchMap } from 'rxjs';
 
 // Icono por defecto
 const DefaultIcon = L.icon({
@@ -108,136 +109,141 @@ export class SubidasComponent implements OnInit {
   }
 }
 
-  inicializarMapa(index: number): void {
-  const subida = this.subidasFiltradas[index];
-  if (!subida || this.mapasInicializados[index]) return;
-
-  const elementoMapa = this.mapasRefs.toArray()[index]?.nativeElement;
-  if (!elementoMapa || (elementoMapa as any)._leaflet_map) return;
-
-  // 👇 Creamos el mapa solo si el contenedor tiene tamaño real
-  const crearMapa = () => {
-    if (elementoMapa.offsetHeight === 0 || elementoMapa.offsetWidth === 0) {
-      setTimeout(crearMapa, 100); // Reintentar hasta que haya tamaño
-      return;
-    }
-
-    const mapa = L.map(elementoMapa).setView([42.6, -7.78], 13);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',  {
-      attribution: '© OpenStreetMap contributors'
-    }).addTo(mapa);
-
-    const rutas = subida.rutas || [];
-    const todasLasCoordenadas: [number, number][] = [];
-
-    rutas.forEach((ruta: any) => {
-      const puntos = ruta.puntos || [];
-      const coordenadas: [number, number][] = puntos.map((p: any) => [
-        parseFloat(p.latitud),
-        parseFloat(p.longitud)
-      ]);
-
-      if (coordenadas.length === 2) {
-        const origen: [number, number] = coordenadas[0];
-        const destino: [number, number] = coordenadas[1];
-
-        L.marker(origen, { icon: DefaultIcon }).addTo(mapa).bindPopup('Salida');
-        L.marker(destino, { icon: DefaultIcon }).addTo(mapa).bindPopup('Llegada');
-
-        this.servicio.obtenerPuntosGuardados(ruta.id).subscribe(puntosGuardados => {
-          let coords: [number, number][] = [];
-
-          if (puntosGuardados && puntosGuardados.length > 2) {
-            coords = puntosGuardados.map((p: any) => [p.latitud, p.longitud]);
-          } else {
-            this.rutaService.getRuta(origen, destino).subscribe(geojson => {
-              coords = geojson.features[0].geometry.coordinates.map(
-                (c: [number, number]) => [c[1], c[0]] as [number, number]
-              );
-            });
-          }
-
-          if (coords.length > 0) {
-            L.polyline(coords, { color: '#0054a6', weight: 4 }).addTo(mapa);
-            const bounds = L.latLngBounds(coords);
-            mapa.fitBounds(bounds, {
-              padding: [50, 50],
-              maxZoom: 15,
-              animate: true
-            });
-            todasLasCoordenadas.push(...coords);
-          }
-
-          todasLasCoordenadas.push(origen, destino);
-        });
-
-        todasLasCoordenadas.push(origen, destino);
-      } else if (coordenadas.length > 2) {
-        L.polyline(coordenadas, { color: 'red' }).addTo(mapa);
-
-        const primerPunto = coordenadas[0];
-        const ultimoPunto = coordenadas[coordenadas.length - 1];
-
-        L.marker(primerPunto, { icon: DefaultIcon }).addTo(mapa).bindPopup('Inicio');
-        L.marker(ultimoPunto, { icon: DefaultIcon }).addTo(mapa).bindPopup('Fin');
-
-        const bounds = L.latLngBounds(coordenadas);
-        setTimeout(() => {
-          mapa.fitBounds(bounds, {
-            padding: [50, 50],
-            maxZoom: 15,
-            animate: true
-          });
-        }, 300);
-
-        todasLasCoordenadas.push(...coordenadas);
-      }
-    });
-
-    if (todasLasCoordenadas.length === 0) {
+  private inicializarMapaIndividual(elementoMapa: HTMLElement, index: number): void {
+      const subida = this.subidasFiltradas[index];
+      if (!subida || this.mapasInicializados[index]) return;
+  
+      // Crear el mapa Leaflet
+      const mapa = L.map(elementoMapa).setView([42.6, -7.78], 13);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',  {
+        attribution: '© OpenStreetMap contributors'
+      }).addTo(mapa);
+  
       setTimeout(() => {
-        mapa.setView([42.6, -7.78], 13);
+        mapa.invalidateSize();
       }, 200);
-    }
-
-    // Asignamos el mapa al contenedor
-    (elementoMapa as any)._leaflet_map = mapa;
-    this.mapasInicializados[index] = true;
-
-    // Forzamos recalculo del tamaño del mapa
-    setTimeout(() => {
+  
+      const rutas = subida.rutas || [];
+      const todasLasCoordenadas: [number, number][] = [];
+  
+      rutas.forEach((ruta: any) => {
+        const puntos = ruta.puntos || [];
+        const coordenadas: [number, number][] = puntos.map((p: any) => [
+          parseFloat(p.latitud),
+          parseFloat(p.longitud)
+        ]);
+  
+        if (coordenadas.length === 2) {
+          const origen: [number, number] = coordenadas[0];
+          const destino: [number, number] = coordenadas[1];
+  
+          L.marker(origen, { icon: DefaultIcon }).addTo(mapa).bindPopup('Salida');
+          L.marker(destino, { icon: DefaultIcon }).addTo(mapa).bindPopup('Llegada');
+  
+          // Si ya hay puntos guardados → usamos esos
+          this.servicio.obtenerPuntosGuardados(ruta.id).subscribe(puntosGuardados => {
+            if (puntosGuardados.length > 2) {
+              const coords = puntosGuardados.map((p: any) => [
+                p.latitud,
+                p.longitud
+              ]) as [number, number][];
+  
+              L.polyline(coords, { color: '#0054a6', weight: 4 }).addTo(mapa);
+  
+              const bounds = L.latLngBounds(coords);
+              mapa.fitBounds(bounds, { padding: [50, 50], maxZoom: 15, animate: true });
+  
+              todasLasCoordenadas.push(...coords);
+            } else {
+              // Si no hay puntos guardados → generarlos con ORS
+              this.rutaService.getRuta(origen, destino).subscribe(geojson => {
+                const coordsFromOR = geojson.features[0].geometry.coordinates.map(
+                  (c: [number, number]) => [c[1], c[0]] as [number, number]
+                );
+  
+                L.polyline(coordsFromOR, { color: '#0054a6', weight: 4 }).addTo(mapa);
+  
+                const bounds = L.latLngBounds(coordsFromOR);
+                mapa.fitBounds(bounds, { padding: [50, 50], maxZoom: 15, animate: true });
+  
+                todasLasCoordenadas.push(...coordsFromOR);
+  
+                // Guardar en BBDD
+                const puntosParaGuardar = coordsFromOR.map((c: any[], i: number) => ({
+                  latitud: c[0],
+                  longitud: c[1],
+                  orden: i + 1,
+                  descripcion: i === 0 ? 'Inicio' : i === coordsFromOR.length - 1 ? 'Fin' : ''
+                }));
+  
+                this.servicio.guardarPuntosDeRuta(ruta.id, puntosParaGuardar).subscribe(() => {
+                  console.log('Ruta guardada:', ruta.id);
+                });
+              });
+            }
+  
+            todasLasCoordenadas.push(origen, destino);
+          });
+  
+          todasLasCoordenadas.push(origen, destino);
+        } else if (coordenadas.length > 2) {
+          L.polyline(coordenadas, { color: 'red' }).addTo(mapa);
+  
+          const primerPunto = coordenadas[0];
+          const ultimoPunto = coordenadas[coordenadas.length - 1];
+  
+          L.marker(primerPunto, { icon: DefaultIcon }).addTo(mapa).bindPopup('Inicio');
+          L.marker(ultimoPunto, { icon: DefaultIcon }).addTo(mapa).bindPopup('Fin');
+  
+          const bounds = L.latLngBounds(coordenadas);
+          setTimeout(() => {
+            mapa.fitBounds(bounds, { padding: [50, 50], maxZoom: 15, animate: true });
+          }, 300);
+  
+          todasLasCoordenadas.push(...coordenadas);
+        }
+      });
+  
+      if (todasLasCoordenadas.length === 0) {
+        setTimeout(() => {
+          mapa.setView([42.6, -7.78], 13);
+        }, 200);
+      }
+  
+      // Asignamos el mapa al contenedor
+  (elementoMapa as any)._leaflet_map = mapa;
+  
+  // Finalmente forzamos el tamaño
+  setTimeout(() => {
+    if (elementoMapa && elementoMapa.offsetHeight > 0 && elementoMapa.offsetWidth > 0) {
       mapa.invalidateSize();
-      setTimeout(() => mapa.invalidateSize(), 300);
-    }, 200);
-  };
-
-  // Primera llamada a crearMapa()
-  crearMapa();
-}
+    }
+  }, 200);
+    }
 
   toggleInfo(index: number): void {
-  this.mostrarInfo[index] = !this.mostrarInfo[index];
+    this.mostrarInfo[index] = !this.mostrarInfo[index];
 
-  if (this.mostrarInfo[index]) {
-    this.limpiarMapa(index);
+    if (this.mostrarInfo[index]) {
+      const elementoMapa = this.mapasRefs.toArray()[index]?.nativeElement;
+      if (!elementoMapa) return;
 
-    const elementoMapa = this.mapasRefs.toArray()[index]?.nativeElement;
-    if (!elementoMapa) return;
+      const mapaYaExiste = (elementoMapa as any)._leaflet_map;
 
-    // Reiniciamos flag de inicializado
-    this.mapasInicializados[index] = false;
-
-    const intentarCrearMapa = () => {
-      if (elementoMapa.offsetHeight > 0 && elementoMapa.offsetWidth > 0) {
-        this.inicializarMapa(index);
+      if (!mapaYaExiste) {
+        // Primera vez: inicializamos el mapa
+        this.inicializarMapaIndividual(elementoMapa, index);
       } else {
-        setTimeout(intentarCrearMapa, 100); // Reintentar hasta tener tamaño
+        // Segunda vez: solo ajustamos el tamaño
+        setTimeout(() => {
+          const mapa = (elementoMapa as any)._leaflet_map;
+          if (mapa && elementoMapa.offsetHeight > 0) {
+            mapa.invalidateSize();
+          }
+        }, 200);
       }
-    };
-
-    setTimeout(intentarCrearMapa, 100);
+    }
   }
-}
 
   showBackToTop = false;
 
