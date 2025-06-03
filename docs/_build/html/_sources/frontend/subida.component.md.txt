@@ -1,18 +1,39 @@
+# SubidaComponent
+
+## Descripción
+
+Muestra un listado filtrable de subidas, cada una con su propio mapa Leaflet.  
+Permite:
+- Filtrar por nombre y fecha
+- Expandir detalles de cada subida
+- Cargar mapas dinámicos solo cuando se necesitan
+- Mostrar rutas desde BBDD o generadas con OpenRouteService (ORS)
+
+## Archivos clave
+
+- `subidas.component.ts`: Lógica de carga y filtros
+- `subidas.component.html`: Vista con expansión dinámica
+- `subidas.component.css`: Estilos personalizados
+
+---
+
+## Código completo del componente (`subidas.component.ts`)
+
+```ts
 import {
   Component,
   OnInit,
-  ElementRef,
-  ViewChildren,
   QueryList,
+  ViewChildren,
+  ElementRef,
   HostListener
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
 import * as L from 'leaflet';
 import { ServicioAppService } from '../../servicios/servicio-app.service';
 import { RutaService } from '../../servicios/ruta.service';
 
-// Iconos personalizados
+// Icono por defecto
 const DefaultIcon = L.icon({
   iconUrl: '/marker-icon.png',
   shadowUrl: '/marker-shadow.png',
@@ -22,13 +43,15 @@ const DefaultIcon = L.icon({
   shadowSize: [41, 41],
 });
 
+L.Marker.prototype.options.icon = DefaultIcon;
+
 @Component({
   selector: 'app-subida',
   standalone: false,
   templateUrl: './subida.component.html',
   styleUrls: ['./subida.component.css']
 })
-export class SubidaComponent implements OnInit{
+export class SubidaComponent implements OnInit {
 
   subidas: any[] = [];
   subidasFiltradas: any[] = [];
@@ -48,7 +71,7 @@ export class SubidaComponent implements OnInit{
 
   ngOnInit(): void {
     const edicionId = this.ruta.snapshot.paramMap.get('edicionId');
-  
+
     if (edicionId) {
       // Obtener datos de la edición
       this.servicio.obtenerEdicionPorId(edicionId).subscribe(
@@ -57,14 +80,14 @@ export class SubidaComponent implements OnInit{
         },
         error => console.error('Error al cargar la edición', error)
       );
-  
+
       // Obtener subidas de la edición
       this.servicio.obtenerSubidasPorEdicion(String(edicionId)).subscribe((data: any) => {
         this.subidas = data;
         this.subidasFiltradas = data;
         this.mapasInicializados = new Array(data.length).fill(false);
         this.mostrarInfo = new Array(data.length).fill(false);
-  
+
         setTimeout(() => {
           // Recorremos todas las subidas y llamamos al método individual con su índice
           this.mapasRefs.forEach((mapaRef, index) => {
@@ -155,7 +178,7 @@ export class SubidaComponent implements OnInit{
             // Si no hay puntos guardados → generarlos con ORS
             this.rutaService.getRuta(origen, destino).subscribe(geojson => {
               const coordsFromOR = geojson.features[0].geometry.coordinates.map(
-                (c: [number, number]) => [c[1], c[0]] as [number, number]
+                (c: [number, number]) => [c[1], c[0]] as [number, number][]
               );
 
               L.polyline(coordsFromOR, { color: '#0054a6', weight: 4 }).addTo(mapa);
@@ -184,7 +207,7 @@ export class SubidaComponent implements OnInit{
 
         todasLasCoordenadas.push(origen, destino);
       } else if (coordenadas.length > 2) {
-        L.polyline(coordenadas, { color: '#0054a6' }).addTo(mapa);
+        L.polyline(coordenadas, { color: 'red' }).addTo(mapa);
 
         const primerPunto = coordenadas[0];
         const ultimoPunto = coordenadas[coordenadas.length - 1];
@@ -204,64 +227,49 @@ export class SubidaComponent implements OnInit{
     if (todasLasCoordenadas.length === 0) {
       setTimeout(() => {
         mapa.setView([42.6, -7.78], 13);
-
-        // Mostrar mensaje en el mapa
-        const mensaje = L.divIcon({
-          className: 'mapa-mensaje',
-          html: '<div class="mensaje-map">No hay rutas disponibles</div>',
-          iconSize: [150, 30],
-          iconAnchor: [75, 15]
-        });
-
-        L.marker([42.6, -7.78], { icon: mensaje }).addTo(mapa);
       }, 200);
     }
 
-    // Asignamos el mapa al contenedor
-(elementoMapa as any)._leaflet_map = mapa;
+    (elementoMapa as any)._leaflet_map = mapa;
+    this.mapasInicializados[index] = true;
 
-// Finalmente forzamos el tamaño
-setTimeout(() => {
-  if (elementoMapa && elementoMapa.offsetHeight > 0 && elementoMapa.offsetWidth > 0) {
-    mapa.invalidateSize();
-  }
-}, 200);
+    setTimeout(() => {
+      mapa.invalidateSize();
+    }, 200);
   }
 
   toggleInfo(index: number): void {
-  this.mostrarInfo[index] = !this.mostrarInfo[index];
+    this.mostrarInfo[index] = !this.mostrarInfo[index];
 
-  if (this.mostrarInfo[index]) {
-    const mapaRef = this.mapasRefs.toArray()[index];
-    if (!mapaRef) return;
+    if (this.mostrarInfo[index]) {
+      const mapaRef = this.mapasRefs.toArray()[index];
+      if (!mapaRef) return;
 
-    const elementoMapa = mapaRef.nativeElement as HTMLElement;
+      const elementoMapa = mapaRef.nativeElement as HTMLElement;
 
-    // Limpiamos mapa anterior si existe
-    if ((elementoMapa as any)._leaflet_map) {
-      const mapa = (elementoMapa as any)._leaflet_map;
-      mapa.off();
-      mapa.remove();
-      delete (elementoMapa as any)._leaflet_map;
-    }
+      // Limpiamos mapa anterior si existe
+      if ((elementoMapa as any)._leaflet_map) {
+        (elementoMapa as any)._leaflet_map.remove();
+        delete (elementoMapa as any)._leaflet_map;
+      }
 
-    // Inicializamos el mapa
-    setTimeout(() => {
-      this.inicializarMapaIndividual(elementoMapa, index);
-
-      // Forzamos invalidateSize() después de cargar el mapa
+      // Inicializamos el mapa
       setTimeout(() => {
-        const mapa = (elementoMapa as any)._leaflet_map;
+        this.inicializarMapaIndividual(elementoMapa, index);
 
-        if (mapa && elementoMapa.offsetHeight > 0 && elementoMapa.offsetWidth > 0) {
-          mapa.invalidateSize();
-        } else {
-          console.warn('No se puede invalidar el tamaño: contenedor vacío o inexistente');
-        }
+        // Forzamos invalidateSize() después de cargar el mapa
+        setTimeout(() => {
+          const mapa = (elementoMapa as any)._leaflet_map;
+
+          if (mapa && elementoMapa.offsetHeight > 0 && elementoMapa.offsetWidth > 0) {
+            mapa.invalidateSize();
+          } else {
+            console.warn('No se puede invalidar el tamaño: contenedor vacío o inexistente');
+          }
+        }, 400);
       }, 400);
-    }, 400);
+    }
   }
-}
 
   private limpiarMapa(index: number): void {
     const mapaRef = this.mapasRefs.toArray()[index];
@@ -276,7 +284,7 @@ setTimeout(() => {
   }
 
   showBackToTop = false;
-    
+
   @HostListener('window:scroll', [])
   onWindowScroll() {
     const pos = window.scrollY || document.documentElement.scrollTop;
@@ -289,5 +297,4 @@ setTimeout(() => {
       behavior: 'smooth'
     });
   }
-
 }

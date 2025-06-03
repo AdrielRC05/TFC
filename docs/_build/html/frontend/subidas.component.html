@@ -1,0 +1,384 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SubidasComponent &mdash; TFC Adriel Ruano Campos 01/06/2025 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=7424fe65"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="SubidaComponent" href="subida.component.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            TFC Adriel Ruano Campos
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contenido</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../api/endpoints.html">API REST - Endpoints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backend/index.html">Documentación del Backend – Campeonato Gallego de Montaña</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backend/edicion.controller.html">✅ Archivo: <code class="docutils literal notranslate"><span class="pre">docs/source/backend/ediciones.controller.md</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backend/noticia.controller.html">✅ Archivo: <code class="docutils literal notranslate"><span class="pre">docs/source/backend/noticias.controller.md</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backend/participante.controller.html">✅ Archivo: <code class="docutils literal notranslate"><span class="pre">docs/source/backend/participantes.controller.md</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backend/puntoRuta.controller.html">✅ Archivo: <code class="docutils literal notranslate"><span class="pre">docs/source/backend/punto-ruta.controller.md</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backend/ruta.controller.html">✅ Archivo: <code class="docutils literal notranslate"><span class="pre">docs/source/backend/ruta.controller.md</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backend/subida.controller.html">SubidaController</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Documentación del Frontend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ediciones.component.html">EdicionComponent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="noticias.component.html">NoticiasComponent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pilotos.component.html">PilotosComponent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="subida.component.html">SubidaComponent</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">SubidasComponent</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#descripcion">Descripción</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#archivos-clave">Archivos clave</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#codigo-completo-del-componente-subidas-component-ts">Código completo del componente (<code class="docutils literal notranslate"><span class="pre">subidas.component.ts</span></code>)</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">TFC Adriel Ruano Campos</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">SubidasComponent</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/frontend/subidas.component.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="subidascomponent">
+<h1>SubidasComponent<a class="headerlink" href="#subidascomponent" title="Link to this heading"></a></h1>
+<section id="descripcion">
+<h2>Descripción<a class="headerlink" href="#descripcion" title="Link to this heading"></a></h2>
+<p>Muestra un listado filtrable de subidas, cada una con su propio mapa Leaflet.<br />
+Permite filtrar por nombre y fecha. Al expandir una subida, muestra el mapa con marcadores y rutas.</p>
+</section>
+<section id="archivos-clave">
+<h2>Archivos clave<a class="headerlink" href="#archivos-clave" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">subidas.component.ts</span></code>: Lógica de carga y filtro</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">subidas.component.html</span></code>: Vista principal</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">subidas.component.css</span></code>: Estilos personalizados</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="codigo-completo-del-componente-subidas-component-ts">
+<h2>Código completo del componente (<code class="docutils literal notranslate"><span class="pre">subidas.component.ts</span></code>)<a class="headerlink" href="#codigo-completo-del-componente-subidas-component-ts" title="Link to this heading"></a></h2>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">Component</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">OnInit</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">ElementRef</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">ViewChildren</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">QueryList</span>
+<span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ActivatedRoute</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/router&#39;</span><span class="p">;</span>
+
+<span class="k">import</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">L</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;leaflet&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ServicioAppService</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;../../servicios/servicio-app.service&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">RutaService</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;../../servicios/ruta.service&#39;</span><span class="p">;</span>
+
+<span class="c1">// Icono por defecto</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">DefaultIcon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">L</span><span class="p">.</span><span class="nx">icon</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">iconUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;/marker-icon.png&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">shadowUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;/marker-shadow.png&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">iconSize</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">25</span><span class="p">,</span><span class="w"> </span><span class="mf">41</span><span class="p">],</span>
+<span class="w">  </span><span class="nx">iconAnchor</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">12</span><span class="p">,</span><span class="w"> </span><span class="mf">41</span><span class="p">],</span>
+<span class="w">  </span><span class="nx">popupAnchor</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">34</span><span class="p">],</span>
+<span class="w">  </span><span class="nx">shadowSize</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">41</span><span class="p">,</span><span class="w"> </span><span class="mf">41</span><span class="p">],</span>
+<span class="p">});</span>
+
+<span class="nx">L</span><span class="p">.</span><span class="nx">Marker</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">icon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">DefaultIcon</span><span class="p">;</span>
+
+<span class="kd">@Component</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;app-subida&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">standalone</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">templateUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;./subida.component.html&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">styleUrls</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;./subida.component.css&#39;</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">SubidaComponent</span><span class="w"> </span><span class="k">implements</span><span class="w"> </span><span class="nx">OnInit</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="nx">subidas</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+<span class="w">  </span><span class="nx">subidasFiltradas</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+<span class="w">  </span><span class="nx">edicion</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span>
+<span class="w">  </span><span class="nx">busqueda</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">fechaFiltro</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">mostrarInfo</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+
+<span class="w">  </span><span class="kd">@ViewChildren</span><span class="p">(</span><span class="s1">&#39;mapa&#39;</span><span class="p">)</span><span class="w"> </span><span class="nx">mapasRefs</span><span class="o">!:</span><span class="w"> </span><span class="nx">QueryList</span><span class="o">&lt;</span><span class="nx">ElementRef</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">mapasInicializados</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="nx">ruta</span><span class="o">:</span><span class="w"> </span><span class="kt">ActivatedRoute</span><span class="p">,</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="nx">servicio</span><span class="o">:</span><span class="w"> </span><span class="kt">ServicioAppService</span><span class="p">,</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="nx">rutaService</span><span class="o">:</span><span class="w"> </span><span class="kt">RutaService</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="w">  </span><span class="nx">ngOnInit</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">edicionId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">ruta</span><span class="p">.</span><span class="nx">snapshot</span><span class="p">.</span><span class="nx">paramMap</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;edicionId&#39;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">edicionId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Obtener datos de la edición</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">servicio</span><span class="p">.</span><span class="nx">obtenerEdicionPorId</span><span class="p">(</span><span class="nx">edicionId</span><span class="p">).</span><span class="nx">subscribe</span><span class="p">(</span>
+<span class="w">        </span><span class="p">(</span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="k">this</span><span class="p">.</span><span class="nx">edicion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">data</span><span class="p">;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nx">error</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Error al cargar la edición&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">)</span>
+<span class="w">      </span><span class="p">);</span>
+
+<span class="w">      </span><span class="c1">// Obtener subidas de la edición</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">servicio</span><span class="p">.</span><span class="nx">obtenerSubidasPorEdicion</span><span class="p">(</span><span class="nb">String</span><span class="p">(</span><span class="nx">edicionId</span><span class="p">)).</span><span class="nx">subscribe</span><span class="p">((</span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">subidas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">data</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">subidasFiltradas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">data</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">mapasInicializados</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Array</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">length</span><span class="p">).</span><span class="nx">fill</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">mostrarInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Array</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">length</span><span class="p">).</span><span class="nx">fill</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+
+<span class="w">        </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="k">this</span><span class="p">.</span><span class="nx">mapasRefs</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">mapaRef</span><span class="p">,</span><span class="w"> </span><span class="nx">index</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">elementoMapa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">mapaRef</span><span class="p">.</span><span class="nx">nativeElement</span><span class="p">;</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">inicializarMapaIndividual</span><span class="p">(</span><span class="nx">elementoMapa</span><span class="p">,</span><span class="w"> </span><span class="nx">index</span><span class="p">);</span>
+<span class="w">          </span><span class="p">});</span>
+<span class="w">        </span><span class="p">},</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+<span class="w">      </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">filtrarSubidas</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">subidasFiltradas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">subidas</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">subida</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">coincideNombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">busqueda</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="o">||</span>
+<span class="w">        </span><span class="nx">subida</span><span class="p">.</span><span class="nx">nombre</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">().</span><span class="nx">includes</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">busqueda</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">());</span>
+
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">coincideFecha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">fechaFiltro</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="p">(</span><span class="nx">subida</span><span class="p">.</span><span class="nx">fechaInicio</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">formatearFecha</span><span class="p">(</span><span class="nx">subida</span><span class="p">.</span><span class="nx">fechaInicio</span><span class="p">)</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">fechaFiltro</span><span class="p">)</span><span class="w"> </span><span class="o">||</span>
+<span class="w">        </span><span class="p">(</span><span class="nx">subida</span><span class="p">.</span><span class="nx">fechaFin</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">formatearFecha</span><span class="p">(</span><span class="nx">subida</span><span class="p">.</span><span class="nx">fechaFin</span><span class="p">)</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">fechaFiltro</span><span class="p">)</span>
+<span class="w">      </span><span class="p">);</span>
+
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">coincideNombre</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">coincideFecha</span><span class="p">;</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">mostrarInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Array</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">subidasFiltradas</span><span class="p">.</span><span class="nx">length</span><span class="p">).</span><span class="nx">fill</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">mapasInicializados</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Array</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">subidasFiltradas</span><span class="p">.</span><span class="nx">length</span><span class="p">).</span><span class="nx">fill</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">formatearFecha</span><span class="p">(</span><span class="nx">fechaString</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">fecha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">(</span><span class="nx">fechaString</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fecha</span><span class="p">.</span><span class="nx">getFullYear</span><span class="p">();</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">month</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">fecha</span><span class="p">.</span><span class="nx">getMonth</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="p">).</span><span class="nx">toString</span><span class="p">().</span><span class="nx">padStart</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">day</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fecha</span><span class="p">.</span><span class="nx">getDate</span><span class="p">().</span><span class="nx">toString</span><span class="p">().</span><span class="nx">padStart</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">year</span><span class="si">}</span><span class="sb">-</span><span class="si">${</span><span class="nx">month</span><span class="si">}</span><span class="sb">-</span><span class="si">${</span><span class="nx">day</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">inicializarMapaIndividual</span><span class="p">(</span><span class="nx">elementoMapa</span><span class="o">:</span><span class="w"> </span><span class="kt">HTMLElement</span><span class="p">,</span><span class="w"> </span><span class="nx">index</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">subida</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">subidasFiltradas</span><span class="p">[</span><span class="nx">index</span><span class="p">];</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">subida</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">mapasInicializados</span><span class="p">[</span><span class="nx">index</span><span class="p">])</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Crear el mapa Leaflet</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">mapa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">elementoMapa</span><span class="p">).</span><span class="nx">setView</span><span class="p">([</span><span class="mf">42.6</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">7.78</span><span class="p">],</span><span class="w"> </span><span class="mf">13</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">L</span><span class="p">.</span><span class="nx">tileLayer</span><span class="p">(</span><span class="s1">&#39;https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png&#39;</span><span class="p">,</span><span class="w">  </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">attribution</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;© OpenStreetMap contributors&#39;</span>
+<span class="w">    </span><span class="p">}).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">mapa</span><span class="p">);</span>
+
+<span class="w">    </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">mapa</span><span class="p">.</span><span class="nx">invalidateSize</span><span class="p">();</span>
+<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="mf">200</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">rutas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">subida</span><span class="p">.</span><span class="nx">rutas</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">[];</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">todasLasCoordenadas</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="kt">number</span><span class="p">,</span><span class="w"> </span><span class="kt">number</span><span class="p">][]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+
+<span class="w">    </span><span class="nx">rutas</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">ruta</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">puntos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ruta</span><span class="p">.</span><span class="nx">puntos</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">[];</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">coordenadas</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="kt">number</span><span class="p">,</span><span class="w"> </span><span class="kt">number</span><span class="p">][]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">puntos</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">p</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="nb">parseFloat</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">latitud</span><span class="p">),</span>
+<span class="w">        </span><span class="nb">parseFloat</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">longitud</span><span class="p">)</span>
+<span class="w">      </span><span class="p">]);</span>
+
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">coordenadas</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">origen</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="kt">number</span><span class="p">,</span><span class="w"> </span><span class="kt">number</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">coordenadas</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">destino</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="kt">number</span><span class="p">,</span><span class="w"> </span><span class="kt">number</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">coordenadas</span><span class="p">[</span><span class="mf">1</span><span class="p">];</span>
+
+<span class="w">        </span><span class="nx">L</span><span class="p">.</span><span class="nx">marker</span><span class="p">(</span><span class="nx">origen</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">icon</span><span class="o">:</span><span class="w"> </span><span class="kt">DefaultIcon</span><span class="w"> </span><span class="p">}).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">mapa</span><span class="p">).</span><span class="nx">bindPopup</span><span class="p">(</span><span class="s1">&#39;Salida&#39;</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">L</span><span class="p">.</span><span class="nx">marker</span><span class="p">(</span><span class="nx">destino</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">icon</span><span class="o">:</span><span class="w"> </span><span class="kt">DefaultIcon</span><span class="w"> </span><span class="p">}).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">mapa</span><span class="p">).</span><span class="nx">bindPopup</span><span class="p">(</span><span class="s1">&#39;Llegada&#39;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Si ya hay puntos guardados → usamos esos</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">servicio</span><span class="p">.</span><span class="nx">obtenerPuntosGuardados</span><span class="p">(</span><span class="nx">ruta</span><span class="p">.</span><span class="nx">id</span><span class="p">).</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">puntosGuardados</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">puntosGuardados</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">coords</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">puntosGuardados</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">p</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">[</span>
+<span class="w">              </span><span class="nx">p</span><span class="p">.</span><span class="nx">latitud</span><span class="p">,</span>
+<span class="w">              </span><span class="nx">p</span><span class="p">.</span><span class="nx">longitud</span>
+<span class="w">            </span><span class="p">])</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">[</span><span class="kt">number</span><span class="p">,</span><span class="w"> </span><span class="kt">number</span><span class="p">][];</span>
+
+<span class="w">            </span><span class="nx">L</span><span class="p">.</span><span class="nx">polyline</span><span class="p">(</span><span class="nx">coords</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">color</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;#0054a6&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">weight</span><span class="o">:</span><span class="w"> </span><span class="kt">4</span><span class="w"> </span><span class="p">}).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">mapa</span><span class="p">);</span>
+
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">bounds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">L</span><span class="p">.</span><span class="nx">latLngBounds</span><span class="p">(</span><span class="nx">coords</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">mapa</span><span class="p">.</span><span class="nx">fitBounds</span><span class="p">(</span><span class="nx">bounds</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nx">padding</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">50</span><span class="p">,</span><span class="w"> </span><span class="mf">50</span><span class="p">],</span>
+<span class="w">              </span><span class="nx">maxZoom</span><span class="o">:</span><span class="w"> </span><span class="kt">15</span><span class="p">,</span>
+<span class="w">              </span><span class="nx">animate</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span>
+<span class="w">            </span><span class="p">});</span>
+
+<span class="w">            </span><span class="nx">todasLasCoordenadas</span><span class="p">.</span><span class="nx">push</span><span class="p">(...</span><span class="nx">coords</span><span class="p">);</span>
+<span class="w">          </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Si no hay puntos guardados → generarlos con ORS</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">rutaService</span><span class="p">.</span><span class="nx">getRuta</span><span class="p">(</span><span class="nx">origen</span><span class="p">,</span><span class="w"> </span><span class="nx">destino</span><span class="p">).</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">geojson</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="kd">const</span><span class="w"> </span><span class="nx">coordsFromOR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">geojson</span><span class="p">.</span><span class="nx">features</span><span class="p">[</span><span class="mf">0</span><span class="p">].</span><span class="nx">geometry</span><span class="p">.</span><span class="nx">coordinates</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span>
+<span class="w">                </span><span class="p">(</span><span class="nx">c</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="kt">number</span><span class="p">,</span><span class="w"> </span><span class="kt">number</span><span class="p">])</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="nx">c</span><span class="p">[</span><span class="mf">1</span><span class="p">],</span><span class="w"> </span><span class="nx">c</span><span class="p">[</span><span class="mf">0</span><span class="p">]]</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">[</span><span class="kt">number</span><span class="p">,</span><span class="w"> </span><span class="kt">number</span><span class="p">]</span>
+<span class="w">              </span><span class="p">);</span>
+
+<span class="w">              </span><span class="nx">L</span><span class="p">.</span><span class="nx">polyline</span><span class="p">(</span><span class="nx">coordsFromOR</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">color</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;#0054a6&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">weight</span><span class="o">:</span><span class="w"> </span><span class="kt">4</span><span class="w"> </span><span class="p">}).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">mapa</span><span class="p">);</span>
+
+<span class="w">              </span><span class="kd">const</span><span class="w"> </span><span class="nx">bounds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">L</span><span class="p">.</span><span class="nx">latLngBounds</span><span class="p">(</span><span class="nx">coordsFromOR</span><span class="p">);</span>
+<span class="w">              </span><span class="nx">mapa</span><span class="p">.</span><span class="nx">fitBounds</span><span class="p">(</span><span class="nx">bounds</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">padding</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">50</span><span class="p">,</span><span class="w"> </span><span class="mf">50</span><span class="p">],</span>
+<span class="w">                </span><span class="nx">maxZoom</span><span class="o">:</span><span class="w"> </span><span class="kt">15</span><span class="p">,</span>
+<span class="w">                </span><span class="nx">animate</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span>
+<span class="w">              </span><span class="p">});</span>
+
+<span class="w">              </span><span class="nx">todasLasCoordenadas</span><span class="p">.</span><span class="nx">push</span><span class="p">(...</span><span class="nx">coordsFromOR</span><span class="p">);</span>
+
+<span class="w">              </span><span class="c1">// Guardar en BBDD</span>
+<span class="w">              </span><span class="kd">const</span><span class="w"> </span><span class="nx">puntosParaGuardar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">coordsFromOR</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">c</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">[],</span><span class="w"> </span><span class="nx">i</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span>
+<span class="w">                </span><span class="nx">latitud</span><span class="o">:</span><span class="w"> </span><span class="kt">c</span><span class="p">[</span><span class="mf">0</span><span class="p">],</span>
+<span class="w">                </span><span class="nx">longitud</span><span class="o">:</span><span class="w"> </span><span class="kt">c</span><span class="p">[</span><span class="mf">1</span><span class="p">],</span>
+<span class="w">                </span><span class="nx">orden</span><span class="o">:</span><span class="w"> </span><span class="kt">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<span class="w">                </span><span class="nx">descripcion</span><span class="o">:</span><span class="w"> </span><span class="kt">i</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">0</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s1">&#39;Inicio&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">coordsFromOR</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s1">&#39;Fin&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span>
+<span class="w">              </span><span class="p">}));</span>
+
+<span class="w">              </span><span class="k">this</span><span class="p">.</span><span class="nx">servicio</span><span class="p">.</span><span class="nx">guardarPuntosDeRuta</span><span class="p">(</span><span class="nx">ruta</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="nx">puntosParaGuardar</span><span class="p">).</span><span class="nx">subscribe</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Ruta guardada:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">ruta</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+<span class="w">              </span><span class="p">});</span>
+<span class="w">            </span><span class="p">});</span>
+<span class="w">          </span><span class="p">}</span>
+
+<span class="w">          </span><span class="nx">todasLasCoordenadas</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">origen</span><span class="p">,</span><span class="w"> </span><span class="nx">destino</span><span class="p">);</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="nx">todasLasCoordenadas</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">origen</span><span class="p">,</span><span class="w"> </span><span class="nx">destino</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">coordenadas</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">L</span><span class="p">.</span><span class="nx">polyline</span><span class="p">(</span><span class="nx">coordenadas</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">color</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;red&#39;</span><span class="w"> </span><span class="p">}).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">mapa</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">primerPunto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">coordenadas</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">ultimoPunto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">coordenadas</span><span class="p">[</span><span class="nx">coordenadas</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1</span><span class="p">];</span>
+
+<span class="w">        </span><span class="nx">L</span><span class="p">.</span><span class="nx">marker</span><span class="p">(</span><span class="nx">primerPunto</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">icon</span><span class="o">:</span><span class="w"> </span><span class="kt">DefaultIcon</span><span class="w"> </span><span class="p">}).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">mapa</span><span class="p">).</span><span class="nx">bindPopup</span><span class="p">(</span><span class="s1">&#39;Inicio&#39;</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">L</span><span class="p">.</span><span class="nx">marker</span><span class="p">(</span><span class="nx">ultimoPunto</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">icon</span><span class="o">:</span><span class="w"> </span><span class="kt">DefaultIcon</span><span class="w"> </span><span class="p">}).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">mapa</span><span class="p">).</span><span class="nx">bindPopup</span><span class="p">(</span><span class="s1">&#39;Fin&#39;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">bounds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">L</span><span class="p">.</span><span class="nx">latLngBounds</span><span class="p">(</span><span class="nx">coordenadas</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nx">mapa</span><span class="p">.</span><span class="nx">fitBounds</span><span class="p">(</span><span class="nx">bounds</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">padding</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">50</span><span class="p">,</span><span class="w"> </span><span class="mf">50</span><span class="p">],</span>
+<span class="w">            </span><span class="nx">maxZoom</span><span class="o">:</span><span class="w"> </span><span class="kt">15</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">animate</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span>
+<span class="w">          </span><span class="p">});</span>
+<span class="w">        </span><span class="p">},</span><span class="w"> </span><span class="mf">300</span><span class="p">);</span>
+
+<span class="w">        </span><span class="nx">todasLasCoordenadas</span><span class="p">.</span><span class="nx">push</span><span class="p">(...</span><span class="nx">coordenadas</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">todasLasCoordenadas</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">mapa</span><span class="p">.</span><span class="nx">setView</span><span class="p">([</span><span class="mf">42.6</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">7.78</span><span class="p">],</span><span class="w"> </span><span class="mf">13</span><span class="p">);</span>
+<span class="w">      </span><span class="p">},</span><span class="w"> </span><span class="mf">200</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="p">(</span><span class="nx">elementoMapa</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">any</span><span class="p">).</span><span class="nx">_leaflet_map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">mapa</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">toggleInfo</span><span class="p">(</span><span class="nx">index</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">mostrarInfo</span><span class="p">[</span><span class="nx">index</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">mostrarInfo</span><span class="p">[</span><span class="nx">index</span><span class="p">];</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">mostrarInfo</span><span class="p">[</span><span class="nx">index</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">mapaRef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">mapasRefs</span><span class="p">.</span><span class="nx">toArray</span><span class="p">()[</span><span class="nx">index</span><span class="p">];</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">mapaRef</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">elementoMapa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">mapaRef</span><span class="p">.</span><span class="nx">nativeElement</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">HTMLElement</span><span class="p">;</span>
+
+<span class="w">      </span><span class="c1">// Limpiamos mapa anterior si existe</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="nx">elementoMapa</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">any</span><span class="p">).</span><span class="nx">_leaflet_map</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="p">(</span><span class="nx">elementoMapa</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">any</span><span class="p">).</span><span class="nx">_leaflet_map</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+<span class="w">        </span><span class="ow">delete</span><span class="w"> </span><span class="p">(</span><span class="nx">elementoMapa</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">any</span><span class="p">).</span><span class="nx">_leaflet_map</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">      </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">inicializarMapaIndividual</span><span class="p">(</span><span class="nx">elementoMapa</span><span class="p">,</span><span class="w"> </span><span class="nx">index</span><span class="p">);</span>
+<span class="w">      </span><span class="p">},</span><span class="w"> </span><span class="mf">200</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="subida.component.html" class="btn btn-neutral float-left" title="SubidaComponent" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Adriel Ruano Campos.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

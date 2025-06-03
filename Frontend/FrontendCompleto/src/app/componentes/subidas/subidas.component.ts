@@ -187,7 +187,7 @@ export class SubidasComponent implements OnInit {
   
           todasLasCoordenadas.push(origen, destino);
         } else if (coordenadas.length > 2) {
-          L.polyline(coordenadas, { color: 'red' }).addTo(mapa);
+          L.polyline(coordenadas, { color: '#0054a6' }).addTo(mapa);
   
           const primerPunto = coordenadas[0];
           const ultimoPunto = coordenadas[coordenadas.length - 1];
@@ -203,10 +203,20 @@ export class SubidasComponent implements OnInit {
           todasLasCoordenadas.push(...coordenadas);
         }
       });
-  
+      
       if (todasLasCoordenadas.length === 0) {
         setTimeout(() => {
           mapa.setView([42.6, -7.78], 13);
+  
+          // Mostrar mensaje en el mapa
+          const mensaje = L.divIcon({
+            className: 'mapa-mensaje',
+            html: '<div class="mensaje-map">No hay rutas disponibles</div>',
+            iconSize: [150, 30],
+            iconAnchor: [75, 15]
+          });
+  
+          L.marker([42.6, -7.78], { icon: mensaje }).addTo(mapa);
         }, 200);
       }
   

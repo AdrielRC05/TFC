@@ -1,0 +1,351 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API REST - Endpoints &mdash; TFC Adriel Ruano Campos 01/06/2025 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=7424fe65"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Documentación del Backend – Campeonato Gallego de Montaña" href="../backend/index.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="../instalacion.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            TFC Adriel Ruano Campos
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contenido</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API REST - Endpoints</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ediciones">Ediciones</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#get-api-ediciones">GET <code class="docutils literal notranslate"><span class="pre">/api/ediciones</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-api-ediciones-id">GET <code class="docutils literal notranslate"><span class="pre">/api/ediciones/{id}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-api-ediciones-top3">GET <code class="docutils literal notranslate"><span class="pre">/api/ediciones/top3</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-api-ediciones-id-pruebas">GET <code class="docutils literal notranslate"><span class="pre">/api/ediciones/{id}/pruebas</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#post-api-ediciones">POST <code class="docutils literal notranslate"><span class="pre">/api/ediciones</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#put-api-ediciones-id">PUT <code class="docutils literal notranslate"><span class="pre">/api/ediciones/{id}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#delete-api-ediciones-id">DELETE <code class="docutils literal notranslate"><span class="pre">/api/ediciones/{id}</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#noticias">Noticias</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#get-api-noticias">GET <code class="docutils literal notranslate"><span class="pre">/api/noticias</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-api-noticias-ano-ano">GET <code class="docutils literal notranslate"><span class="pre">/api/noticias/año/{año}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-api-noticias-search-q-palabra-clave">GET <code class="docutils literal notranslate"><span class="pre">/api/noticias/search?q=palabra_clave</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#post-api-noticias">POST <code class="docutils literal notranslate"><span class="pre">/api/noticias</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#post-api-noticias-id">POST <code class="docutils literal notranslate"><span class="pre">/api/noticias/id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#participantes">Participantes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#get-api-participantes">GET <code class="docutils literal notranslate"><span class="pre">/api/participantes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-api-participantes-id">GET <code class="docutils literal notranslate"><span class="pre">/api/participantes/{id}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#post-api-participantes">POST <code class="docutils literal notranslate"><span class="pre">/api/participantes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#put-api-participantes-id">PUT <code class="docutils literal notranslate"><span class="pre">/api/participantes/{id}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#delete-api-participantes-id">DELETE <code class="docutils literal notranslate"><span class="pre">/api/participantes/{id}</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#puntos-de-ruta">Puntos de Ruta</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#get-api-puntos">GET <code class="docutils literal notranslate"><span class="pre">/api/puntos</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-api-puntos-id">GET <code class="docutils literal notranslate"><span class="pre">/api/puntos/{id}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-api-puntos-ruta-rutaid">GET <code class="docutils literal notranslate"><span class="pre">/api/puntos/ruta/{rutaId}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#post-api-puntos-guardar-rutaid">POST <code class="docutils literal notranslate"><span class="pre">/api/puntos/guardar/{rutaId}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#post-api-puntos">POST <code class="docutils literal notranslate"><span class="pre">/api/puntos</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#put-api-puntos-id">PUT <code class="docutils literal notranslate"><span class="pre">/api/puntos/{id}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#delete-api-puntos-id">DELETE <code class="docutils literal notranslate"><span class="pre">/api/puntos/{id}</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#rutas">Rutas</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#get-api-rutas">GET <code class="docutils literal notranslate"><span class="pre">/api/rutas</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-api-rutas-id">GET <code class="docutils literal notranslate"><span class="pre">/api/rutas/{id}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#post-api-rutas">POST <code class="docutils literal notranslate"><span class="pre">/api/rutas</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#delete-api-rutas-id">DELETE <code class="docutils literal notranslate"><span class="pre">/api/rutas/{id}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-api-rutas-id-ruta">GET <code class="docutils literal notranslate"><span class="pre">/api/rutas/{id}/ruta</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#subidas">Subidas</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#get-api-subidas">GET <code class="docutils literal notranslate"><span class="pre">/api/subidas</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-api-subidas-id">GET <code class="docutils literal notranslate"><span class="pre">/api/subidas/{id}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-api-subidas-edicion-id-subidas">GET <code class="docutils literal notranslate"><span class="pre">/api/subidas/edicion/{id}/subidas</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-api-subidas-nombre-nombre-nombre-xxx">GET <code class="docutils literal notranslate"><span class="pre">/api/subidas/nombre/{nombre}?nombre=XXX</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-api-subidas-top3">GET <code class="docutils literal notranslate"><span class="pre">/api/subidas/top3</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#post-api-subidas">POST <code class="docutils literal notranslate"><span class="pre">/api/subidas</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#put-api-subidas-id">PUT <code class="docutils literal notranslate"><span class="pre">/api/subidas/{id}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#delete-api-subidas-id">DELETE <code class="docutils literal notranslate"><span class="pre">/api/subidas/{id}</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../backend/index.html">Documentación del Backend – Campeonato Gallego de Montaña</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backend/edicion.controller.html">✅ Archivo: <code class="docutils literal notranslate"><span class="pre">docs/source/backend/ediciones.controller.md</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backend/noticia.controller.html">✅ Archivo: <code class="docutils literal notranslate"><span class="pre">docs/source/backend/noticias.controller.md</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backend/participante.controller.html">✅ Archivo: <code class="docutils literal notranslate"><span class="pre">docs/source/backend/participantes.controller.md</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backend/puntoRuta.controller.html">✅ Archivo: <code class="docutils literal notranslate"><span class="pre">docs/source/backend/punto-ruta.controller.md</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backend/ruta.controller.html">✅ Archivo: <code class="docutils literal notranslate"><span class="pre">docs/source/backend/ruta.controller.md</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backend/subida.controller.html">SubidaController</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../frontend/index.html">Documentación del Frontend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../frontend/ediciones.component.html">EdicionComponent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../frontend/noticias.component.html">NoticiasComponent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../frontend/pilotos.component.html">PilotosComponent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../frontend/subida.component.html">SubidaComponent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../frontend/subidas.component.html">SubidasComponent</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">TFC Adriel Ruano Campos</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">API REST - Endpoints</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/endpoints.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api-rest-endpoints">
+<h1>API REST - Endpoints<a class="headerlink" href="#api-rest-endpoints" title="Link to this heading"></a></h1>
+<hr class="docutils" />
+<section id="ediciones">
+<h2>Ediciones<a class="headerlink" href="#ediciones" title="Link to this heading"></a></h2>
+<section id="get-api-ediciones">
+<h3>GET <code class="docutils literal notranslate"><span class="pre">/api/ediciones</span></code><a class="headerlink" href="#get-api-ediciones" title="Link to this heading"></a></h3>
+<p>Devuelve una lista con todas las ediciones del campeonato.</p>
+</section>
+<section id="get-api-ediciones-id">
+<h3>GET <code class="docutils literal notranslate"><span class="pre">/api/ediciones/{id}</span></code><a class="headerlink" href="#get-api-ediciones-id" title="Link to this heading"></a></h3>
+<p>Devuelve una edición concreta según su ID.</p>
+</section>
+<section id="get-api-ediciones-top3">
+<h3>GET <code class="docutils literal notranslate"><span class="pre">/api/ediciones/top3</span></code><a class="headerlink" href="#get-api-ediciones-top3" title="Link to this heading"></a></h3>
+<p>Devuelve las 3 ediciones más recientes.</p>
+</section>
+<section id="get-api-ediciones-id-pruebas">
+<h3>GET <code class="docutils literal notranslate"><span class="pre">/api/ediciones/{id}/pruebas</span></code><a class="headerlink" href="#get-api-ediciones-id-pruebas" title="Link to this heading"></a></h3>
+<p>Devuelve las pruebas (subidas) asociadas a una edición concreta.</p>
+</section>
+<section id="post-api-ediciones">
+<h3>POST <code class="docutils literal notranslate"><span class="pre">/api/ediciones</span></code><a class="headerlink" href="#post-api-ediciones" title="Link to this heading"></a></h3>
+<p>Crea una nueva edición del campeonato.</p>
+</section>
+<section id="put-api-ediciones-id">
+<h3>PUT <code class="docutils literal notranslate"><span class="pre">/api/ediciones/{id}</span></code><a class="headerlink" href="#put-api-ediciones-id" title="Link to this heading"></a></h3>
+<p>Actualiza una edición existente según su ID.</p>
+</section>
+<section id="delete-api-ediciones-id">
+<h3>DELETE <code class="docutils literal notranslate"><span class="pre">/api/ediciones/{id}</span></code><a class="headerlink" href="#delete-api-ediciones-id" title="Link to this heading"></a></h3>
+<p>Elimina una edición por su ID.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="noticias">
+<h2>Noticias<a class="headerlink" href="#noticias" title="Link to this heading"></a></h2>
+<section id="get-api-noticias">
+<h3>GET <code class="docutils literal notranslate"><span class="pre">/api/noticias</span></code><a class="headerlink" href="#get-api-noticias" title="Link to this heading"></a></h3>
+<p>Devuelve todas las noticias.</p>
+</section>
+<section id="get-api-noticias-ano-ano">
+<h3>GET <code class="docutils literal notranslate"><span class="pre">/api/noticias/año/{año}</span></code><a class="headerlink" href="#get-api-noticias-ano-ano" title="Link to this heading"></a></h3>
+<p>Devuelve las noticias publicadas en un año concreto.</p>
+</section>
+<section id="get-api-noticias-search-q-palabra-clave">
+<h3>GET <code class="docutils literal notranslate"><span class="pre">/api/noticias/search?q=palabra_clave</span></code><a class="headerlink" href="#get-api-noticias-search-q-palabra-clave" title="Link to this heading"></a></h3>
+<p>Busca noticias que contengan una palabra clave.</p>
+</section>
+<section id="post-api-noticias">
+<h3>POST <code class="docutils literal notranslate"><span class="pre">/api/noticias</span></code><a class="headerlink" href="#post-api-noticias" title="Link to this heading"></a></h3>
+<p>Crea una nueva noticia.</p>
+</section>
+<section id="post-api-noticias-id">
+<h3>POST <code class="docutils literal notranslate"><span class="pre">/api/noticias/id</span></code><a class="headerlink" href="#post-api-noticias-id" title="Link to this heading"></a></h3>
+<p>Crea múltiples noticias en una sola petición (batch insert).</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="participantes">
+<h2>Participantes<a class="headerlink" href="#participantes" title="Link to this heading"></a></h2>
+<section id="get-api-participantes">
+<h3>GET <code class="docutils literal notranslate"><span class="pre">/api/participantes</span></code><a class="headerlink" href="#get-api-participantes" title="Link to this heading"></a></h3>
+<p>Devuelve todos los participantes registrados.</p>
+</section>
+<section id="get-api-participantes-id">
+<h3>GET <code class="docutils literal notranslate"><span class="pre">/api/participantes/{id}</span></code><a class="headerlink" href="#get-api-participantes-id" title="Link to this heading"></a></h3>
+<p>Devuelve un participante específico por ID.</p>
+</section>
+<section id="post-api-participantes">
+<h3>POST <code class="docutils literal notranslate"><span class="pre">/api/participantes</span></code><a class="headerlink" href="#post-api-participantes" title="Link to this heading"></a></h3>
+<p>Crea un nuevo participante.</p>
+</section>
+<section id="put-api-participantes-id">
+<h3>PUT <code class="docutils literal notranslate"><span class="pre">/api/participantes/{id}</span></code><a class="headerlink" href="#put-api-participantes-id" title="Link to this heading"></a></h3>
+<p>Actualiza un participante existente.</p>
+</section>
+<section id="delete-api-participantes-id">
+<h3>DELETE <code class="docutils literal notranslate"><span class="pre">/api/participantes/{id}</span></code><a class="headerlink" href="#delete-api-participantes-id" title="Link to this heading"></a></h3>
+<p>Elimina un participante por su ID.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="puntos-de-ruta">
+<h2>Puntos de Ruta<a class="headerlink" href="#puntos-de-ruta" title="Link to this heading"></a></h2>
+<section id="get-api-puntos">
+<h3>GET <code class="docutils literal notranslate"><span class="pre">/api/puntos</span></code><a class="headerlink" href="#get-api-puntos" title="Link to this heading"></a></h3>
+<p>Devuelve todos los puntos de ruta.</p>
+</section>
+<section id="get-api-puntos-id">
+<h3>GET <code class="docutils literal notranslate"><span class="pre">/api/puntos/{id}</span></code><a class="headerlink" href="#get-api-puntos-id" title="Link to this heading"></a></h3>
+<p>Devuelve un punto de ruta por su ID.</p>
+</section>
+<section id="get-api-puntos-ruta-rutaid">
+<h3>GET <code class="docutils literal notranslate"><span class="pre">/api/puntos/ruta/{rutaId}</span></code><a class="headerlink" href="#get-api-puntos-ruta-rutaid" title="Link to this heading"></a></h3>
+<p>Devuelve los puntos de una ruta específica.</p>
+</section>
+<section id="post-api-puntos-guardar-rutaid">
+<h3>POST <code class="docutils literal notranslate"><span class="pre">/api/puntos/guardar/{rutaId}</span></code><a class="headerlink" href="#post-api-puntos-guardar-rutaid" title="Link to this heading"></a></h3>
+<p>Guarda múltiples puntos asociados a una ruta.</p>
+</section>
+<section id="post-api-puntos">
+<h3>POST <code class="docutils literal notranslate"><span class="pre">/api/puntos</span></code><a class="headerlink" href="#post-api-puntos" title="Link to this heading"></a></h3>
+<p>Guarda un punto individual.</p>
+</section>
+<section id="put-api-puntos-id">
+<h3>PUT <code class="docutils literal notranslate"><span class="pre">/api/puntos/{id}</span></code><a class="headerlink" href="#put-api-puntos-id" title="Link to this heading"></a></h3>
+<p>Actualiza un punto de ruta por su ID.</p>
+</section>
+<section id="delete-api-puntos-id">
+<h3>DELETE <code class="docutils literal notranslate"><span class="pre">/api/puntos/{id}</span></code><a class="headerlink" href="#delete-api-puntos-id" title="Link to this heading"></a></h3>
+<p>Elimina un punto de ruta por su ID.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="rutas">
+<h2>Rutas<a class="headerlink" href="#rutas" title="Link to this heading"></a></h2>
+<section id="get-api-rutas">
+<h3>GET <code class="docutils literal notranslate"><span class="pre">/api/rutas</span></code><a class="headerlink" href="#get-api-rutas" title="Link to this heading"></a></h3>
+<p>Devuelve todas las rutas.</p>
+</section>
+<section id="get-api-rutas-id">
+<h3>GET <code class="docutils literal notranslate"><span class="pre">/api/rutas/{id}</span></code><a class="headerlink" href="#get-api-rutas-id" title="Link to this heading"></a></h3>
+<p>Devuelve una ruta específica por ID.</p>
+</section>
+<section id="post-api-rutas">
+<h3>POST <code class="docutils literal notranslate"><span class="pre">/api/rutas</span></code><a class="headerlink" href="#post-api-rutas" title="Link to this heading"></a></h3>
+<p>Crea una nueva ruta.</p>
+</section>
+<section id="delete-api-rutas-id">
+<h3>DELETE <code class="docutils literal notranslate"><span class="pre">/api/rutas/{id}</span></code><a class="headerlink" href="#delete-api-rutas-id" title="Link to this heading"></a></h3>
+<p>Elimina una ruta por su ID.</p>
+</section>
+<section id="get-api-rutas-id-ruta">
+<h3>GET <code class="docutils literal notranslate"><span class="pre">/api/rutas/{id}/ruta</span></code><a class="headerlink" href="#get-api-rutas-id-ruta" title="Link to this heading"></a></h3>
+<p>Devuelve los puntos de la ruta asociados a una subida específica.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="subidas">
+<h2>Subidas<a class="headerlink" href="#subidas" title="Link to this heading"></a></h2>
+<section id="get-api-subidas">
+<h3>GET <code class="docutils literal notranslate"><span class="pre">/api/subidas</span></code><a class="headerlink" href="#get-api-subidas" title="Link to this heading"></a></h3>
+<p>Devuelve todas las subidas, incluyendo rutas y sus puntos.</p>
+</section>
+<section id="get-api-subidas-id">
+<h3>GET <code class="docutils literal notranslate"><span class="pre">/api/subidas/{id}</span></code><a class="headerlink" href="#get-api-subidas-id" title="Link to this heading"></a></h3>
+<p>Devuelve una subida específica por ID, con rutas y puntos.</p>
+</section>
+<section id="get-api-subidas-edicion-id-subidas">
+<h3>GET <code class="docutils literal notranslate"><span class="pre">/api/subidas/edicion/{id}/subidas</span></code><a class="headerlink" href="#get-api-subidas-edicion-id-subidas" title="Link to this heading"></a></h3>
+<p>Devuelve todas las subidas asociadas a una edición.</p>
+</section>
+<section id="get-api-subidas-nombre-nombre-nombre-xxx">
+<h3>GET <code class="docutils literal notranslate"><span class="pre">/api/subidas/nombre/{nombre}?nombre=XXX</span></code><a class="headerlink" href="#get-api-subidas-nombre-nombre-nombre-xxx" title="Link to this heading"></a></h3>
+<p>Busca subidas por nombre.</p>
+</section>
+<section id="get-api-subidas-top3">
+<h3>GET <code class="docutils literal notranslate"><span class="pre">/api/subidas/top3</span></code><a class="headerlink" href="#get-api-subidas-top3" title="Link to this heading"></a></h3>
+<p>Devuelve las 3 subidas con mejores resultados o más recientes (según implementación).</p>
+</section>
+<section id="post-api-subidas">
+<h3>POST <code class="docutils literal notranslate"><span class="pre">/api/subidas</span></code><a class="headerlink" href="#post-api-subidas" title="Link to this heading"></a></h3>
+<p>Crea una nueva subida.</p>
+</section>
+<section id="put-api-subidas-id">
+<h3>PUT <code class="docutils literal notranslate"><span class="pre">/api/subidas/{id}</span></code><a class="headerlink" href="#put-api-subidas-id" title="Link to this heading"></a></h3>
+<p>Actualiza una subida existente.</p>
+</section>
+<section id="delete-api-subidas-id">
+<h3>DELETE <code class="docutils literal notranslate"><span class="pre">/api/subidas/{id}</span></code><a class="headerlink" href="#delete-api-subidas-id" title="Link to this heading"></a></h3>
+<p>Elimina una subida por su ID.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../instalacion.html" class="btn btn-neutral float-left" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../backend/index.html" class="btn btn-neutral float-right" title="Documentación del Backend – Campeonato Gallego de Montaña" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Adriel Ruano Campos.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

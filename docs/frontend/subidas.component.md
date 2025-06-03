@@ -1,10 +1,27 @@
+# SubidasComponent
+
+## Descripción
+
+Muestra un listado filtrable de subidas, cada una con su propio mapa Leaflet.  
+Permite filtrar por nombre y fecha. Al expandir una subida, muestra el mapa con marcadores y rutas.
+
+## Archivos clave
+
+- `subidas.component.ts`: Lógica de carga y filtro
+- `subidas.component.html`: Vista principal
+- `subidas.component.css`: Estilos personalizados
+
+---
+
+## Código completo del componente (`subidas.component.ts`)
+
+```ts
 import {
   Component,
   OnInit,
   ElementRef,
   ViewChildren,
-  QueryList,
-  HostListener
+  QueryList
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -12,7 +29,7 @@ import * as L from 'leaflet';
 import { ServicioAppService } from '../../servicios/servicio-app.service';
 import { RutaService } from '../../servicios/ruta.service';
 
-// Iconos personalizados
+// Icono por defecto
 const DefaultIcon = L.icon({
   iconUrl: '/marker-icon.png',
   shadowUrl: '/marker-shadow.png',
@@ -22,13 +39,15 @@ const DefaultIcon = L.icon({
   shadowSize: [41, 41],
 });
 
+L.Marker.prototype.options.icon = DefaultIcon;
+
 @Component({
   selector: 'app-subida',
   standalone: false,
   templateUrl: './subida.component.html',
   styleUrls: ['./subida.component.css']
 })
-export class SubidaComponent implements OnInit{
+export class SubidaComponent implements OnInit {
 
   subidas: any[] = [];
   subidasFiltradas: any[] = [];
@@ -48,7 +67,7 @@ export class SubidaComponent implements OnInit{
 
   ngOnInit(): void {
     const edicionId = this.ruta.snapshot.paramMap.get('edicionId');
-  
+
     if (edicionId) {
       // Obtener datos de la edición
       this.servicio.obtenerEdicionPorId(edicionId).subscribe(
@@ -57,16 +76,15 @@ export class SubidaComponent implements OnInit{
         },
         error => console.error('Error al cargar la edición', error)
       );
-  
+
       // Obtener subidas de la edición
       this.servicio.obtenerSubidasPorEdicion(String(edicionId)).subscribe((data: any) => {
         this.subidas = data;
         this.subidasFiltradas = data;
         this.mapasInicializados = new Array(data.length).fill(false);
         this.mostrarInfo = new Array(data.length).fill(false);
-  
+
         setTimeout(() => {
-          // Recorremos todas las subidas y llamamos al método individual con su índice
           this.mapasRefs.forEach((mapaRef, index) => {
             const elementoMapa = mapaRef.nativeElement;
             this.inicializarMapaIndividual(elementoMapa, index);
@@ -78,7 +96,7 @@ export class SubidaComponent implements OnInit{
 
   filtrarSubidas() {
     this.subidasFiltradas = this.subidas.filter(subida => {
-      const coincideNombre = this.busqueda === '' || 
+      const coincideNombre = this.busqueda === '' ||
         subida.nombre.toLowerCase().includes(this.busqueda.toLowerCase());
 
       const coincideFecha = this.fechaFiltro === '' || (
@@ -91,11 +109,6 @@ export class SubidaComponent implements OnInit{
 
     this.mostrarInfo = new Array(this.subidasFiltradas.length).fill(false);
     this.mapasInicializados = new Array(this.subidasFiltradas.length).fill(false);
-
-    // Limpiar mapas anteriores
-    for (let i = 0; i < this.subidasFiltradas.length; i++) {
-      this.limpiarMapa(i);
-    }
   }
 
   formatearFecha(fechaString: string): string {
@@ -148,7 +161,11 @@ export class SubidaComponent implements OnInit{
             L.polyline(coords, { color: '#0054a6', weight: 4 }).addTo(mapa);
 
             const bounds = L.latLngBounds(coords);
-            mapa.fitBounds(bounds, { padding: [50, 50], maxZoom: 15, animate: true });
+            mapa.fitBounds(bounds, {
+              padding: [50, 50],
+              maxZoom: 15,
+              animate: true
+            });
 
             todasLasCoordenadas.push(...coords);
           } else {
@@ -161,7 +178,11 @@ export class SubidaComponent implements OnInit{
               L.polyline(coordsFromOR, { color: '#0054a6', weight: 4 }).addTo(mapa);
 
               const bounds = L.latLngBounds(coordsFromOR);
-              mapa.fitBounds(bounds, { padding: [50, 50], maxZoom: 15, animate: true });
+              mapa.fitBounds(bounds, {
+                padding: [50, 50],
+                maxZoom: 15,
+                animate: true
+              });
 
               todasLasCoordenadas.push(...coordsFromOR);
 
@@ -184,7 +205,7 @@ export class SubidaComponent implements OnInit{
 
         todasLasCoordenadas.push(origen, destino);
       } else if (coordenadas.length > 2) {
-        L.polyline(coordenadas, { color: '#0054a6' }).addTo(mapa);
+        L.polyline(coordenadas, { color: 'red' }).addTo(mapa);
 
         const primerPunto = coordenadas[0];
         const ultimoPunto = coordenadas[coordenadas.length - 1];
@@ -194,7 +215,11 @@ export class SubidaComponent implements OnInit{
 
         const bounds = L.latLngBounds(coordenadas);
         setTimeout(() => {
-          mapa.fitBounds(bounds, { padding: [50, 50], maxZoom: 15, animate: true });
+          mapa.fitBounds(bounds, {
+            padding: [50, 50],
+            maxZoom: 15,
+            animate: true
+          });
         }, 300);
 
         todasLasCoordenadas.push(...coordenadas);
@@ -204,90 +229,30 @@ export class SubidaComponent implements OnInit{
     if (todasLasCoordenadas.length === 0) {
       setTimeout(() => {
         mapa.setView([42.6, -7.78], 13);
-
-        // Mostrar mensaje en el mapa
-        const mensaje = L.divIcon({
-          className: 'mapa-mensaje',
-          html: '<div class="mensaje-map">No hay rutas disponibles</div>',
-          iconSize: [150, 30],
-          iconAnchor: [75, 15]
-        });
-
-        L.marker([42.6, -7.78], { icon: mensaje }).addTo(mapa);
       }, 200);
     }
 
-    // Asignamos el mapa al contenedor
-(elementoMapa as any)._leaflet_map = mapa;
-
-// Finalmente forzamos el tamaño
-setTimeout(() => {
-  if (elementoMapa && elementoMapa.offsetHeight > 0 && elementoMapa.offsetWidth > 0) {
-    mapa.invalidateSize();
-  }
-}, 200);
+    (elementoMapa as any)._leaflet_map = mapa;
   }
 
   toggleInfo(index: number): void {
-  this.mostrarInfo[index] = !this.mostrarInfo[index];
+    this.mostrarInfo[index] = !this.mostrarInfo[index];
 
-  if (this.mostrarInfo[index]) {
-    const mapaRef = this.mapasRefs.toArray()[index];
-    if (!mapaRef) return;
+    if (this.mostrarInfo[index]) {
+      const mapaRef = this.mapasRefs.toArray()[index];
+      if (!mapaRef) return;
 
-    const elementoMapa = mapaRef.nativeElement as HTMLElement;
+      const elementoMapa = mapaRef.nativeElement as HTMLElement;
 
-    // Limpiamos mapa anterior si existe
-    if ((elementoMapa as any)._leaflet_map) {
-      const mapa = (elementoMapa as any)._leaflet_map;
-      mapa.off();
-      mapa.remove();
-      delete (elementoMapa as any)._leaflet_map;
-    }
+      // Limpiamos mapa anterior si existe
+      if ((elementoMapa as any)._leaflet_map) {
+        (elementoMapa as any)._leaflet_map.remove();
+        delete (elementoMapa as any)._leaflet_map;
+      }
 
-    // Inicializamos el mapa
-    setTimeout(() => {
-      this.inicializarMapaIndividual(elementoMapa, index);
-
-      // Forzamos invalidateSize() después de cargar el mapa
       setTimeout(() => {
-        const mapa = (elementoMapa as any)._leaflet_map;
-
-        if (mapa && elementoMapa.offsetHeight > 0 && elementoMapa.offsetWidth > 0) {
-          mapa.invalidateSize();
-        } else {
-          console.warn('No se puede invalidar el tamaño: contenedor vacío o inexistente');
-        }
-      }, 400);
-    }, 400);
-  }
-}
-
-  private limpiarMapa(index: number): void {
-    const mapaRef = this.mapasRefs.toArray()[index];
-    if (!mapaRef) return;
-
-    const elementoMapa = mapaRef.nativeElement as HTMLElement;
-
-    if ((elementoMapa as any)._leaflet_map) {
-      (elementoMapa as any)._leaflet_map.remove();
-      delete (elementoMapa as any)._leaflet_map;
+        this.inicializarMapaIndividual(elementoMapa, index);
+      }, 200);
     }
   }
-
-  showBackToTop = false;
-    
-  @HostListener('window:scroll', [])
-  onWindowScroll() {
-    const pos = window.scrollY || document.documentElement.scrollTop;
-    this.showBackToTop = pos > 300;
-  }
-
-  goToTop() {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  }
-
 }
