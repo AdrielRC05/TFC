@@ -27,4 +27,8 @@ public class ParticipanteService {
             return null;
         }
     }
+
+    public List<Participante> getAllPilotosOrdenadosPorTitulos() {
+        return participanteRepository.findAllByOrderByTitulosDesc();
+    }
 }

@@ -9,7 +9,7 @@ import {
 import { ServicioAppService } from '../../servicios/servicio-app.service';
 import { RutaService } from '../../servicios/ruta.service';
 import * as L from 'leaflet';
-import { forkJoin, map, of, switchMap } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 // Icono por defecto
 const DefaultIcon = L.icon({
@@ -42,10 +42,12 @@ export class SubidasComponent implements OnInit {
 
   constructor(
     private servicio: ServicioAppService,
-    private rutaService: RutaService
+    private rutaService: RutaService,
+    private ruta: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    const edicionId = this.ruta.snapshot.paramMap.get('edicionId');
     this.obtenerSubidas();
   }
 

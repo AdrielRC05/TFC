@@ -21,6 +21,7 @@ export class HeroComponent implements OnInit {
 
   top3Subidas: any[] = [];
   top3Ediciones: any[] = [];
+  topPilotos: any[] = [];
 
   constructor(private servicio: ServicioAppService) {}
 
@@ -35,6 +36,10 @@ export class HeroComponent implements OnInit {
 
     this.servicio.getSubidasByEdicion(37).subscribe(data => {
       this.eventosCalendario = data;
+    });
+
+    this.servicio.getTopPilotos().subscribe(data => {
+      this.topPilotos = data.slice(0, 4);
     });
   }
 }

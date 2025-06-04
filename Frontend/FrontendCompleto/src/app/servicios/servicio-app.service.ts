@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 interface TopSubida {
   nombre: string;
@@ -23,11 +23,6 @@ interface EventoCalendario {
   providedIn: 'root'
 })
 export class ServicioAppService {
-
-  #urlCampeonatos = 'http://localhost:8080/api/ediciones'
-  #urlRallys = 'http://localhost:8080/api/subidas'
-  #urlPilotos = 'http://localhost:8080/api/participantes'
-  #urlCopilotos = 'http://localhost:8080/copilotos'
 
   urlSubidas = 'http://localhost:8080/api/subidas'
   urlEdiciones = 'http://localhost:8080/api/ediciones'
@@ -95,6 +90,12 @@ export class ServicioAppService {
 
   getSubidasByEdicion(edicionId: number): Observable<EventoCalendario[]> {
     return this.http.get<EventoCalendario[]>(`${this.urlEdiciones}/${edicionId}/pruebas`);
+  }
+
+  getTopPilotos(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.urlParticipante}/top`).pipe(
+      map((pilotos: any[]) => pilotos.slice(0, 4))
+    );
   }
 
 }

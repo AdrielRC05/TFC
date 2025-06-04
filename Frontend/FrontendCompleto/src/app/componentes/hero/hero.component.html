@@ -33,27 +33,50 @@
     </section>
 
     <!-- Subidas emblemáticas -->
-<section class="py-5">
-    <div class="container">
-      <h2 class="text-center mb-5 gradient-text fw-bold">Subidas emblemáticas</h2>
-  
-      <div class="row g-4">
-        <div class="col-md-4" *ngFor="let subida of top3Subidas">
-          <div class="track-card h-100 shadow-sm rounded overflow-hidden text-center">
-            <div class="p-3">
-              <h3>{{ subida.nombre }}</h3>
-              <p>Veces celebrada: {{ subida.repeticiones }}</p>
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5 gradient-text fw-bold">Subidas emblemáticas</h2>
+        
+            <div class="row g-4">
+                <div class="col-md-4" *ngFor="let subida of top3Subidas">
+                    <div class="track-card h-100 shadow-sm rounded overflow-hidden text-center">
+                        <div class="p-3">
+                            <h3>{{ subida.nombre }}</h3>
+                            <p>Veces celebrada: {{ subida.repeticiones }}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+        
+            <!-- Botón centrado -->
+            <div class="text-center mt-4">
+                <a routerLink="/subidas" class="btn btn-primary btn-lg px-4">Ver todas las subidas</a>
+            </div>
         </div>
-      </div>
-  
-      <!-- Botón centrado -->
-      <div class="text-center mt-4">
-        <a routerLink="/subidas" class="btn btn-primary btn-lg px-4">Ver todas las subidas</a>
-      </div>
-    </div>
-  </section>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5 gradient-text fw-bold">Pilotos destacados</h2>
+
+            <!-- Lista de pilotos -->
+            <div class="row g-4">
+                <div class="col-md-3" *ngFor="let piloto of topPilotos">
+                    <div class="track-card h-100 shadow-sm rounded overflow-hidden text-center">
+                        <div class="p-3">
+                            <h3>{{ piloto.nombre }}</h3>
+                            <p><strong>{{ piloto.titulos }}</strong> títulos ganados</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botón centrado -->
+            <div class="text-center mt-4">
+                <a routerLink="/participantes" class="btn btn-primary btn-lg px-4">Ver todos los pilotos</a>
+            </div>
+        </div>
+    </section>
 
     <!-- Ediciones recientes -->
     <section class="py-5">

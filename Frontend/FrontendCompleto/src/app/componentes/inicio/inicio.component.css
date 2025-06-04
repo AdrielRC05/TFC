@@ -148,3 +148,18 @@
 .carousel-item.active img {
   transform: scale(1.02);
 }
+
+.carousel-caption h5,
+.carousel-caption p {
+  color: #ffffff !important; /* Blanco brillante */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Fondo oscuro bajo el texto */
+}
+
+.carousel-caption .btn-primary {
+  background-color: #0054a6 !important;
+  border-color: #0054a6 !important;
+}
+.carousel-caption .btn-primary:hover {
+  background-color: #003f7d !important;
+  border-color: #003f7d !important;
+}

@@ -16,11 +16,11 @@ public class Edicion {
     @Column(unique = true, nullable = false, name = "año")
     private int ano;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ganador_barquetas", referencedColumnName = "id", nullable = true)
     private Participante ganador_barquetas;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ganador_turismos", referencedColumnName = "id", nullable = true)
     private Participante ganador_turismos;
 
@@ -56,5 +56,17 @@ public class Edicion {
     }
     public void setSubidas(List<Subida> subidas) {
         this.subidas = subidas;
+    }
+    public Participante getGanador_barquetas() {
+        return ganador_barquetas;
+    }
+    public void setGanador_barquetas(Participante ganador_barquetas) {
+        this.ganador_barquetas = ganador_barquetas;
+    }
+    public Participante getGanador_turismos() {
+        return ganador_turismos;
+    }
+    public void setGanador_turismos(Participante ganador_turismos) {
+        this.ganador_turismos = ganador_turismos;
     }
 }

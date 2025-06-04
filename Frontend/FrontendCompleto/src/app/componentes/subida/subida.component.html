@@ -1,5 +1,9 @@
 <div class="rally-list">
   <h2>{{ edicion.nombre }}</h2>
+  <!-- Mostrar nombre de la edición -->
+<div *ngIf="edicion">
+  <h2>{{ edicion.lugar }}</h2>
+</div>
 
   <!-- Caja de búsqueda -->
   <div class="input-group mb-3" style="max-width: 300px; margin: 20px auto;">

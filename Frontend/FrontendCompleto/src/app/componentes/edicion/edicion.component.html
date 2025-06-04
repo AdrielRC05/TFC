@@ -23,8 +23,16 @@
   <div *ngFor="let edicion of edicionesFiltradas; let i = index" class="mb-4">
     <div class="championship-details p-3">
       <h4>{{ edicion.lugar }}</h4>
+      <ng-container *ngIf="edicion.ano >= 2010">
+        <p>Ganador de turismos: {{ edicion.ganador_turismos?.nombre }}</p>
+        <p>Ganador de barquetas: {{ edicion.ganador_barquetas?.nombre }}</p>
+      </ng-container>
 
-      <a 
+      <ng-container *ngIf="edicion.ano < 2010" class="text-muted">
+        <p>Ganador: {{ edicion.ganador_turismos?.nombre }}</p>
+      </ng-container>
+      
+      <a
         [routerLink]="['/ediciones', edicion.id, 'subidas']" 
         class="btn btn-outline-primary btn-sm mt-2">
         Ver Subidas

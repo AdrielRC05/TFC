@@ -18,6 +18,11 @@ public class ParticipanteController {
     @GetMapping("/{id}")
     public Participante obteneParticipantePorId(@PathVariable Long id) { return participanteService.obtenerParticipantesPorId(id); }
 
+    @GetMapping("/top")
+    public List<Participante> getPilotosOrdenadosPorTitulos() {
+        return participanteService.getAllPilotosOrdenadosPorTitulos();
+    }
+
     @PostMapping
     public Participante guardParticipante(@RequestBody Participante participante) { return participanteService.guardarParticipante(participante); }
 
