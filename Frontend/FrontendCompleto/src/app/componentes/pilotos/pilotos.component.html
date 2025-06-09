@@ -32,63 +32,68 @@
     </div>
 
     <!-- Botón de filtro -->
-    <div class="position-relative">
-      <button 
-        class="btn btn-outline-secondary d-flex align-items-center gap-2" 
-        type="button" 
-        (click)="toggleFiltro()">
-        <i class="bi bi-funnel-fill" style="color: #6c757d;"></i> Filtro
-      </button>
+   <div class="position-relative">
+  <button 
+    class="btn btn-secondary d-flex align-items-center gap-2" 
+    type="button" 
+    (click)="toggleFiltro()">
+    <i class="bi bi-funnel-fill"></i> Filtro
+  </button>
 
-      <!-- Panel emergente de opciones -->
-      <div *ngIf="mostrarPanelFiltro" class="position-absolute start-0 mt-2 bg-white border rounded shadow-sm p-3" style="z-index: 1000; width: 200px;">
-        <h6 class="mb-3">Filtrar por:</h6>
-
-        <!-- Opciones de filtro -->
-        <div class="mb-3 form-check" *ngFor="let filtro of filtrosDisponibles">
-          <input 
-            class="form-check-input" 
-            type="radio" 
-            [id]="'filtro-' + filtro" 
-            [value]="filtro" 
-            [(ngModel)]="filtroActivo" 
-            (change)="filtrarPilotos()" />
-          <label class="form-check-label" [for]="'filtro-' + filtro">
-            {{ filtro }}
-          </label>
-        </div>
-
-        <hr class="my-2">
-
-        <!-- Orden ascendente/descendente -->
-        <div class="d-flex justify-content-between">
-          <div class="form-check">
-            <input 
-              class="form-check-input" 
-              type="radio" 
-              id="ascendente" 
-              value="asc" 
-              [(ngModel)]="orden" 
-              (change)="filtrarPilotos()" />
-            <label class="form-check-label" for="ascendente">
-              Ascendiente
-            </label>
-          </div>
-          <div class="form-check">
-            <input 
-              class="form-check-input" 
-              type="radio" 
-              id="descendente" 
-              value="desc" 
-              [(ngModel)]="orden" 
-              (change)="filtrarPilotos()" />
-            <label class="form-check-label" for="descendente">
-              Descendiente
-            </label>
-          </div>
-        </div>
-      </div>
+  <!-- Panel emergente de opciones (dropdown) -->
+  <div 
+    class="dropdown-menu show p-3 mt-2 shadow"
+    *ngIf="mostrarPanelFiltro"
+    style="min-width: 220px; position: absolute; z-index: 1000;">
+    <div class="mb-2 fw-bold">Filtrar por:</div>
+    <div class="form-check mb-2" *ngFor="let filtro of filtrosDisponibles">
+      <input 
+        class="form-check-input" 
+        type="radio" 
+        [id]="'filtro-' + filtro" 
+        [value]="filtro" 
+        [(ngModel)]="filtroActivo" 
+        name="grupoFiltro"
+        (change)="filtrarPilotos()" />
+      <label class="form-check-label" [for]="'filtro-' + filtro">
+        {{ filtro }}
+      </label>
     </div>
+    <hr>
+    <div class="fw-bold mb-2">Orden:</div>
+    <div class="form-check mb-2">
+      <input 
+        class="form-check-input" 
+        type="radio" 
+        id="ascendente" 
+        value="asc" 
+        [(ngModel)]="orden" 
+        name="grupoOrden"
+        (change)="filtrarPilotos()" />
+      <label class="form-check-label" for="ascendente">
+        Ascendiente
+      </label>
+    </div>
+    <div class="form-check mb-2">
+      <input 
+        class="form-check-input" 
+        type="radio" 
+        id="descendente" 
+        value="desc" 
+        [(ngModel)]="orden" 
+        name="grupoOrden"
+        (change)="filtrarPilotos()" />
+      <label class="form-check-label" for="descendente">
+        Descendiente
+      </label>
+    </div>
+    <button 
+      class="btn-close position-absolute top-0 end-0 m-2" 
+      (click)="toggleFiltro()"
+      aria-label="Cerrar filtro">
+    </button>
+  </div>
+</div>
   </div>
 
   <!-- Mensaje si no hay resultados -->

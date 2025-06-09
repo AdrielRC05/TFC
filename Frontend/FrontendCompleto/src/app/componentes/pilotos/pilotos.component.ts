@@ -15,10 +15,10 @@ export class PilotosComponent implements OnInit {
   filtroCoche: string = '';
   mostrarInfo: boolean[] = [];
   cargando = false;
-  filtroActivo: string = 'nombre';
+  filtroActivo: string = 'Nombre';
   orden: string = 'asc';
   mostrarPanelFiltro: boolean = false;
-  filtrosDisponibles = ['nombre', 'titulos'];
+  filtrosDisponibles = ['Nombre', 'Títulos'];
 
   constructor(private servicio: ServicioAppService) {}
 
@@ -52,13 +52,13 @@ export class PilotosComponent implements OnInit {
     }
   
     // Aplicar ordenamiento
-    if (this.filtroActivo === 'nombre') {
+    if (this.filtroActivo === 'Nombre') {
       resultados.sort((a, b) => {
         return this.orden === 'asc' 
           ? a.nombre.localeCompare(b.nombre)
           : b.nombre.localeCompare(a.nombre);
       });
-    } else if (this.filtroActivo === 'titulos') {
+    } else if (this.filtroActivo === 'Títulos') {
       resultados.sort((a, b) => {
         const titulosA = a.titulos || 0;
         const titulosB = b.titulos || 0;
