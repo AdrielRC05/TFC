@@ -24,10 +24,10 @@ interface EventoCalendario {
 })
 export class ServicioAppService {
 
-  urlSubidas = 'http://localhost:8080/api/subidas'
-  urlEdiciones = 'http://localhost:8080/api/ediciones'
-  urlParticipante = 'http://localhost:8080/api/participantes'
-  urlNoticias = 'http://localhost:8080/api/noticias'
+  urlSubidas = 'http://https://cgm-dyac.onrender.com//api/subidas'
+  urlEdiciones = 'http://https://cgm-dyac.onrender.com//api/ediciones'
+  urlParticipante = 'http://https://cgm-dyac.onrender.com//api/participantes'
+  urlNoticias = 'http://https://cgm-dyac.onrender.com//api/noticias'
   
 
   constructor(private http:HttpClient) { }
@@ -73,11 +73,11 @@ export class ServicioAppService {
   }
 
   obtenerPuntosGuardados(rutaId: number): Observable<any[]> {
-    return this.http.get<any[]>(`http://localhost:8080/api/puntos/ruta/${rutaId}`);
+    return this.http.get<any[]>(`http://https://cgm-dyac.onrender.com//api/puntos/ruta/${rutaId}`);
   }
   
   guardarPuntosDeRuta(rutaId: number, puntos: any[]): Observable<any> {
-    return this.http.post(`http://localhost:8080/api/puntos/guardar/${rutaId}`, puntos);
+    return this.http.post(`http://https://cgm-dyac.onrender.com//api/puntos/guardar/${rutaId}`, puntos);
   }
 
   getTop3Subidas(): Observable<TopSubida[]> {
