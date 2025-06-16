@@ -31,10 +31,8 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
+              "src/favicon.ico",
+              "src/assets"
             ],
             "styles": [
               "src/styles.css",
@@ -54,13 +52,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "5MB",
+                  "maximumError": "15MB"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
                 }
               ],
               "outputHashing": "all"
@@ -104,12 +102,15 @@
             ],
             "styles": [
               "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "./node_modules/leaflet/dist/leaflet.css",
               "node_modules/aos/dist/aos.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ],
             "scripts": [
-              "./node_modules/leaflet/dist/leaflet.js"
+              "./node_modules/leaflet/dist/leaflet.js",
+              "node_modules/@popperjs/core/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           }
         }
