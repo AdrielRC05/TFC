@@ -2,6 +2,10 @@ services:
   - type: web
     name: tfc-backend
     env: java
-    buildCommand: cd Backend/TFC && mvn clean package
+    image: openjdk:17
+    buildCommand: |
+      cd Backend/TFC
+      curl https://dlcdn.apache.org/maven/maven-3/3.9.10/binaries/apache-maven-3.9.10-bin.tar.gz  | tar xzf -
+      ./apache-maven-3.9.10/bin/mvn clean package
     startCommand: cd Backend/TFC && java -jar target/*.jar
     plan: free
