@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: tfc-backend
+    env: java
+    buildCommand: cd Backend/TFC && mvn clean package
+    startCommand: cd Backend/TFC && java -jar target/*.jar
+    plan: free
