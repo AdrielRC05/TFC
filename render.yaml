@@ -4,8 +4,10 @@ services:
     env: java
     image: openjdk:17
     buildCommand: |
+      curl https://dlcdn.apache.org/maven/maven-3/3.9.10/binaries/apache-maven-3.9.10-bin.tar.gz | tar xz
+      export MAVEN_HOME=$(pwd)/apache-maven-3.9.10
+      export PATH=$MAVEN_HOME/bin:$PATH
       cd Backend/TFC
-      curl https://dlcdn.apache.org/maven/maven-3/3.9.10/binaries/apache-maven-3.9.10-bin.tar.gz  | tar xzf -
-      ./apache-maven-3.9.10/bin/mvn clean package
+      mvn clean package
     startCommand: cd Backend/TFC && java -jar target/*.jar
     plan: free
