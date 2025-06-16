@@ -1,6 +1,4 @@
-drop database if exists campeonato_montana;
-create database campeonato_montana;
-use campeonato_montana;
+USE sql7785120;
 
 -- Participantes
 CREATE TABLE participante (
